@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import seedQuestions from "@/data/questions.json";
 import { DIFFICULTIES, DOMAINS } from "@/lib/taxonomy";
 import {
@@ -49,6 +49,52 @@ function difficultyTone(difficulty: Difficulty) {
 
 function skillsForDomain(domainName: string) {
   return DOMAINS.find((domain) => domain.name === domainName)?.skills ?? [];
+}
+
+const TAP =
+  "min-h-11 min-h-touch touch-manipulation select-none [-webkit-tap-highlight-color:transparent]";
+const NAV_BTN = `${TAP} rounded-xl border border-slate-700 bg-slate-800 px-4 text-sm hover:bg-slate-700 w-full md:w-auto`;
+const CHIP = `${TAP} rounded-full border px-4 text-sm`;
+const CHECK_LABEL = `${TAP} flex items-center gap-3 text-sm text-slate-300`;
+
+function CompactHeader({
+  kicker,
+  title,
+  subtitle,
+  actions,
+}: {
+  kicker: string;
+  title: string;
+  subtitle?: string;
+  actions: () => ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-20 border-b border-slate-700 bg-slate-900/95 pt-safe">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <div className="min-w-0 flex-1">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 sm:text-xs">{kicker}</p>
+          <h1 className="truncate text-lg font-semibold sm:text-xl md:text-2xl">{title}</h1>
+        </div>
+        <div className="hidden items-center gap-2 md:flex">{actions()}</div>
+        <button
+          type="button"
+          className={`${TAP} rounded-xl border border-slate-700 bg-slate-800 px-3 text-sm md:hidden`}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? "Close" : "Menu"}
+        </button>
+      </div>
+      {subtitle ? (
+        <p className="mx-auto max-w-5xl px-4 pb-3 text-sm leading-6 text-slate-300 sm:px-6">{subtitle}</p>
+      ) : null}
+      {open ? (
+        <div className="flex flex-col gap-2 border-t border-slate-700 px-4 py-3 md:hidden">{actions()}</div>
+      ) : null}
+    </header>
+  );
 }
 
 export default function SatPracticeApp() {
@@ -216,39 +262,39 @@ export default function SatPracticeApp() {
 
   if (!ready) {
     return (
-      <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+      <div className="min-h-dvh bg-slate-900 text-white flex items-center justify-center px-4">
         Loading practice set…
       </div>
     );
   }
 
-  const errorLogButton = (
-    <button
-      type="button"
-      onClick={() => setScreen("errors")}
-      className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm hover:bg-slate-700"
-    >
-      Error Log{mistakes.length > 0 ? ` (${mistakes.length})` : ""}
-    </button>
-  );
+  function errorLogButton() {
+    return (
+      <button
+        type="button"
+        onClick={() => setScreen("errors")}
+        className={NAV_BTN}
+      >
+        Error Log{mistakes.length > 0 ? ` (${mistakes.length})` : ""}
+      </button>
+    );
+  }
 
   if (screen === "errors") {
     return (
-      <div className="min-h-screen bg-slate-900 text-white">
-        <header className="sticky top-0 z-20 border-b border-slate-700 bg-slate-900/95">
-          <div className="mx-auto max-w-4xl px-4 py-4 flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">SAT Practice</p>
-              <h1 className="text-xl font-semibold">Error log</h1>
-            </div>
-            <div className="flex flex-wrap gap-2">
+      <div className="min-h-dvh overflow-x-hidden bg-slate-900 text-white">
+        <CompactHeader
+          kicker="SAT Practice"
+          title="Error log"
+          actions={() => (
+            <>
               <button
                 type="button"
                 onClick={() => {
                   clearHistory();
                   setHistory([]);
                 }}
-                className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm hover:bg-slate-700"
+                className={NAV_BTN}
               >
                 Clear History
               </button>
@@ -256,21 +302,21 @@ export default function SatPracticeApp() {
                 type="button"
                 disabled={filteredMistakes.length === 0}
                 onClick={retryMissed}
-                className="rounded-xl bg-emerald-700 px-3 py-2 text-sm hover:bg-emerald-600 disabled:opacity-40"
+                className={`${TAP} w-full rounded-xl bg-emerald-700 px-4 text-sm hover:bg-emerald-600 disabled:opacity-40 md:w-auto`}
               >
                 Retry Missed Questions
               </button>
               <button
                 type="button"
                 onClick={() => setScreen(session.length ? "practice" : "setup")}
-                className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm hover:bg-slate-700"
+                className={NAV_BTN}
               >
                 Back
               </button>
-            </div>
-          </div>
-        </header>
-        <main className="mx-auto max-w-4xl px-4 py-6 space-y-4">
+            </>
+          )}
+        />
+        <main className="touch-scroll mx-auto max-w-4xl space-y-4 px-4 py-5 pb-safe sm:px-6 sm:py-6">
           {mistakes.length === 0 ? (
             <div className="rounded-2xl border border-slate-700 bg-slate-800 p-8 text-slate-300">
               No missed questions yet. Incorrect answers will appear here automatically.
@@ -282,7 +328,7 @@ export default function SatPracticeApp() {
                   <h2 className="font-semibold">Filter missed questions</h2>
                   <button
                     type="button"
-                    className="text-sm text-slate-400 hover:text-white"
+                    className={`${TAP} rounded-xl px-3 text-sm text-slate-400 hover:text-white`}
                     onClick={() => {
                       setErrorSkills([]);
                       setErrorDifficulty("All");
@@ -291,31 +337,31 @@ export default function SatPracticeApp() {
                     Reset filters
                   </button>
                 </div>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-4">
                   {DOMAINS.map((domain) => {
                     const skills = [...domain.skills];
                     const allOn = skills.every((skill) => errorSkills.includes(skill));
                     return (
-                      <div key={domain.name} className="rounded-xl border border-slate-700 bg-slate-900/50 p-3">
-                        <label className="mb-2 flex items-center gap-2 text-sm font-medium">
+                      <div key={domain.name} className="rounded-xl border border-slate-700 bg-slate-900/50 p-3 sm:p-4">
+                        <label className={`${CHECK_LABEL} font-medium text-white`}>
                           <input
                             type="checkbox"
                             checked={allOn && skills.length > 0}
                             onChange={() => toggleErrorDomain(domain.name)}
-                            className="accent-emerald-500"
+                            className="h-5 w-5 shrink-0 accent-emerald-500"
                           />
-                          {domain.name}
+                          <span className="break-words">{domain.name}</span>
                         </label>
                         <div className="space-y-1 pl-1">
                           {skills.map((skill) => (
-                            <label key={skill} className="flex items-center gap-2 text-sm text-slate-300">
+                            <label key={skill} className={CHECK_LABEL}>
                               <input
                                 type="checkbox"
                                 checked={errorSkills.includes(skill)}
                                 onChange={() => toggleErrorSkill(skill)}
-                                className="accent-emerald-500"
+                                className="h-5 w-5 shrink-0 accent-emerald-500"
                               />
-                              {skill}
+                              <span className="break-words">{skill}</span>
                             </label>
                           ))}
                         </div>
@@ -331,7 +377,7 @@ export default function SatPracticeApp() {
                         key={option}
                         type="button"
                         onClick={() => setErrorDifficulty(option)}
-                        className={`rounded-full border px-3 py-1.5 text-sm ${
+                        className={`${CHIP} ${
                           errorDifficulty === option
                             ? "border-white bg-slate-700"
                             : "border-slate-600 text-slate-300"
@@ -354,19 +400,19 @@ export default function SatPracticeApp() {
                 filteredMistakes.map((attempt) => {
                   const item = attempt.question;
                   return (
-                    <article key={`${attempt.questionId}-${attempt.timestamp}`} className="rounded-2xl border border-slate-700 bg-slate-800 p-6 space-y-4">
+                    <article key={`${attempt.questionId}-${attempt.timestamp}`} className="rounded-2xl border border-slate-700 bg-slate-800 p-4 space-y-4 sm:p-6">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <div>
-                          <p className="text-sm uppercase tracking-wide text-slate-400">
+                        <div className="min-w-0">
+                          <p className="text-sm uppercase tracking-wide text-slate-400 break-words">
                             {item.skill}: {item.difficulty}
                           </p>
-                          <p className="text-sm text-slate-400">{item.domain}</p>
+                          <p className="text-sm text-slate-400 break-words">{item.domain}</p>
                         </div>
                         <span className={`rounded-full border px-3 py-1 text-xs ${difficultyTone(item.difficulty)}`}>
                           {item.difficulty}
                         </span>
                       </div>
-                      <p className="whitespace-pre-wrap leading-8 text-slate-100">{item.passage}</p>
+                      <p className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">{item.passage}</p>
                       <p className="font-medium leading-7">{item.prompt}</p>
                       <div className="space-y-3">
                         {item.choices.map((choice) => (
@@ -382,10 +428,6 @@ export default function SatPracticeApp() {
                           >
                             <p className="text-lg font-bold leading-7">
                               {choice.id}. {choice.text}
-                              {choice.id === item.correctAnswer ? " · Correct" : ""}
-                              {choice.id === attempt.selectedAnswer && choice.id !== item.correctAnswer
-                                ? " · Your choice"
-                                : ""}
                             </p>
                             <p className="mt-2 text-sm leading-7 opacity-90">{item.explanations[choice.id]}</p>
                           </div>
@@ -408,57 +450,51 @@ export default function SatPracticeApp() {
   if (screen === "setup") {
     const canStart = selectedSkills.length > 0 && remaining.length > 0;
     return (
-      <div className="min-h-screen bg-slate-900 text-white">
-        <header className="border-b border-slate-700">
-          <div className="mx-auto max-w-5xl px-4 py-6 flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-slate-400">SAT Reading and Writing</p>
-              <h1 className="mt-2 text-3xl font-semibold">Practice setup</h1>
-              <p className="mt-2 max-w-2xl text-slate-300">
-                Choose domains, difficulty, and session length. {bank.length.toLocaleString()} questions are loaded.
-              </p>
-            </div>
-            {errorLogButton}
-          </div>
-        </header>
+      <div className="min-h-dvh overflow-x-hidden bg-slate-900 text-white">
+        <CompactHeader
+          kicker="SAT Reading and Writing"
+          title="Practice setup"
+          subtitle={`Choose domains, difficulty, and session length. ${bank.length.toLocaleString()} questions are loaded.`}
+          actions={() => errorLogButton()}
+        />
 
-        <main className="mx-auto max-w-5xl px-4 py-8 space-y-6">
-          <section className="rounded-2xl border border-slate-700 bg-slate-800 p-6">
+        <main className="touch-scroll mx-auto max-w-5xl space-y-5 px-4 py-5 pb-safe sm:px-6 sm:py-8 sm:space-y-6">
+          <section className="rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="text-lg font-semibold">Domains & skills</h2>
               <button
                 type="button"
-                className="text-sm text-slate-400 hover:text-white"
+                className={`${TAP} rounded-xl px-3 text-sm text-slate-400 hover:text-white`}
                 onClick={() => setSelectedSkills([])}
               >
                 Clear skills
               </button>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-4">
               {DOMAINS.map((domain) => {
                 const skills = [...domain.skills];
                 const allOn = skills.every((skill) => selectedSkills.includes(skill));
                 return (
-                  <div key={domain.name} className="rounded-xl border border-slate-700 bg-slate-900/50 p-4">
-                    <label className="mb-3 flex items-center gap-2 font-medium">
+                  <div key={domain.name} className="rounded-xl border border-slate-700 bg-slate-900/50 p-3 sm:p-4">
+                    <label className={`${CHECK_LABEL} font-medium text-white`}>
                       <input
                         type="checkbox"
                         checked={allOn}
                         onChange={() => toggleDomain(domain.name)}
-                        className="accent-emerald-500"
+                        className="h-5 w-5 shrink-0 accent-emerald-500"
                       />
-                      {domain.name}
+                      <span className="break-words">{domain.name}</span>
                     </label>
-                    <div className="space-y-2 pl-1">
+                    <div className="space-y-1 pl-1">
                       {skills.map((skill) => (
-                        <label key={skill} className="flex items-center gap-2 text-sm text-slate-300">
+                        <label key={skill} className={CHECK_LABEL}>
                           <input
                             type="checkbox"
                             checked={selectedSkills.includes(skill)}
                             onChange={() => toggleSkill(skill)}
-                            className="accent-emerald-500"
+                            className="h-5 w-5 shrink-0 accent-emerald-500"
                           />
-                          {skill}
+                          <span className="break-words">{skill}</span>
                         </label>
                       ))}
                     </div>
@@ -468,8 +504,8 @@ export default function SatPracticeApp() {
             </div>
           </section>
 
-          <section className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-700 bg-slate-800 p-6">
+          <section className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+            <div className="rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:p-6">
               <h2 className="mb-4 text-lg font-semibold">Difficulty</h2>
               <div className="flex flex-wrap gap-2">
                 {(["All", ...DIFFICULTIES] as DifficultyFilter[]).map((option) => (
@@ -477,7 +513,7 @@ export default function SatPracticeApp() {
                     key={option}
                     type="button"
                     onClick={() => setDifficulty(option)}
-                    className={`rounded-full border px-4 py-2 text-sm ${
+                    className={`${CHIP} ${
                       difficulty === option
                         ? "border-white bg-slate-700"
                         : "border-slate-600 text-slate-300"
@@ -488,7 +524,7 @@ export default function SatPracticeApp() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-700 bg-slate-800 p-6">
+            <div className="rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:p-6">
               <h2 className="mb-4 text-lg font-semibold">Session length</h2>
               <div className="flex flex-wrap gap-2">
                 {SESSION_COUNTS.map((count) => (
@@ -496,7 +532,7 @@ export default function SatPracticeApp() {
                     key={count}
                     type="button"
                     onClick={() => setQuestionCount(count)}
-                    className={`rounded-full border px-4 py-2 text-sm ${
+                    className={`${CHIP} ${
                       questionCount === count
                         ? "border-white bg-slate-700"
                         : "border-slate-600 text-slate-300"
@@ -508,7 +544,7 @@ export default function SatPracticeApp() {
                 <button
                   type="button"
                   onClick={() => setQuestionCount("all")}
-                  className={`rounded-full border px-4 py-2 text-sm ${
+                  className={`${CHIP} ${
                     questionCount === "all"
                       ? "border-white bg-slate-700"
                       : "border-slate-600 text-slate-300"
@@ -520,7 +556,7 @@ export default function SatPracticeApp() {
             </div>
           </section>
 
-          <section className="rounded-2xl border border-slate-700 bg-slate-800 p-6">
+          <section className="rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:p-6">
             <h2 className="mb-4 text-lg font-semibold">Exclude from new sessions</h2>
             <div className="flex flex-wrap gap-2">
               {(
@@ -534,7 +570,7 @@ export default function SatPracticeApp() {
                   key={mode}
                   type="button"
                   onClick={() => changeExcludeMode(mode)}
-                  className={`rounded-full border px-4 py-2 text-sm ${
+                  className={`${CHIP} ${
                     excludeMode === mode
                       ? "border-white bg-slate-700"
                       : "border-slate-600 text-slate-300"
@@ -544,7 +580,7 @@ export default function SatPracticeApp() {
                 </button>
               ))}
             </div>
-            <label className="mt-4 flex items-center gap-2 text-sm text-slate-300">
+            <label className={`${CHECK_LABEL} mt-4`}>
               <input
                 type="checkbox"
                 checked={includeSkipped}
@@ -553,27 +589,27 @@ export default function SatPracticeApp() {
                   setIncludeSkipped(next);
                   saveIncludeSkipped(next);
                 }}
-                className="accent-emerald-500"
+                className="h-5 w-5 shrink-0 accent-emerald-500"
               />
               Include skipped questions
             </label>
             <button
               type="button"
               onClick={() => setHistory(clearSkippedAttempts(history))}
-              className="mt-3 text-sm text-slate-400 hover:text-white"
+              className={`${TAP} mt-2 rounded-xl px-3 text-sm text-slate-400 hover:text-white`}
             >
               Clear skipped questions
             </button>
           </section>
 
           {exhausted && (
-            <div className="rounded-2xl border border-amber-600/70 bg-amber-950/40 p-5 text-amber-100">
+            <div className="rounded-2xl border border-amber-600/70 bg-amber-950/40 p-4 text-amber-100 sm:p-5">
               You have answered every matching question in this filter
               {excludeMode === "correct" ? " correctly" : ""}. Clear history, change the exclude setting, or pick another skill to continue.
             </div>
           )}
 
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-700 bg-slate-800 p-6">
+          <div className="flex flex-col gap-3 rounded-2xl border border-slate-700 bg-slate-800 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="text-slate-300">
               {selectedSkills.length === 0
                 ? "Select at least one skill to start."
@@ -581,16 +617,14 @@ export default function SatPracticeApp() {
                   ? `${matching.length.toLocaleString()} matching · 0 remaining`
                   : `${remaining.length.toLocaleString()} remaining of ${matching.length.toLocaleString()} matching`}
             </p>
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                disabled={!canStart}
-                onClick={startSession}
-                className="rounded-xl bg-emerald-600 px-5 py-3 font-medium hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Start Practice Session
-              </button>
-            </div>
+            <button
+              type="button"
+              disabled={!canStart}
+              onClick={startSession}
+              className={`${TAP} w-full rounded-xl bg-emerald-600 px-5 font-medium hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto`}
+            >
+              Start Practice Session
+            </button>
           </div>
         </main>
       </div>
@@ -603,51 +637,49 @@ export default function SatPracticeApp() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      <header className="sticky top-0 z-20 border-b border-slate-700 bg-slate-900/95">
-        <div className="mx-auto max-w-4xl px-4 py-4 flex flex-wrap items-center gap-3 justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">SAT Practice</p>
-            <h1 className="text-xl font-semibold">Reading and Writing</h1>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-slate-300">
+    <div className="min-h-dvh overflow-x-hidden bg-slate-900 text-white">
+      <CompactHeader
+        kicker="SAT Practice"
+        title="Reading and Writing"
+        actions={() => (
+          <>
+            <span className="px-1 text-sm text-slate-300 md:px-0">
               {answeredCount}/{session.length} answered · {correctCount} correct
             </span>
-            {errorLogButton}
+            {errorLogButton()}
             <button
               type="button"
               onClick={() => setScreen("setup")}
-              className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-sm hover:bg-slate-700"
+              className={NAV_BTN}
             >
               Change Filters / Setup
             </button>
-          </div>
-        </div>
-      </header>
+          </>
+        )}
+      />
 
-      <main className="mx-auto max-w-4xl px-4 py-6 space-y-4">
+      <main className="touch-scroll mx-auto max-w-4xl space-y-4 px-4 py-5 sm:px-6 sm:py-6">
         {!question ? (
-          <div className="rounded-2xl border border-slate-700 bg-slate-800 p-8 text-slate-300">
+          <div className="rounded-2xl border border-slate-700 bg-slate-800 p-6 text-slate-300 sm:p-8">
             No questions in this session.
           </div>
         ) : (
           <>
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-sm uppercase tracking-wide text-slate-400">
+              <div className="min-w-0">
+                <p className="text-sm uppercase tracking-wide text-slate-400 break-words">
                   {question.skill}: {question.difficulty}
                 </p>
-                <p className="text-sm text-slate-400">{question.domain}</p>
+                <p className="text-sm text-slate-400 break-words">{question.domain}</p>
               </div>
               <span className={`rounded-full border px-3 py-1 text-xs ${difficultyTone(question.difficulty)}`}>
                 {question.difficulty}
               </span>
             </div>
 
-            <article className="rounded-2xl border border-slate-700 bg-slate-800 p-6 shadow-lg shadow-black/20">
-              <p className="whitespace-pre-wrap leading-8 text-slate-100">{question.passage}</p>
-              <p className="mt-6 font-medium leading-7 text-white">{question.prompt}</p>
+            <article className="touch-scroll rounded-2xl border border-slate-700 bg-slate-800 p-4 shadow-lg shadow-black/20 sm:p-6">
+              <p className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">{question.passage}</p>
+              <p className="mt-5 font-medium leading-7 break-words text-white sm:mt-6">{question.prompt}</p>
             </article>
 
             <div className="space-y-3">
@@ -655,14 +687,11 @@ export default function SatPracticeApp() {
                 const isCorrect = choice.id === question.correctAnswer;
                 const isSelected = picked === choice.id;
                 const revealed = Boolean(picked);
-                let className =
-                  "w-full text-left rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-slate-500";
+                let className = `choice-tap w-full min-h-11 text-left rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-slate-500 ${TAP}`;
                 if (revealed && isCorrect) {
-                  className =
-                    "w-full text-left rounded-2xl border bg-emerald-950/40 border-emerald-500 text-emerald-200 p-4";
+                  className = `choice-tap w-full min-h-11 text-left rounded-2xl border bg-emerald-950/40 border-emerald-500 text-emerald-200 p-4 ${TAP}`;
                 } else if (revealed && isSelected && !isCorrect) {
-                  className =
-                    "w-full text-left rounded-2xl border border-rose-500/80 bg-rose-950/30 text-rose-100 p-4";
+                  className = `choice-tap w-full min-h-11 text-left rounded-2xl border border-rose-500/80 bg-rose-950/30 text-rose-100 p-4 ${TAP}`;
                 }
                 return (
                   <button
@@ -673,10 +702,10 @@ export default function SatPracticeApp() {
                     className={className}
                   >
                     <div className="flex gap-3 items-start">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-current text-sm font-semibold">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current text-sm font-semibold">
                         {revealed && isCorrect ? "✓" : choice.id}
                       </span>
-                      <span className="leading-7">{choice.text}</span>
+                      <span className="leading-7 break-words pt-2">{choice.text}</span>
                     </div>
                   </button>
                 );
@@ -684,7 +713,7 @@ export default function SatPracticeApp() {
             </div>
 
             {picked && (
-              <section className="rounded-2xl border border-slate-700 bg-slate-800 p-6 space-y-4">
+              <section className="rounded-2xl border border-slate-700 bg-slate-800 p-4 space-y-4 sm:p-6">
                 <h2 className="text-lg font-semibold">
                   {picked === question.correctAnswer ? "Correct" : "Incorrect"} · Why each choice
                 </h2>
@@ -699,10 +728,8 @@ export default function SatPracticeApp() {
                           : "border-slate-700 bg-slate-900/40 text-slate-200"
                     }`}
                   >
-                    <p className="mb-1 font-medium">
-                      {choice.id}
-                      {choice.id === question.correctAnswer ? " · Correct" : ""}
-                      {picked === choice.id && choice.id !== question.correctAnswer ? " · Your choice" : ""}
+                    <p className="mb-1 text-base font-bold leading-7 break-words">
+                      {choice.id}. {choice.text}
                     </p>
                     <p className="text-sm leading-7">{question.explanations[choice.id]}</p>
                   </div>
@@ -710,36 +737,38 @@ export default function SatPracticeApp() {
               </section>
             )}
 
-            <div className="flex items-center justify-between gap-3 pt-2">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                disabled={index === 0}
-                className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 disabled:opacity-40"
-              >
-                Previous
-              </button>
-              <p className="text-sm text-slate-400">
-                {index + 1} of {session.length}
-                {question && sessionSkipped[question.id] ? " · Skipped" : ""}
-              </p>
-              <div className="flex items-center gap-2">
+            <div className="sticky bottom-0 z-10 -mx-4 mt-4 border-t border-slate-800 bg-slate-900/95 px-4 py-3 pb-safe sm:-mx-6 sm:px-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p className="order-first text-center text-sm text-slate-400 sm:order-none">
+                  {index + 1} of {session.length}
+                  {question && sessionSkipped[question.id] ? " · Skipped" : ""}
+                </p>
                 <button
                   type="button"
-                  onClick={skipQuestion}
-                  disabled={!question || Boolean(picked) || Boolean(question && sessionSkipped[question.id])}
-                  className="rounded-xl border border-slate-600 px-4 py-2 text-slate-300 hover:bg-slate-800 disabled:opacity-40"
+                  onClick={() => go(-1)}
+                  disabled={index === 0}
+                  className={`${NAV_BTN} order-2 sm:order-none`}
                 >
-                  Skip
+                  Previous
                 </button>
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  disabled={index >= session.length - 1}
-                  className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 disabled:opacity-40"
-                >
-                  Next
-                </button>
+                <div className="order-1 grid grid-cols-2 gap-2 sm:order-none sm:flex">
+                  <button
+                    type="button"
+                    onClick={skipQuestion}
+                    disabled={!question || Boolean(picked) || Boolean(question && sessionSkipped[question.id])}
+                    className={`${TAP} rounded-xl border border-slate-600 px-4 text-slate-300 hover:bg-slate-800 disabled:opacity-40`}
+                  >
+                    Skip
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    disabled={index >= session.length - 1}
+                    className={NAV_BTN}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             </div>
           </>
