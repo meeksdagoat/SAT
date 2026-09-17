@@ -59,6 +59,209 @@ function collapseSpaces(value) {
     .trim();
 }
 
+function stripUnderlineTags(value) {
+  return String(value || "").replace(/<\/?u>/gi, "");
+}
+
+function mergeUnderlineTags(value) {
+  return String(value || "").replace(/<\/u>(\s*)<u>/g, "$1");
+}
+
+function hasUnderlineMarkup(value) {
+  return /<u[\s>]|<\/u>/i.test(String(value || ""));
+}
+
+function wrapOnce(haystack, needle) {
+  if (!needle || needle.length < 2) return null;
+  const index = haystack.indexOf(needle);
+  if (index < 0) return null;
+  return `${haystack.slice(0, index)}<u>${needle}</u>${haystack.slice(index + needle.length)}`;
+}
+
+function sentencesOf(passage) {
+  return String(passage).match(/[^.!?]+(?:[.!?]+|$)/g) || [passage];
+}
+
+function expandToSentence(passage, snippet) {
+  const hit = sentencesOf(passage).find((sentence) => sentence.includes(snippet));
+  return hit ? hit.trim() : snippet;
+}
+
+function quoteNearUnderlined(text) {
+  const patterns = [
+    /which is underlined[,:\s]+[^“"”]{0,180}[“"]([^"”]{3,240})[”"]/i,
+    /[“"]([^"”]{3,240})[”"][^.]{0,40}(?:is|are) underlined/i,
+  ];
+  for (const pattern of patterns) {
+    const match = String(text).match(pattern);
+    if (match?.[1]) return match[1];
+  }
+  return "";
+}
+
+function wrapLiteraryOpening(passage) {
+  if (!/^The following text is from\b/i.test(passage)) return null;
+  const context = passage.match(
+    /In the (?:poem|text|excerpt|passage|novel|play|essay|story|book)\b[^.?!]*[.?!]\s+/i,
+  );
+  if (!context) return null;
+  const cut = context.index + context[0].length;
+  const prefix = passage.slice(0, cut);
+  const rest = passage.slice(cut);
+  const clauseMatch = rest.match(/^.{8,}?(?:—|–|[.?!])/);
+  const target = clauseMatch ? clauseMatch[0] : "";
+  if (!target || target.length < 8 || target.length > rest.length * 0.9) return null;
+  return `${prefix}<u>${target}</u>${rest.slice(target.length)}`;
+}
+
+function wrapUnderlinedPassage(question) {
+  let passage = question.passage;
+  if (hasUnderlineMarkup(passage)) {
+    return { ...question, passage: mergeUnderlineTags(passage) };
+  }
+  if (/_{3,}/.test(passage)) {
+    return {
+      ...question,
+      passage: passage.replace(/_{3,}/g, "<u>\u00a0\u00a0\u00a0\u00a0</u>"),
+    };
+  }
+
+  const prompt = question.prompt || "";
+  const wantsUnderline =
+    /underlined/i.test(prompt) ||
+    /completes the text so that it conforms/i.test(prompt) ||
+    /most logical transition/i.test(prompt) ||
+    /most logical and precise word/i.test(prompt);
+  if (!wantsUnderline) return question;
+
+  const literary = wrapLiteraryOpening(passage);
+  if (literary) return { ...question, passage: literary };
+
+  const rationale = Object.values(question.explanations || {}).join("\n");
+  const quote = quoteNearUnderlined(rationale);
+  if (quote && passage.includes(quote)) {
+    const target = /sentence/i.test(prompt) ? expandToSentence(passage, quote) : quote;
+    const wrapped = wrapOnce(passage, target);
+    if (wrapped) return { ...question, passage: wrapped };
+  }
+
+  const word = prompt.match(/(?:word|phrase)\s+[“"]([^"”]+)[”"]/i)?.[1];
+  if (word && passage.includes(word)) {
+    const wrapped = wrapOnce(passage, word);
+    if (wrapped) return { ...question, passage: wrapped };
+  }
+
+  if (/underlined/i.test(prompt) && /Text 1/i.test(prompt) && /\bText 2\b/.test(passage)) {
+    const splitAt = passage.search(/\sText 2\b/);
+    const text1 = passage.slice(0, splitAt).replace(/^Text 1\s*/, "");
+    const last = sentencesOf(text1).at(-1)?.trim();
+    if (last && last.length >= 20) {
+      const wrapped = wrapOnce(passage, last);
+      if (wrapped) return { ...question, passage: wrapped };
+    }
+  }
+
+  if (
+    /completes the text so that it conforms/i.test(prompt) ||
+    /Form, Structure, and Sense|Boundaries/.test(question.skill || "")
+  ) {
+    const matches = (question.choices || [])
+      .map((choice) => choice.text)
+      .filter((text) => text && text.length >= 4 && passage.includes(text))
+      .sort((a, b) => b.length - a.length);
+    const unique = matches.filter((text) => passage.split(text).length === 2);
+    const wrapped = wrapOnce(passage, unique[0] || matches[0]);
+    if (wrapped) return { ...question, passage: wrapped };
+  }
+
+  return question;
+}
+
+function collectUnderlineBands(annotations) {
+  const bands = [];
+  for (const annotation of annotations || []) {
+    if (!/underline|highlight/i.test(annotation.subtype || "")) continue;
+    const rect = annotation.rect || [];
+    if (rect.length < 4) continue;
+    bands.push({
+      x0: Math.min(rect[0], rect[2]),
+      x1: Math.max(rect[0], rect[2]),
+      y0: Math.min(rect[1], rect[3]),
+      y1: Math.max(rect[1], rect[3]),
+    });
+  }
+  return bands;
+}
+
+function itemIsUnderlined(item, bands) {
+  if (!item?.str || !item.transform || !bands.length) return false;
+  const x0 = item.transform[4];
+  const x1 = x0 + (item.width || 0);
+  const baseline = item.transform[5];
+  const height = item.height || 10;
+  return bands.some((band) => {
+    const overlap = Math.min(x1, band.x1) - Math.max(x0, band.x0);
+    if (overlap < Math.min(Math.max(item.width || 0, 4), band.x1 - band.x0) * 0.35) return false;
+    return baseline >= band.y0 - 2 && baseline <= band.y1 + height * 0.85;
+  });
+}
+
+async function pageTextWithUnderlines(pdfjs, page, pageNumber, totalPages) {
+  const textContent = await page.getTextContent();
+  let annotations = [];
+  try {
+    annotations = await page.getAnnotations({ intent: "display" });
+  } catch {
+    annotations = [];
+  }
+  const bands = collectUnderlineBands(annotations);
+  const lineThreshold = 4.6;
+  const cellThreshold = 7;
+  const strBuf = [];
+  let lastX;
+  let lastY;
+  let lineHeight = 0;
+  const viewport = page.getViewport({ scale: 1 });
+
+  for (const item of textContent.items) {
+    if (!("str" in item)) continue;
+    const tm = item.transform;
+    const [x, y] = viewport.convertToViewportPoint(tm[4], tm[5]);
+    const underlined = itemIsUnderlined(item, bands);
+    let chunk = item.str;
+    if (underlined && chunk.replace(/\s+/g, "")) {
+      chunk = `<u>${chunk}</u>`;
+    }
+    if (lastY !== undefined && Math.abs(lastY - y) > lineThreshold) {
+      const lastItem = strBuf.length ? strBuf[strBuf.length - 1] : undefined;
+      const isCurrentItemHasNewLine = chunk.startsWith("\n") || (item.str.trim() === "" && item.hasEOL);
+      if (lastItem?.endsWith("\n") === false && !isCurrentItemHasNewLine) {
+        const ydiff = Math.abs(lastY - y);
+        if (ydiff - 1 > lineHeight) {
+          strBuf.push("\n");
+          lineHeight = 0;
+        }
+      }
+    }
+    if (lastY !== undefined && Math.abs(lastY - y) < lineThreshold) {
+      if (lastX !== undefined && Math.abs(lastX - x) > cellThreshold) {
+        chunk = `\t${chunk}`;
+      }
+    }
+    strBuf.push(chunk);
+    lastX = x + item.width;
+    lastY = y;
+    lineHeight = Math.max(lineHeight, item.height);
+    if (item.hasEOL) {
+      strBuf.push("\n");
+      lineHeight = 0;
+    }
+  }
+
+  const text = `${mergeUnderlineTags(strBuf.join(""))}\n-- ${pageNumber} of ${totalPages} --`;
+  return text;
+}
+
 function normalizeDomain(value) {
   const haystack = collapseSpaces(value).toLowerCase();
   const match = DOMAINS.find((domain) => haystack.includes(domain.toLowerCase()));
@@ -134,16 +337,16 @@ function parseQuestionBankText(text) {
       continue;
     }
 
-    const meta = parseMeta(chunk.slice(0, questionIndex));
+    const meta = parseMeta(stripUnderlineTags(chunk.slice(0, questionIndex)));
     const body = chunk.slice(questionIndex + "\nQuestion\n".length, answerIndex).trim();
     const promptSplit = body.search(PROMPT_RE);
     const passage =
       promptSplit >= 0 ? body.slice(0, promptSplit).trim() : body.trim();
     const prompt =
       promptSplit >= 0
-        ? collapseSpaces(body.slice(promptSplit))
+        ? collapseSpaces(stripUnderlineTags(body.slice(promptSplit)))
         : "Which choice is best?";
-    const choices = parseChoices(chunk.slice(answerIndex + "\nAnswer\n".length, correctIndex));
+    const choices = parseChoices(stripUnderlineTags(chunk.slice(answerIndex + "\nAnswer\n".length, correctIndex)));
     const correctAnswer = chunk
       .slice(correctIndex)
       .match(/Correct Answer:\s*([A-D])/i)?.[1]
@@ -154,32 +357,60 @@ function parseQuestionBankText(text) {
     }
 
     const rationale = rationaleIndex >= 0 ? chunk.slice(rationaleIndex + "\nRationale\n".length) : "";
-    questions.push({
-      id,
-      assessment: "SAT",
-      test: "Reading and Writing",
-      domain: meta.domain,
-      skill: meta.skill,
-      difficulty: meta.difficulty,
-      passage: collapseSpaces(passage),
-      prompt,
-      choices,
-      correctAnswer,
-      explanations: parseRationale(rationale),
-    });
+    questions.push(
+      wrapUnderlinedPassage({
+        id,
+        assessment: "SAT",
+        test: "Reading and Writing",
+        domain: meta.domain,
+        skill: meta.skill,
+        difficulty: meta.difficulty,
+        passage: mergeUnderlineTags(collapseSpaces(passage)),
+        prompt,
+        choices,
+        correctAnswer,
+        explanations: parseRationale(stripUnderlineTags(rationale)),
+      }),
+    );
   }
 
   return { questions, skipped };
 }
 
+let pdfjsLibPromise;
+
+function loadPdfjs() {
+  if (!pdfjsLibPromise) {
+    pdfjsLibPromise = import("pdfjs-dist/legacy/build/pdf.mjs").catch(() =>
+      import("pdfjs-dist/build/pdf.mjs"),
+    );
+  }
+  return pdfjsLibPromise;
+}
+
 async function extractPdfText(filePath) {
   const buffer = fs.readFileSync(filePath);
-  const parser = new PDFParse({ data: buffer });
   try {
-    const result = await parser.getText();
-    return result.text || "";
-  } finally {
-    await parser.destroy();
+    const pdfjs = await loadPdfjs();
+    const data = new Uint8Array(buffer);
+    const loadingTask = pdfjs.getDocument({ data, verbosity: 0 });
+    const doc = await loadingTask.promise;
+    const pages = [];
+    for (let pageNumber = 1; pageNumber <= doc.numPages; pageNumber += 1) {
+      const page = await doc.getPage(pageNumber);
+      pages.push(await pageTextWithUnderlines(pdfjs, page, pageNumber, doc.numPages));
+    }
+    await doc.destroy();
+    return pages.join("\n");
+  } catch (error) {
+    console.warn(`Underline-aware extract failed for ${path.basename(filePath)}: ${error.message}`);
+    const parser = new PDFParse({ data: buffer });
+    try {
+      const result = await parser.getText();
+      return result.text || "";
+    } finally {
+      await parser.destroy();
+    }
   }
 }
 
@@ -228,6 +459,10 @@ async function main() {
   }
 
   console.log(`Wrote ${questions.length} unique questions to ${path.relative(ROOT, OUTPUT)}`);
+  console.log(
+    "Passages with underline markup:",
+    questions.filter((question) => hasUnderlineMarkup(question.passage)).length,
+  );
   console.log("By domain:", byDomain);
   console.log("Skipped incomplete blocks:", skipped);
 }

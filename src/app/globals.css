@@ -62,3 +62,13 @@ label {
   min-height: 44px;
   min-width: 44px;
 }
+
+.sat-rich u,
+.sat-rich ins {
+  text-decoration-line: underline;
+  text-decoration-color: #38bdf8;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  color: #bae6fd;
+}

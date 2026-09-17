@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { parseRichText, UNDERLINE_CLASS, type RichSpan } from "@/lib/rich-text";
 
 export type HighlightColor = "yellow" | "pink" | "blue";
 
@@ -51,20 +52,43 @@ function clearHighlights(list: TextHighlight[], start: number, end: number) {
   return result;
 }
 
-function segments(text: string, highlights: TextHighlight[]) {
-  const points = new Set<number>([0, text.length]);
+function decorate(text: string, span: RichSpan | undefined, color?: HighlightColor) {
+  let node: ReactNode = text;
+  if (span?.italic) node = <i>{node}</i>;
+  if (span?.bold) node = <b className="font-semibold">{node}</b>;
+  if (span?.underline) node = <u className={UNDERLINE_CLASS}>{node}</u>;
+  if (color) node = <mark className={`${COLOR_CLASS[color]} rounded-sm`}>{node}</mark>;
+  return node;
+}
+
+function renderSpans(spans: RichSpan[], highlights: TextHighlight[]) {
+  const plain = spans.map((span) => span.text).join("");
+  const points = new Set<number>([0, plain.length]);
+  const ranges: { start: number; end: number; span: RichSpan }[] = [];
+  let offset = 0;
+  for (const span of spans) {
+    const start = offset;
+    const end = offset + span.text.length;
+    ranges.push({ start, end, span });
+    points.add(start);
+    points.add(end);
+    offset = end;
+  }
   for (const item of highlights) {
-    points.add(Math.max(0, Math.min(text.length, item.start)));
-    points.add(Math.max(0, Math.min(text.length, item.end)));
+    points.add(Math.max(0, Math.min(plain.length, item.start)));
+    points.add(Math.max(0, Math.min(plain.length, item.end)));
   }
   const sorted = Array.from(points).sort((a, b) => a - b);
-  const parts: { text: string; color?: HighlightColor }[] = [];
+  const parts: ReactNode[] = [];
   for (let i = 0; i < sorted.length - 1; i += 1) {
     const start = sorted[i];
     const end = sorted[i + 1];
     if (end <= start) continue;
-    const match = [...highlights].reverse().find((item) => item.start <= start && item.end >= end);
-    parts.push({ text: text.slice(start, end), color: match?.color });
+    const span = ranges.find((item) => item.start <= start && item.end >= end)?.span;
+    const color = [...highlights].reverse().find((item) => item.start <= start && item.end >= end)?.color;
+    parts.push(
+      <span key={`${start}-${end}`}>{decorate(plain.slice(start, end), span, color)}</span>,
+    );
   }
   return parts;
 }
@@ -82,6 +106,7 @@ export function HighlightableBlock({
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [toolbar, setToolbar] = useState<{ top: number; left: number; start: number; end: number } | null>(null);
+  const spans = useMemo(() => parseRichText(text), [text]);
 
   useEffect(() => {
     function hideIfOutside(event: Event) {
@@ -136,17 +161,9 @@ export function HighlightableBlock({
         ref={rootRef}
         onMouseUp={showToolbar}
         onTouchEnd={() => setTimeout(showToolbar, 50)}
-        className={`select-text ${className ?? ""}`}
+        className={`sat-rich select-text ${className ?? ""}`}
       >
-        {segments(text, highlights).map((part, index) =>
-          part.color ? (
-            <mark key={`${index}-${part.text.slice(0, 8)}`} className={`${COLOR_CLASS[part.color]} rounded-sm`}>
-              {part.text}
-            </mark>
-          ) : (
-            <span key={`${index}-${part.text.slice(0, 8)}`}>{part.text}</span>
-          ),
-        )}
+        {renderSpans(spans, highlights)}
       </div>
       {toolbar ? (
         <div
