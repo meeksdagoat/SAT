@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import seedQuestions from "@/data/questions.json";
+import { HighlightableBlock, type TextHighlight } from "@/components/HighlightableBlock";
 import { DIFFICULTIES, DOMAINS } from "@/lib/taxonomy";
 import {
   appendAttempt,
@@ -113,6 +114,10 @@ export default function SatPracticeApp() {
   const [picked, setPicked] = useState<ChoiceId | null>(null);
   const [sessionAnswers, setSessionAnswers] = useState<Record<string, ChoiceId>>({});
   const [sessionSkipped, setSessionSkipped] = useState<Record<string, true>>({});
+  const [sessionHighlights, setSessionHighlights] = useState<
+    Record<string, { passage: TextHighlight[]; prompt: TextHighlight[] }>
+  >({});
+  const [sessionEliminated, setSessionEliminated] = useState<Record<string, ChoiceId[]>>({});
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -204,6 +209,8 @@ export default function SatPracticeApp() {
     setIndex(0);
     setSessionAnswers({});
     setSessionSkipped({});
+    setSessionHighlights({});
+    setSessionEliminated({});
     setPicked(null);
     setScreen("practice");
   }
@@ -219,6 +226,8 @@ export default function SatPracticeApp() {
     setIndex(0);
     setSessionAnswers({});
     setSessionSkipped({});
+    setSessionHighlights({});
+    setSessionEliminated({});
     setPicked(null);
     setScreen("practice");
   }
@@ -258,6 +267,29 @@ export default function SatPracticeApp() {
 
   function go(delta: number) {
     setIndex((current) => Math.min(Math.max(current + delta, 0), session.length - 1));
+  }
+
+  function toggleEliminated(choiceId: ChoiceId) {
+    if (!question) return;
+    setSessionEliminated((current) => {
+      const list = current[question.id] ?? [];
+      const next = list.includes(choiceId)
+        ? list.filter((id) => id !== choiceId)
+        : [...list, choiceId];
+      return { ...current, [question.id]: next };
+    });
+  }
+
+  function updateHighlights(field: "passage" | "prompt", next: TextHighlight[]) {
+    if (!question) return;
+    setSessionHighlights((current) => ({
+      ...current,
+      [question.id]: {
+        passage: current[question.id]?.passage ?? [],
+        prompt: current[question.id]?.prompt ?? [],
+        [field]: next,
+      },
+    }));
   }
 
   if (!ready) {
@@ -678,8 +710,19 @@ export default function SatPracticeApp() {
             </div>
 
             <article className="touch-scroll rounded-2xl border border-slate-700 bg-slate-800 p-4 shadow-lg shadow-black/20 sm:p-6">
-              <p className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">{question.passage}</p>
-              <p className="mt-5 font-medium leading-7 break-words text-white sm:mt-6">{question.prompt}</p>
+              <p className="mb-3 text-xs text-slate-500">Select passage text to highlight</p>
+              <HighlightableBlock
+                text={question.passage}
+                highlights={sessionHighlights[question.id]?.passage ?? []}
+                onChange={(next) => updateHighlights("passage", next)}
+                className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8"
+              />
+              <HighlightableBlock
+                text={question.prompt}
+                highlights={sessionHighlights[question.id]?.prompt ?? []}
+                onChange={(next) => updateHighlights("prompt", next)}
+                className="mt-5 font-medium leading-7 break-words text-white sm:mt-6"
+              />
             </article>
 
             <div className="space-y-3">
@@ -687,27 +730,50 @@ export default function SatPracticeApp() {
                 const isCorrect = choice.id === question.correctAnswer;
                 const isSelected = picked === choice.id;
                 const revealed = Boolean(picked);
-                let className = `choice-tap w-full min-h-11 text-left rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-slate-500 ${TAP}`;
+                const eliminated = (sessionEliminated[question.id] ?? []).includes(choice.id);
+                let className = `choice-tap min-h-11 flex-1 text-left rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-slate-500 ${TAP}`;
                 if (revealed && isCorrect) {
-                  className = `choice-tap w-full min-h-11 text-left rounded-2xl border bg-emerald-950/40 border-emerald-500 text-emerald-200 p-4 ${TAP}`;
+                  className = `choice-tap min-h-11 flex-1 text-left rounded-2xl border bg-emerald-950/40 border-emerald-500 text-emerald-200 p-4 ${TAP}`;
                 } else if (revealed && isSelected && !isCorrect) {
-                  className = `choice-tap w-full min-h-11 text-left rounded-2xl border border-rose-500/80 bg-rose-950/30 text-rose-100 p-4 ${TAP}`;
+                  className = `choice-tap min-h-11 flex-1 text-left rounded-2xl border border-rose-500/80 bg-rose-950/30 text-rose-100 p-4 ${TAP}`;
                 }
                 return (
-                  <button
-                    key={choice.id}
-                    type="button"
-                    disabled={Boolean(picked)}
-                    onClick={() => submitChoice(choice.id)}
-                    className={className}
-                  >
-                    <div className="flex gap-3 items-start">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current text-sm font-semibold">
-                        {revealed && isCorrect ? "✓" : choice.id}
+                  <div key={choice.id} className="flex items-stretch gap-2">
+                    <button
+                      type="button"
+                      disabled={Boolean(picked)}
+                      onClick={() => submitChoice(choice.id)}
+                      className={className}
+                    >
+                      <div className="flex gap-3 items-start">
+                        <span
+                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current text-sm font-semibold ${
+                            eliminated ? "opacity-40" : ""
+                          }`}
+                        >
+                          {revealed && isCorrect ? "✓" : choice.id}
+                        </span>
+                        <span className={`leading-7 break-words pt-2 ${eliminated ? "line-through opacity-40" : ""}`}>
+                          {choice.text}
+                        </span>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={eliminated ? `Restore choice ${choice.id}` : `Eliminate choice ${choice.id}`}
+                      aria-pressed={eliminated}
+                      onClick={() => toggleEliminated(choice.id)}
+                      className={`${TAP} w-11 shrink-0 rounded-xl border px-0 ${
+                        eliminated
+                          ? "border-slate-500 bg-slate-800 text-slate-400"
+                          : "border-slate-700 bg-slate-900 text-slate-300 hover:bg-slate-800"
+                      }`}
+                    >
+                      <span className={`text-sm font-semibold ${eliminated ? "line-through opacity-70" : ""}`}>
+                        {choice.id}
                       </span>
-                      <span className="leading-7 break-words pt-2">{choice.text}</span>
-                    </div>
-                  </button>
+                    </button>
+                  </div>
                 );
               })}
             </div>
