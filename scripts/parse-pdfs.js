@@ -99,6 +99,71 @@ function quoteNearUnderlined(text) {
   return "";
 }
 
+function stripAttributionAndSetup(passage) {
+  let rest = String(passage);
+  rest = rest.replace(/^The following texts? (?:is|are) from\b[\s\S]*?\d{4}[^.]*\.\s+/i, "");
+  rest = rest.replace(/^The following text[\s\S]*?\.\s+/i, "");
+  const setup = rest.match(/^(.{12,180}?\.)\s+/);
+  if (setup) {
+    const sentence = setup[1];
+    const looksLikeSetup =
+      /^(In the |The speaker |The narrator |The author )/i.test(sentence) ||
+      /\b(walking through|companion|on a path|outdoor setting|the speaker is)\b/i.test(sentence);
+    if (looksLikeSetup) rest = rest.slice(setup[0].length);
+  }
+  return rest;
+}
+
+function wrapFromStructureClues(passage, rationale) {
+  const excerpt = stripAttributionAndSetup(passage);
+  const sentences = sentencesOf(excerpt)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  if (sentences.length === 0) return null;
+
+  let index = -1;
+  if (/first two sentences[\s\S]{0,500}next sentence, which is underlined/i.test(rationale)) {
+    index = 2;
+  } else if (/first sentence[\s\S]{0,500}next sentence, which is underlined/i.test(rationale)) {
+    index = 1;
+  } else if (/(?:the )?(?:second|2nd) sentence, which is underlined/i.test(rationale)) {
+    index = 1;
+  } else if (/(?:the )?(?:third|3rd) sentence, which is underlined/i.test(rationale)) {
+    index = 2;
+  } else if (/(?:the )?first sentence(?: of the text)?, which is underlined/i.test(rationale)) {
+    index = 0;
+  } else if (/(?:the )?last sentence, which is underlined/i.test(rationale)) {
+    index = sentences.length - 1;
+  } else if (/next sentence, which is underlined/i.test(rationale)) {
+    index = Math.min(1, sentences.length - 1);
+  }
+  if (index < 0 || index >= sentences.length) return null;
+  return wrapOnce(passage, sentences[index]);
+}
+
+function wrapByKeywordOverlap(passage, rationale) {
+  const windows = [...String(rationale).matchAll(/underlined (?:sentence|portion|claim)[^.!?]{0,420}/gi)].map(
+    (match) => match[0].toLowerCase(),
+  );
+  if (windows.length === 0) return null;
+  const excerpt = stripAttributionAndSetup(passage);
+  const sentences = sentencesOf(excerpt)
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.length >= 20);
+  if (sentences.length < 2) return null;
+
+  const scored = sentences.map((sentence) => {
+    const tokens = [...new Set(sentence.toLowerCase().match(/\b[a-z]{5,}\b/g) || [])];
+    const score = tokens.filter((token) => windows.some((window) => window.includes(token))).length;
+    return { sentence, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  const best = scored[0];
+  const second = scored[1];
+  if (!best || best.score < 2 || (second && best.score === second.score)) return null;
+  return wrapOnce(passage, best.sentence);
+}
+
 function wrapLiteraryOpening(passage) {
   if (!/^The following text is from\b/i.test(passage)) return null;
   const context = passage.match(
@@ -134,10 +199,13 @@ function wrapUnderlinedPassage(question) {
     /most logical and precise word/i.test(prompt);
   if (!wantsUnderline) return question;
 
+  const rationale = Object.values(question.explanations || {}).join("\n");
+  const fromClues = wrapFromStructureClues(passage, rationale);
+  if (fromClues) return { ...question, passage: fromClues };
+
   const literary = wrapLiteraryOpening(passage);
   if (literary) return { ...question, passage: literary };
 
-  const rationale = Object.values(question.explanations || {}).join("\n");
   const quote = quoteNearUnderlined(rationale);
   if (quote && passage.includes(quote)) {
     const target = /sentence/i.test(prompt) ? expandToSentence(passage, quote) : quote;
@@ -160,6 +228,9 @@ function wrapUnderlinedPassage(question) {
       if (wrapped) return { ...question, passage: wrapped };
     }
   }
+
+  const byKeywords = wrapByKeywordOverlap(passage, rationale);
+  if (byKeywords) return { ...question, passage: byKeywords };
 
   if (
     /completes the text so that it conforms/i.test(prompt) ||
@@ -467,7 +538,14 @@ async function main() {
   console.log("Skipped incomplete blocks:", skipped);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+module.exports = {
+  wrapUnderlinedPassage,
+  hasUnderlineMarkup,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

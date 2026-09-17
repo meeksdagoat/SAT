@@ -18,6 +18,8 @@ import {
   saveIncludeSkipped,
 } from "@/lib/storage";
 import type { Attempt, ChoiceId, Difficulty, ExcludeMode, Question } from "@/lib/types";
+import { parseRichText, UNDERLINE_CLASS } from "@/lib/rich-text";
+import { ensurePassageUnderlines } from "@/lib/underline";
 
 const typedSeed = seedQuestions as Question[];
 const SESSION_COUNTS = [10, 20, 50] as const;
@@ -28,8 +30,8 @@ type Screen = "setup" | "practice" | "errors";
 
 function mergeQuestions(seed: Question[], imported: Question[]) {
   const byId = new Map<string, Question>();
-  for (const question of seed) byId.set(question.id, question);
-  for (const question of imported) byId.set(question.id, question);
+  for (const question of seed) byId.set(question.id, ensurePassageUnderlines(question));
+  for (const question of imported) byId.set(question.id, ensurePassageUnderlines(question));
   return Array.from(byId.values());
 }
 
@@ -156,7 +158,7 @@ export default function SatPracticeApp() {
     [matching, blockedIds],
   );
 
-  const question = session[index] ?? null;
+  const question = session[index] ? ensurePassageUnderlines(session[index]) : null;
   const exhausted = selectedSkills.length > 0 && matching.length > 0 && remaining.length === 0;
 
   useEffect(() => {
@@ -430,7 +432,7 @@ export default function SatPracticeApp() {
                 </div>
               ) : (
                 filteredMistakes.map((attempt) => {
-                  const item = attempt.question;
+                  const item = ensurePassageUnderlines(attempt.question);
                   return (
                     <article key={`${attempt.questionId}-${attempt.timestamp}`} className="rounded-2xl border border-slate-700 bg-slate-800 p-4 space-y-4 sm:p-6">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -444,7 +446,17 @@ export default function SatPracticeApp() {
                           {item.difficulty}
                         </span>
                       </div>
-                      <p className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">{item.passage}</p>
+                      <p className="sat-rich whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">
+                        {parseRichText(item.passage).map((span, spanIndex) => {
+                          const body = span.italic ? <i>{span.text}</i> : span.text;
+                          const marked = span.underline ? (
+                            <u className={UNDERLINE_CLASS}>{body}</u>
+                          ) : (
+                            body
+                          );
+                          return <span key={spanIndex}>{marked}</span>;
+                        })}
+                      </p>
                       <p className="font-medium leading-7">{item.prompt}</p>
                       <div className="space-y-3">
                         {item.choices.map((choice) => (
