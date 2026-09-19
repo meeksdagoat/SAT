@@ -191,7 +191,14 @@ export function parseQuestionBankText(text: string): Question[] {
       domain: meta.domain,
       skill: meta.skill,
       difficulty: meta.difficulty,
-      passage: passage.replace(/\s+/g, " ").trim(),
+      passage: passage
+        .replace(/\r\n/g, "\n")
+        .replace(/[ \t]+\n/g, "\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .split(/\n\n+/)
+        .map((block) => block.replace(/[ \t]+/g, " ").replace(/\n/g, " ").trim())
+        .filter(Boolean)
+        .join("\n\n"),
       prompt,
       choices,
       correctAnswer,

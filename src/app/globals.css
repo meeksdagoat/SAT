@@ -63,6 +63,14 @@ label {
   min-width: 44px;
 }
 
+.sat-rich p {
+  margin-bottom: 0.75rem;
+}
+
+.sat-rich p:last-child {
+  margin-bottom: 0;
+}
+
 u,
 .sat-rich u,
 .sat-rich ins {

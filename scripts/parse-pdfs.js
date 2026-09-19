@@ -59,6 +59,76 @@ function collapseSpaces(value) {
     .trim();
 }
 
+function joinSoftWrappedLines(block) {
+  const lines = String(block || "")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+/g, " ").trim())
+    .filter(Boolean);
+  if (lines.length <= 1) return lines[0] || "";
+
+  const paragraphs = [];
+  let current = lines[0];
+  for (let i = 1; i < lines.length; i += 1) {
+    const next = lines[i];
+    const poetry = current.length < 64 && next.length < 64;
+    if (poetry) {
+      paragraphs.push(current);
+      current = next;
+    } else {
+      current = `${current} ${next}`.replace(/\s+/g, " ");
+    }
+  }
+  paragraphs.push(current);
+  return paragraphs.join("\n");
+}
+
+function insertStructuralBreaks(value) {
+  let text = String(value || "").replace(/\r\n/g, "\n");
+  const firstBlock = text.split(/\n\n+/)[0] || "";
+  const needsIntroBreak =
+    /The following texts?\b/i.test(firstBlock) && !/\n\n/.test(firstBlock.slice(0, 400));
+
+  if ((needsIntroBreak || !/\n\n/.test(text)) && /^The following texts?\b/i.test(text)) {
+    const attribution = [
+      /^(The following texts?\b[\s\S]*?\([^)]+\)\s*[.?!])\s+/i,
+      /^(The following texts?\b[\s\S]*?[“"][^”"]+[”"][.?!]?)\s+/,
+      /^(The following texts?\b[\s\S]*?\d{4}[^.]*\.)\s+/i,
+      /^(The following texts?\b[^.!?\n]{12,220}[.?!])\s+/i,
+    ]
+      .map((pattern) => text.match(pattern))
+      .find(Boolean);
+    if (attribution) {
+      let rest = text.slice(attribution[0].length);
+      const setup = rest.match(
+        /^((?:The speaker|The narrator|The author|In the |Spars are)\b[\s\S]{8,240}?[.?!])\s+/,
+      );
+      if (setup) {
+        rest = rest.slice(setup[0].length);
+        text = `${attribution[1].replace(/\s+/g, " ").trim()} ${setup[1]}\n\n${rest}`;
+      } else {
+        text = `${attribution[1].replace(/\s+/g, " ").trim()}\n\n${rest}`;
+      }
+    }
+  }
+
+  text = text.replace(/([^\n])[ \t]+(Text [12])\b/g, "$1\n\n$2");
+  text = text.replace(/^(Text [12])[ \t]+/gm, "$1\n");
+  return text.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function formatPassage(value) {
+  const raw = String(value || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n");
+  const preserved = raw
+    .split(/\n\n+/)
+    .map((block) => joinSoftWrappedLines(block))
+    .filter(Boolean)
+    .join("\n\n");
+  return mergeUnderlineTags(insertStructuralBreaks(preserved));
+}
+
 function stripUnderlineTags(value) {
   return String(value || "").replace(/<\/?u>/gi, "");
 }
@@ -426,7 +496,7 @@ function wrapFromRestDescribes(passage, rationale) {
 function sentencesOf(passage) {
   const marked = String(passage)
     .replace(/(\d)\.(\d)/g, "$1\u0000$2")
-    .replace(/\b([A-Z])\.(?=\s*[a-z])/g, "$1\u0000");
+    .replace(/\b([A-Z])\.(?=\s*[A-Za-z])/g, "$1\u0000");
   return (marked.match(/[^.!?]+(?:[.!?]+|$)/g) || [marked]).map((sentence) => sentence.replace(/\u0000/g, "."));
 }
 
@@ -528,9 +598,9 @@ function wrapLiteraryOpening(passage) {
 }
 
 function wrapUnderlinedPassage(question) {
-  let passage = question.passage;
+  let passage = formatPassage(question.passage);
   if (hasUnderlineMarkup(passage)) {
-    return { ...question, passage: mergeUnderlineTags(passage) };
+    return { ...question, passage: mergeUnderlineTags(insertStructuralBreaks(passage)) };
   }
   if (/_{3,}/.test(passage)) {
     return {
@@ -545,7 +615,7 @@ function wrapUnderlinedPassage(question) {
     /completes the text so that it conforms/i.test(prompt) ||
     /most logical transition/i.test(prompt) ||
     /most logical and precise word/i.test(prompt);
-  if (!wantsUnderline) return question;
+  if (!wantsUnderline) return { ...question, passage };
 
   const allRationale = Object.values(question.explanations || {}).join("\n");
   const rationale = question.explanations?.[question.correctAnswer] || allRationale;
@@ -629,7 +699,7 @@ function wrapUnderlinedPassage(question) {
     if (wrapped) return { ...question, passage: wrapped };
   }
 
-  return question;
+  return { ...question, passage };
 }
 
 function collectUnderlineBands(annotations) {
@@ -931,7 +1001,7 @@ function parseQuestionBankText(text) {
         domain: meta.domain,
         skill: meta.skill,
         difficulty: meta.difficulty,
-        passage: mergeUnderlineTags(collapseSpaces(passage)),
+        passage: formatPassage(passage),
         prompt,
         choices,
         correctAnswer,
