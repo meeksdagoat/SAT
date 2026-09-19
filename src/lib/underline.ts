@@ -254,24 +254,43 @@ function wrapLikelyClaim(passage: string, prompt: string) {
   return last ? wrapOnce(passage, last) : null;
 }
 
+function expandToEnclosingClause(passage: string, snippet: string) {
+  const index = passage.indexOf(snippet);
+  if (index < 0) return snippet;
+  const dashBefore = Math.max(passage.lastIndexOf("—", index), passage.lastIndexOf("–", index));
+  const dashAfter = [passage.indexOf("—", index + snippet.length), passage.indexOf("–", index + snippet.length)]
+    .filter((value) => value >= 0)
+    .sort((a, b) => a - b)[0];
+  if (dashBefore >= 0 && dashAfter > index && dashAfter - dashBefore <= 400) {
+    return passage.slice(dashBefore + 1, dashAfter).trim();
+  }
+  return snippet;
+}
+
 function wrapFromQuotedRationale(passage: string, prompt: string, rationale: string) {
   const quotes = [...rationale.matchAll(/[\u201c"]([^"\u201d]{6,240})["\u201d]/g)].map((match) => match[1].trim());
-  for (const quote of quotes.sort((a, b) => b.length - a.length)) {
-    if (!passage.includes(quote)) continue;
-    const target = /underlined (sentence|question|statement)/i.test(prompt)
-      ? sentencesOf(passage).find((sentence) => sentence.includes(quote))?.trim() || quote
-      : quote;
-    const wrapped = wrapOnce(passage, target);
-    if (wrapped) return wrapped;
+  const hits = quotes.filter((quote) => passage.includes(quote)).sort((a, b) => a.length - b.length);
+  if (hits.length === 0) return null;
+  const located = hits
+    .map((span) => ({ span, index: passage.indexOf(span) }))
+    .filter((item) => item.index >= 0)
+    .sort((a, b) => a.index - b.index);
+  let target = located[0].span;
+  if (located.length >= 2) {
+    const start = located[0].index;
+    const end = located[located.length - 1].index + located[located.length - 1].span.length;
+    if (end - start <= 360) target = passage.slice(start, end);
   }
-  return null;
+  if (/underlined (sentence|question|statement)/i.test(prompt)) {
+    target = sentencesOf(passage).find((sentence) => sentence.includes(target))?.trim() || target;
+  } else if (/underlined (portion|phrase|part)/i.test(prompt)) {
+    target = expandToEnclosingClause(passage, target);
+  }
+  return wrapOnce(passage, target);
 }
 
 export function ensurePassageUnderlines(question: Question): Question {
-  let passage = formatPassage(question.passage || "");
-  if (hasUnderlineMarkup(passage)) {
-    return { ...question, passage: mergeUnderlineTags(passage) };
-  }
+  let passage = formatPassage(String(question.passage || "").replace(/<\/?u>/gi, ""));
   if (/_{3,}/.test(passage)) {
     return { ...question, passage: passage.replace(/_{3,}/g, "<u>\u00a0\u00a0\u00a0\u00a0</u>") };
   }
@@ -286,6 +305,9 @@ export function ensurePassageUnderlines(question: Question): Question {
 
   const allRationale = Object.values(question.explanations || {}).join("\n");
   const rationale = question.explanations?.[question.correctAnswer] || allRationale;
+  const fromQuotesFirst = wrapFromQuotedRationale(passage, prompt, rationale);
+  if (fromQuotesFirst) return { ...question, passage: fromQuotesFirst };
+
   const fromClues = wrapFromStructureClues(passage, rationale);
   if (fromClues) return { ...question, passage: fromClues };
 
@@ -305,9 +327,6 @@ export function ensurePassageUnderlines(question: Question): Question {
     const observation = wrapLikelyClaim(passage, prompt);
     if (observation) return { ...question, passage: observation };
   }
-
-  const fromQuotes = wrapFromQuotedRationale(passage, prompt, rationale);
-  if (fromQuotes) return { ...question, passage: fromQuotes };
 
   const quote = quoteNearUnderlined(rationale);
   if (quote && passage.includes(quote)) {

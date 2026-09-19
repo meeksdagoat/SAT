@@ -303,7 +303,7 @@ function coverQuotes(passage, spans) {
   if (located.length === 1) return located[0].span;
   const start = located[0].index;
   const end = located[located.length - 1].index + located[located.length - 1].span.length;
-  if (end - start <= 140) return passage.slice(start, end);
+  if (end - start <= 360) return passage.slice(start, end);
   return located.reduce((longest, item) => (item.span.length > longest.length ? item.span : longest), located[0].span);
 }
 
@@ -366,6 +366,24 @@ function citedWindows(rationale) {
   return windows.length ? windows : [cleaned];
 }
 
+function expandToEnclosingClause(passage, snippet) {
+  const index = passage.indexOf(snippet);
+  if (index < 0) return snippet;
+  const dashBefore = Math.max(passage.lastIndexOf("—", index), passage.lastIndexOf("–", index));
+  const dashAfter = [passage.indexOf("—", index + snippet.length), passage.indexOf("–", index + snippet.length)]
+    .filter((value) => value >= 0)
+    .sort((a, b) => a - b)[0];
+  if (dashBefore >= 0 && dashAfter > index && dashAfter - dashBefore <= 400) {
+    return passage.slice(dashBefore + 1, dashAfter).trim();
+  }
+  const parenBefore = passage.lastIndexOf("(", index);
+  const parenAfter = passage.indexOf(")", index + snippet.length);
+  if (parenBefore >= 0 && parenAfter > index && parenAfter - parenBefore <= 280) {
+    return passage.slice(parenBefore, parenAfter + 1).trim();
+  }
+  return snippet;
+}
+
 function wrapFromQuotedRationale(passage, prompt, rationale) {
   const hits = [];
   const sources = [rationale, ...citedWindows(rationale)];
@@ -378,15 +396,23 @@ function wrapFromQuotedRationale(passage, prompt, rationale) {
   }
   if (hits.length === 0) return null;
   hits.sort((a, b) => b.length - a.length);
-  let target = coverQuotes(passage, hits.slice(0, 3)) || hits[0];
+  let target = coverQuotes(passage, hits.slice(0, 4)) || hits[0];
   if (wantsSentenceTarget(prompt) || /underlined question/i.test(prompt)) {
     target = expandToSentence(passage, target);
   } else if (/underlined lines/i.test(prompt) && target.length < 48) {
     target = expandPoeticLines(passage, target);
-  } else if (wantsPortionTarget(prompt) && target.length < 48) {
-    target = expandToClause(passage, target);
+  } else if (wantsPortionTarget(prompt)) {
+    target = expandToEnclosingClause(passage, target);
   }
   return wrapOnce(passage, target);
+}
+
+function isPreciseUnderline(marked, prompt, passage) {
+  const snippet = String(marked || "").replace(/\s+/g, " ").trim();
+  if (snippet.length < 8 || snippet.length > 420) return false;
+  const excerpt = stripAttributionAndSetup(passage);
+  if (excerpt && snippet.length >= excerpt.length * 0.85) return false;
+  return true;
 }
 
 function wrapUnderlinedQuestion(passage, prompt) {
@@ -655,9 +681,12 @@ function wrapLiteraryOpening(passage) {
 
 function wrapUnderlinedPassage(question) {
   let passage = formatPassage(question.passage);
-  if (hasUnderlineMarkup(passage)) {
-    return { ...question, passage: mergeUnderlineTags(insertStructuralBreaks(passage)) };
-  }
+  const pdfMarked = [...String(passage).matchAll(/<u>([\s\S]*?)<\/u>/gi)]
+    .map((match) => match[1])
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+  passage = formatPassage(stripUnderlineTags(passage));
   if (/_{3,}/.test(passage)) {
     return {
       ...question,
@@ -675,7 +704,28 @@ function wrapUnderlinedPassage(question) {
 
   const allRationale = Object.values(question.explanations || {}).join("\n");
   const rationale = question.explanations?.[question.correctAnswer] || allRationale;
-  const fromClues = wrapFromStructureClues(passage, rationale);
+
+  const fromQuotes = wrapFromQuotedRationale(passage, prompt, rationale);
+  if (fromQuotes) return { ...question, passage: fromQuotes };
+
+  if (wantsPortionTarget(prompt)) {
+    const dashed = passage.match(/[—–]\s*([^—–]{20,360})\s*[—–]/);
+    if (dashed?.[1]) {
+      const overlap = contentTokens(dashed[1]).filter((token) => contentTokens(rationale).includes(token));
+      if (overlap.length >= 3) {
+        const wrapped = wrapOnce(passage, dashed[1].trim());
+        if (wrapped) return { ...question, passage: wrapped };
+      }
+    }
+  }
+
+  if (pdfMarked && isPreciseUnderline(pdfMarked, prompt, passage)) {
+    const target = wantsPortionTarget(prompt) ? expandToEnclosingClause(passage, pdfMarked) : pdfMarked;
+    const wrapped = wrapOnce(passage, target) || wrapOnce(passage, pdfMarked);
+    if (wrapped) return { ...question, passage: wrapped };
+  }
+
+  const fromClues = wantsSentenceTarget(prompt) ? wrapFromStructureClues(passage, rationale) : null;
   if (fromClues) return { ...question, passage: fromClues };
 
   const literary = wrapLiteraryOpening(passage);
@@ -700,9 +750,6 @@ function wrapUnderlinedPassage(question) {
 
   const mechanism = wrapMechanismClause(passage, rationale);
   if (mechanism) return { ...question, passage: mechanism };
-
-  const fromQuotes = wrapFromQuotedRationale(passage, prompt, rationale);
-  if (fromQuotes) return { ...question, passage: fromQuotes };
 
   const uniqueNgrams = wrapUniqueCitedNgrams(passage, prompt, rationale);
   if (uniqueNgrams) return { ...question, passage: uniqueNgrams };
