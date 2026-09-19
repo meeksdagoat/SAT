@@ -23,9 +23,9 @@ import { ensurePassageUnderlines } from "@/lib/underline";
 
 const typedSeed = seedQuestions as Question[];
 const SESSION_COUNTS = [10, 20, 50] as const;
+const SESSION_MIN = 1;
 
 type DifficultyFilter = Difficulty | "All";
-type QuestionCount = (typeof SESSION_COUNTS)[number] | "all";
 type Screen = "setup" | "practice" | "errors";
 
 function mergeQuestions(seed: Question[], imported: Question[]) {
@@ -109,7 +109,7 @@ export default function SatPracticeApp() {
   const [difficulty, setDifficulty] = useState<DifficultyFilter>("All");
   const [errorSkills, setErrorSkills] = useState<string[]>([]);
   const [errorDifficulty, setErrorDifficulty] = useState<DifficultyFilter>("All");
-  const [questionCount, setQuestionCount] = useState<QuestionCount>(10);
+  const [questionCount, setQuestionCount] = useState(10);
   const [screen, setScreen] = useState<Screen>("setup");
   const [session, setSession] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
@@ -157,6 +157,15 @@ export default function SatPracticeApp() {
     () => matching.filter((question) => !blockedIds.has(question.id)),
     [matching, blockedIds],
   );
+  const totalMatchingQuestions = remaining.length;
+  const sliderMax = Math.max(SESSION_MIN, totalMatchingQuestions);
+
+  useEffect(() => {
+    setQuestionCount((current) => {
+      if (totalMatchingQuestions <= 0) return SESSION_MIN;
+      return Math.min(Math.max(current, SESSION_MIN), totalMatchingQuestions);
+    });
+  }, [totalMatchingQuestions]);
 
   const question = session[index] ? ensurePassageUnderlines(session[index]) : null;
   const exhausted = selectedSkills.length > 0 && matching.length > 0 && remaining.length === 0;
@@ -206,7 +215,7 @@ export default function SatPracticeApp() {
 
   function beginSession(pool: Question[]) {
     if (pool.length === 0) return;
-    const limited = questionCount === "all" ? pool : pool.slice(0, questionCount);
+    const limited = pool.slice(0, Math.min(questionCount, pool.length));
     setSession(limited);
     setIndex(0);
     setSessionAnswers({});
@@ -568,7 +577,7 @@ export default function SatPracticeApp() {
                   <button
                     key={count}
                     type="button"
-                    onClick={() => setQuestionCount(count)}
+                    onClick={() => setQuestionCount(Math.min(count, sliderMax))}
                     className={`${CHIP} ${
                       questionCount === count
                         ? "border-white bg-slate-700"
@@ -580,15 +589,44 @@ export default function SatPracticeApp() {
                 ))}
                 <button
                   type="button"
-                  onClick={() => setQuestionCount("all")}
+                  onClick={() => setQuestionCount(sliderMax)}
                   className={`${CHIP} ${
-                    questionCount === "all"
+                    totalMatchingQuestions > 0 && questionCount === sliderMax
                       ? "border-white bg-slate-700"
                       : "border-slate-600 text-slate-300"
                   }`}
                 >
                   All matching
                 </button>
+              </div>
+              <div className="mt-5 space-y-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <label htmlFor="session-length" className="text-sm text-slate-400">
+                    Custom length
+                  </label>
+                  <p className="text-sm font-medium text-slate-100">
+                    Selected:{" "}
+                    {(totalMatchingQuestions === 0
+                      ? 0
+                      : Math.min(questionCount, sliderMax)
+                    ).toLocaleString()}{" "}
+                    / {totalMatchingQuestions.toLocaleString()} questions
+                  </p>
+                </div>
+                <input
+                  id="session-length"
+                  type="range"
+                  min={SESSION_MIN}
+                  max={sliderMax}
+                  value={Math.min(questionCount, sliderMax)}
+                  disabled={totalMatchingQuestions === 0}
+                  onChange={(event) => setQuestionCount(Number(event.target.value))}
+                  className="sat-slider w-full"
+                  aria-valuemin={SESSION_MIN}
+                  aria-valuemax={sliderMax}
+                  aria-valuenow={Math.min(questionCount, sliderMax)}
+                  aria-label="Session question count"
+                />
               </div>
             </div>
           </section>
