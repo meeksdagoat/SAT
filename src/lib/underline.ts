@@ -42,28 +42,73 @@ function insertStructuralBreaks(value: string) {
   return text.replace(/\n{3,}/g, "\n\n").trim();
 }
 
+function looksLikePoem(value: string) {
+  return /\bpoems?\b/i.test(value || "");
+}
+
+function restorePoemLines(verse: string) {
+  const existing = String(verse || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (existing.length >= 4) return existing.join("\n");
+
+  const chunks = existing.join(" ").match(/\S+\s*/g) || [];
+  const lines: string[] = [];
+  let current = "";
+  for (const chunk of chunks) {
+    const visible = current.replace(/<[^>]+>/g, "").trim();
+    const word = chunk.trim().replace(/<\/?u>/gi, "");
+    const verseStart =
+      /^(And|The|For|To|But|When|Where|Which|How|An?|In|On|Of|With|Without|Not|Nor|Or|So|Yet|Then|Thus|As|If|Though|While|After|Before|From|My|Me|We|You|He|She|They|His|Her|Our|All|No|Now|Here|There|Once|Still|Ever|Never|Let|Just|Go|Come|Hear|See|Why|What|Who|Oh|O|Only|Rock)\b/.test(
+        word,
+      );
+    const ended = /[.!?;,—–)]$/.test(visible);
+    if (current && /^[A-Z“"]/.test(word) && visible.length >= 20 && (ended || verseStart)) {
+      const loneI = /^I\b/.test(word) && !ended;
+      if (!loneI) {
+        lines.push(current.trim());
+        current = chunk;
+        continue;
+      }
+    }
+    current += chunk;
+  }
+  if (current.trim()) lines.push(current.trim());
+  return lines.length >= 3 ? lines.join("\n") : String(verse || "").trim();
+}
+
 export function formatPassage(value: string) {
   const raw = String(value || "")
     .replace(/\r\n/g, "\n")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n");
+  const poem = looksLikePoem(raw);
   const preserved = raw
     .split(/\n\n+/)
-    .map((block) =>
-      block
+    .map((block) => {
+      const lines = block
         .split("\n")
         .map((line) => line.replace(/[ \t]+/g, " ").trim())
-        .filter(Boolean)
-        .reduce((joined, line, index) => {
-          if (index === 0) return line;
-          const previous = joined.split("\n").at(-1) || "";
-          if (previous.length < 64 && line.length < 64) return `${joined}\n${line}`;
-          return `${joined} ${line}`.replace(/[ \t]+/g, " ");
-        }, ""),
-    )
+        .filter(Boolean);
+      if (poem) return lines.join("\n");
+      return lines.reduce((joined, line, index) => {
+        if (index === 0) return line;
+        const previous = joined.split("\n").at(-1) || "";
+        if (previous.length < 64 && line.length < 64) return `${joined}\n${line}`;
+        return `${joined} ${line}`.replace(/[ \t]+/g, " ");
+      }, "");
+    })
     .filter(Boolean)
     .join("\n\n");
-  return mergeUnderlineTags(insertStructuralBreaks(preserved));
+  let text = insertStructuralBreaks(preserved);
+  if (poem) {
+    const splitAt = text.search(/\n\n/);
+    if (splitAt >= 0) {
+      text = `${text.slice(0, splitAt).trim()}\n\n${restorePoemLines(text.slice(splitAt + 2))}`;
+    }
+  }
+  return mergeUnderlineTags(text);
 }
 
 function wrapOnce(haystack: string, needle: string) {

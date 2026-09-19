@@ -59,6 +59,52 @@ function collapseSpaces(value) {
     .trim();
 }
 
+function looksLikePoem(value) {
+  return /\bpoems?\b/i.test(String(value || ""));
+}
+
+function preservePoemLines(block) {
+  return String(block || "")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+/g, " ").trim())
+    .filter(Boolean)
+    .join("\n");
+}
+
+function restorePoemLines(verse) {
+  const existing = String(verse || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (existing.length >= 4) return existing.join("\n");
+
+  const collapsed = existing.join(" ");
+  const chunks = collapsed.match(/\S+\s*/g) || [];
+  const lines = [];
+  let current = "";
+  for (const chunk of chunks) {
+    const visible = current.replace(/<[^>]+>/g, "").trim();
+    const word = chunk.trim().replace(/<\/?u>/gi, "");
+    const startsVerse = /^[A-Z“"]/.test(word);
+    const verseStart =
+      /^(And|The|For|To|But|When|Where|Which|How|An?|In|On|Of|With|Without|Not|Nor|Or|So|Yet|Then|Thus|As|If|Though|While|After|Before|From|My|Me|We|You|He|She|They|His|Her|Our|All|No|Now|Here|There|Once|Still|Ever|Never|Let|Just|Go|Come|Hear|See|Why|What|Who|Oh|O|Only|Rock)\b/.test(
+        word,
+      );
+    const ended = /[.!?;,—–)]$/.test(visible);
+    if (current && startsVerse && visible.length >= 20 && (ended || verseStart)) {
+      const loneI = /^I\b/.test(word) && !ended;
+      if (!loneI) {
+        lines.push(current.trim());
+        current = chunk;
+        continue;
+      }
+    }
+    current += chunk;
+  }
+  if (current.trim()) lines.push(current.trim());
+  return lines.length >= 3 ? lines.join("\n") : String(verse || "").trim();
+}
+
 function joinSoftWrappedLines(block) {
   const lines = String(block || "")
     .split("\n")
@@ -121,12 +167,22 @@ function formatPassage(value) {
     .replace(/\r\n/g, "\n")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n");
+  const poem = looksLikePoem(raw);
   const preserved = raw
     .split(/\n\n+/)
-    .map((block) => joinSoftWrappedLines(block))
+    .map((block) => (poem ? preservePoemLines(block) : joinSoftWrappedLines(block)))
     .filter(Boolean)
     .join("\n\n");
-  return mergeUnderlineTags(insertStructuralBreaks(preserved));
+  let text = insertStructuralBreaks(preserved);
+  if (poem) {
+    const splitAt = text.search(/\n\n/);
+    if (splitAt >= 0) {
+      const intro = text.slice(0, splitAt).trim();
+      const verse = restorePoemLines(text.slice(splitAt + 2));
+      text = `${intro}\n\n${verse}`;
+    }
+  }
+  return mergeUnderlineTags(text);
 }
 
 function stripUnderlineTags(value) {

@@ -71,6 +71,12 @@ label {
   margin-bottom: 0;
 }
 
+.sat-verse {
+  white-space: pre-line;
+  padding-left: 1.25rem;
+  border-left: 2px solid #334155;
+}
+
 u,
 .sat-rich u,
 .sat-rich ins {

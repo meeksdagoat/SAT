@@ -2211,7 +2211,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from H.D.’s 1916 poem “Mid-Day.” In the poem, the speaker is on a path in an outdoor setting.\n\n<u>A slight wind shakes the seed-pods—</u> my thoughts are spent as the black seeds. My thoughts tear me, I dread their fever. I am scattered in its whirl. I am scattered like the hot shrivelled seeds.",
+    "passage": "The following text is from H.D.’s 1916 poem “Mid-Day.” In the poem, the speaker is on a path in an outdoor setting.\n\n<u>A slight wind shakes the seed-pods—</u>\nmy thoughts are spent\nas the black seeds.\nMy thoughts tear me,\nI dread their fever.\nI am scattered in its whirl.\nI am scattered like\nthe hot shrivelled seeds.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -2456,7 +2456,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Walt Whitman’s 1860 poem “Calamus 24.”\n\nI HEAR it is charged against me that I seek to destroy institutions; But really I am neither for nor against institutions (What indeed have I in common with them?—Or what with the destruction of them?), Only I will establish in the Mannahatta [Manhattan] and in every city of These States, inland and seaboard, And in the fields and woods, and above every keel [ship] little or large, that dents the water, Without edifices, or rules, or trustees, or any argument, The institution of the dear love of comrades.",
+    "passage": "The following text is from Walt Whitman’s 1860 poem “Calamus 24.”\n\nI HEAR it is charged against me that I seek to destroy institutions;\nBut really I am neither for nor against institutions\n(What indeed have I in common with them?—Or what with the destruction of them?),\nOnly I will establish in the Mannahatta [Manhattan] and in every city of These States, inland and seaboard,\nAnd in the fields and woods, and above every keel [ship] little or large, that dents the water,\nWithout edifices, or rules, or trustees, or any argument,\nThe institution of the dear love of comrades.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
       {
@@ -2771,7 +2771,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Paul Laurence Dunbar’s 1913 poem “The Poet and His Song.”\n\nA song is but a little thing, And yet what joy it is to sing! In hours of toil it gives me zest, And when at eve I long for rest; When cows come home along the bars, And in the fold I hearthe bell, As Night, the shepherd, herds his stars, I sing my song, and all is well.",
+    "passage": "The following text is from Paul Laurence Dunbar’s 1913 poem “The Poet and His Song.”\n\nA song is but a little thing,\nAnd yet what joy it is to sing!\nIn hours of toil it gives me zest,\nAnd when at eve I long for rest;\nWhen cows come home along the bars,\nAnd in the fold I hearthe bell,\nAs Night, the shepherd, herds his stars,\nI sing my song, and all is well.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -3891,7 +3891,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "The following text is from George Marion McClellan’s 1895 poem “Eternity.”\n\nMy spirit swoons, and all my senses cry For Ocean’s breast and covering of the sky. Rock me to sleep, ye waves, and outward bound, Just let me drift far out from toil and care, Where lapping of the waves shall be the sound, Which mingled with the winds that gently bear Me on between a peaceful sea and sky, To make my soothing slumberous lullaby.",
+    "passage": "The following text is from George Marion McClellan’s 1895 poem “Eternity.”\n\nMy spirit swoons, and all my senses cry\nFor Ocean’s breast and covering of the sky.\nRock me to sleep, ye waves, and outward bound,\nJust let me drift far out from toil and care,\nWhere lapping of the waves shall be the sound,\nWhich mingled with the winds that gently bear\nMe on between a peaceful sea and sky,\nTo make my soothing slumberous lullaby.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -4381,7 +4381,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Charlotte For ten Grimké’s 1888 poem “At Newport.”\n\nOh, deep delight to watch the gladsome waves Exultant leap upon the rugged rocks; Ever repulsed, yet <u>ever rushing on— Filled with a life that will not know defeat</u>; To see the glorious hues of sky and sea. The distant snowy sails, glide spirit like, Into an unknown world, to feel the sweet Enchantment of the sea thrill all the soul, Clearing the clouded brain, making the heart Leap joyous as it own bright, singing waves!",
+    "passage": "The following text is from Charlotte For ten Grimké’s 1888 poem “At Newport.”\n\nOh, deep delight to watch the gladsome waves\nExultant leap upon the rugged rocks;\nEver repulsed, yet <u>ever rushing on—\nFilled with a life that will not know defeat</u>;\nTo see the glorious hues of sky and sea.\nThe distant snowy sails, glide spirit like,\nInto an unknown world, to feel the sweet\nEnchantment of the sea thrill all the soul,\nClearing the clouded brain, making the heart\nLeap joyous as it own bright, singing waves!",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -4591,7 +4591,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is from Ameen Rihani’s 1921 poem “The Wanderer.”\n\nI wander among the hills of alien lands Where Nature her prerogative resigns To Man; where Comfort in her shack reclines And all the arts and sciences commands. <u>But in my soul The eastern billows roll— I hearthe voices of my native strands.</u>",
+    "passage": "The following text is from Ameen Rihani’s 1921 poem “The Wanderer.”\n\nI wander among the hills of alien lands\nWhere Nature her prerogative resigns\nTo Man; where Comfort in her shack reclines\nAnd all the arts and sciences commands.\n<u>But in my soul\nThe eastern billows roll—\nI hearthe voices of my native strands.</u>",
     "prompt": "Which choice best describes the function of the underlined lines in the text as a whole?",
     "choices": [
       {
@@ -4836,7 +4836,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is adapted from Gwendolyn Bennett’s 1926 poem “Street Lamps in Early Spring.”\n\nNight wears a garment All velvet soft, all violet blue... And over her face she draws a veil As shimmering fine as floating dew... And here and there In the black of her hair The subtle hands of Night Move slowly with their gem-starred light.",
+    "passage": "The following text is adapted from Gwendolyn Bennett’s 1926 poem “Street Lamps in Early Spring.”\n\nNight wears a garment\nAll velvet soft, all violet blue...\nAnd over her face she draws a veil\nAs shimmering fine as floating dew...\nAnd here and there\nIn the black of her hair\nThe subtle hands of Night\nMove slowly with their gem-starred light.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
       {
@@ -4976,7 +4976,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is from Georgia Douglas Johnson’s 1922 poem “Benediction.”\n\nGo for th, my son, Winged by my heart’s desire! Great reaches, yet unknown, Await For your possession. I may not, if I would, Retrace the way with you, My pilgrimage is through, But life is calling you!",
+    "passage": "The following text is from Georgia Douglas Johnson’s 1922 poem “Benediction.”\n\nGo for th, my son,\nWinged by my heart’s desire!\nGreat reaches, yet unknown,\nAwait\nFor your possession.\nI may not, if I would,\nRetrace the way with you,\nMy pilgrimage is through,\nBut life is calling you!",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -5396,7 +5396,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from the 1923 poem “Black Finger”\n\nby Angelina Weld Grimké, a Black American writer. A cypress is a type of evergreen tree. I have just seen a most beautiful thing, Slim and still, Against a gold, gold sky, A straight black cypress, Sensitive, Exquisite, A black finger Pointing upwards. Why, beautiful still finger, are you black? And why are you pointing upwards?",
+    "passage": "The following text is from the 1923 poem “Black Finger”\n\nby Angelina Weld Grimké, a Black American writer. A cypress is a type of evergreen tree.\nI have just seen a most beautiful thing,\nSlim and still,\nAgainst a gold, gold sky,\nA straight black cypress,\nSensitive,\nExquisite,\nA black finger\nPointing upwards.\nWhy, beautiful still finger, are you black?\nAnd why are you pointing upwards?",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
       {
@@ -5431,7 +5431,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "The following text is from John Dryden’s 1697 translation of Virgil’s poem the Aeneid, written in the first century BCE.\n\nQueen Dido has just heard the Trojan hero Aeneas recount a sad tale. But anxious cares already seiz’d the queen: She fed within her veins a flame unseen; The hero’s valor, acts, and birth inspire Her soul with love, and fan the secret fire. His words, his looks, imprinted in her heart, Improve the passion, and increase the smart.",
+    "passage": "The following text is from John Dryden’s 1697 translation of Virgil’s poem the Aeneid, written in the first century BCE.\n\nQueen Dido has just heard\nthe Trojan hero Aeneas recount a sad tale.\nBut anxious cares already seiz’d the queen:\nShe fed within her veins a flame unseen;\nThe hero’s valor, acts, and birth inspire\nHer soul with love, and fan the secret fire.\nHis words, his looks, imprinted in her heart,\nImprove the passion, and increase the smart.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -5781,7 +5781,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from the 1924 poem “Cycle”\n\nby D’Arcy McNickle, who was a citizen of the Confederated Salish and Kootenai Tribes. There shall be new roads wending, A new beating of the drum— Men’s eyes shall have fresh seeing, Grey lives reprise their span— But under the new sun’s being, Completing what night began, There’ ll be the same backs bending, The same sad feet shall drum— When this night finds its ending And day shall have come.....",
+    "passage": "The following text is from the 1924 poem “Cycle”\n\nby D’Arcy McNickle, who was a citizen of the Confederated Salish and Kootenai Tribes.\nThere shall be new roads wending,\nA new beating of the drum—\nMen’s eyes shall have fresh seeing,\nGrey lives reprise their span—\nBut under the new sun’s being,\nCompleting what night began,\nThere’ ll be the same backs bending,\nThe same sad feet shall drum—\nWhen this night finds its ending\nAnd day shall have come.....",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -5921,7 +5921,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from the 1895 poem “Marshlands”\n\nby Emily Pauline Johnson, a Kanienkahagen (Mohawk) writer also known as Tekahionwake. Among the wild rice in the still lagoon, In monotone the lizard shrills his tune. The wild goose, homing, seeks a sheltering, Where rushes grow, and oozing lichens cling. Late cranes with heavy wing, and lazy flight, Sail up the silence with the nearing night. And like a spirit, swathed in some soft veil, Steals twilight and its shadows o’erthe swale. Hushed lie the sedges, and the vapours creep, Thick, grey and humid, while the marshes sleep.",
+    "passage": "The following text is from the 1895 poem “Marshlands”\n\nby Emily Pauline Johnson, a Kanienkahagen (Mohawk) writer also known as\nTekahionwake.\nAmong the wild rice in the still lagoon,\nIn monotone the lizard shrills his tune.\nThe wild goose, homing, seeks a sheltering,\nWhere rushes grow, and oozing lichens cling.\nLate cranes with heavy wing, and lazy flight,\nSail up the silence with the nearing night.\nAnd like a spirit, swathed in some soft veil,\nSteals twilight and its shadows o’erthe swale.\nHushed lie the sedges, and the vapours creep,\nThick, grey and humid, while the marshes sleep.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
       {
@@ -7111,7 +7111,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Charlotte Perkins Gilman’s 1910 poem “The Earth’s Entail.”\n\nNo matter how we cultivate the land, Taming the forest and the prairie free; No matter how we irrigate the sand, Making the desert blossom at command, We must always leave the borders of the sea; The immeasureable reaches Of the windy wave-wet beaches, The million-mile-long margin of the sea.",
+    "passage": "The following text is from Charlotte Perkins Gilman’s 1910 poem “The Earth’s Entail.”\n\nNo matter how we cultivate the land,\nTaming the forest and the prairie free;\nNo matter how we irrigate the sand,\nMaking the desert blossom at command,\nWe must always leave the borders of the sea;\nThe immeasureable reaches\nOf the windy wave-wet beaches,\nThe million-mile-long margin of the sea.",
     "prompt": "Which choice best describes the overall structure of the text?",
     "choices": [
       {
@@ -10191,7 +10191,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "The following text is adapted from Mercedes de Acosta’s 1921 poem “Spring and You.”\n\nNow, Love and April, and the gold of your hair, Are all mingled together Like the blending of an exotic dream plant With the fragrant perfume of a strange, frail flower.",
+    "passage": "The following text is adapted from Mercedes de Acosta’s 1921 poem “Spring and You.”\n\nNow, Love and April, and the gold of your\nhair,\nAre all mingled together\nLike the blending of an exotic dream plant\nWith the fragrant perfume of a strange, frail\nflower.",
     "prompt": "As used in the text, what does the word “mingled” most nearly mean?",
     "choices": [
       {
@@ -10856,7 +10856,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "The following text is adapted from José Martí’s 1891 poem “At the Salon” (translated by Cecil Charles in 1898). The speaker describes a painting featuring a female figure.\n\nFrom the sterile soil no ray Of hope in a blade of green, Nor sheltering roof is seen— Though the skies are heavy and gray. Ah, this is the woman fair Who stole away my heart In the splendid halls of art Yester-e’en as I wandered there!",
+    "passage": "The following text is adapted from José Martí’s 1891 poem “At the Salon” (translated by Cecil Charles in 1898). The speaker describes a painting\nfeaturing a female figure.\n\nFrom the sterile soil no ray\nOf hope in a blade of green,\nNor sheltering roof is seen—\nThough the skies are heavy and gray.\nAh, this is the woman fair\nWho stole away my heart\nIn the splendid halls of art\nYester-e’en as I wandered there!",
     "prompt": "As used in the text, what does the word “sheltering” most nearly mean?",
     "choices": [
       {
@@ -11591,7 +11591,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "Due to their often strange images, highly experimental syntax, and opaque subject matter, many of John Ashbery’s poems can be quite difficult to <u>    </u> and thus are the object of heated debate among scholars.",
+    "passage": "Due to their often strange images, highly experimental syntax, and opaque subject matter, many of John Ashbery’s poems can be quite difficult\nto <u>    </u> and thus are the object of heated debate among scholars.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
       {
@@ -12186,7 +12186,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "The following text is from Claude McKay’s 1922 poem “Morning Joy.” The speaker is looking out a window and observing a wold, or large area of land.\n\nAt night the wide and level stretch of wold, Which at high noon had basked in quiet gold, Far as the eye could see was ghostly white; Dark was the night save for the snow’s weird light. I drew the shades far down, crept into bed; Hearing the cold wind moaning overhead Through the sad pines, my soul, catching its pain, Went sorrowing with it across the plain.",
+    "passage": "The following text is from Claude McKay’s 1922 poem “Morning Joy.” The speaker is looking out a window and observing a wold, or large area of\nland.\n\nAt night the wide and level stretch of wold,\nWhich at high noon had basked in quiet gold,\nFar as the eye could see was ghostly white;\nDark was the night save for the snow’s weird light.\nI drew the shades far down, crept into bed;\nHearing the cold wind moaning overhead\nThrough the sad pines, my soul, catching its pain,\nWent sorrowing with it across the plain.",
     "prompt": "As used in the text, what does the word “drew” most nearly mean?",
     "choices": [
       {
@@ -13516,7 +13516,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "The following text is adapted from Amy Lowell’s 1912 poem “Summer.”\n\nIt is summer, glorious, deep-toned summer, The very crown of nature’s changing year When all her surging life is at its full. To me alone it is a time of pause, A void and silent space between two worlds, When inspiration lags, and feeling sleeps, Gathering strength for efforts yet to come.",
+    "passage": "The following text is adapted from Amy Lowell’s 1912 poem “Summer.”\n\nIt is summer, glorious, deep-toned summer,\nThe very crown of nature’s changing year\nWhen all her surging life is at its full.\nTo me alone it is a time of pause,\nA void and silent space between two worlds,\nWhen inspiration lags, and feeling sleeps,\nGathering strength for efforts yet to come.",
     "prompt": "As used in the text, what does the phrase “a void” most nearly mean?",
     "choices": [
       {
@@ -14146,7 +14146,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Medium",
-    "passage": "In Habitat Threshold, Chamoru (Chamorro) poet Craig Santos Perez practices what he calls “recycling,” in which he preserves the syntactical and rhetorical structures of canonical poems but replaces their content to evoke current environmental issues. The form of these poems is thus <u>    </u> to their meaning, inviting readers to consider how climate change alters ostensibly familiar experiences.",
+    "passage": "In Habitat Threshold, Chamoru (Chamorro) poet Craig Santos Perez practices what he calls “recycling,” in which he preserves the syntactical and\nrhetorical structures of canonical poems but replaces their content to evoke current environmental issues. The form of these poems is thus\n<u>    </u> to their meaning, inviting readers to consider how climate change alters ostensibly familiar experiences.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
       {
@@ -14846,7 +14846,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Easy",
-    "passage": "Ezra Pound’s poetry can be hard to <u>    </u>: it is dense, experimental, and so full of references and allusions that many readers have a difficult time even identifying the poems’ subjects.",
+    "passage": "Ezra Pound’s poetry can be hard to <u>    </u>: it is dense, experimental, and so full of references and allusions that many readers have a difficult\ntime even identifying the poems’ subjects.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
       {
@@ -15336,7 +15336,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Medium",
-    "passage": "In Nature Poem (2017), Kumeyaay poet Tommy Pico portrays his <u>    </u> the natural world by honoring the centrality of nature within his tribe’s traditional beliefs while simultaneously expressing his distaste for being in wilderness settings himself.",
+    "passage": "In Nature Poem (2017), Kumeyaay poet Tommy Pico portrays his <u>    </u> the natural world by honoring the centrality of nature within his tribe’s\ntraditional beliefs while simultaneously expressing his distaste for being in wilderness settings himself.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
       {
@@ -15861,7 +15861,7 @@
     "domain": "Craft and Structure",
     "skill": "Words in Context",
     "difficulty": "Hard",
-    "passage": "It is by no means <u>    </u> to recognize the influence of Dutch painter Hieronymus Bosch on Ali Banisadr’s paintings; indeed, Banisadr himself cites Bosch as an inspiration. However, some scholars have suggested that the ancient Mesopotamian poem Epic of Gilgamesh may have had a far greater impact on Banisadr’s work.",
+    "passage": "It is by no means <u>    </u> to recognize the influence of Dutch painter Hieronymus Bosch on Ali Banisadr’s paintings; indeed, Banisadr himself cites\nBosch as an inspiration. However, some scholars have suggested that the ancient Mesopotamian poem Epic of Gilgamesh may have had a far\ngreater impact on Banisadr’s work.",
     "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
     "choices": [
       {
@@ -22056,7 +22056,7 @@
     "domain": "Expression of Ideas",
     "skill": "Rhetorical Synthesis",
     "difficulty": "Medium",
-    "passage": "While researching a topic, a student has taken the following notes: The Ramayana is a Sanskrit epic poem from ancient India. In The Ramayana, the character Kaikeyi is often portrayed as a villain. Kaikeyi is a 2022 novel by Vaishnavi Patel. The novel is a retelling of the epic poem from Kaikeyi’s point of view. It often portrays Kaikeyi as heroic.",
+    "passage": "While researching a topic, a student has taken the following notes:\nThe Ramayana is a Sanskrit epic poem from ancient India.\nIn The Ramayana, the character Kaikeyi is often portrayed as a villain.\nKaikeyi is a 2022 novel by Vaishnavi Patel.\nThe novel is a retelling of the epic poem from Kaikeyi’s point of view.\nIt often portrays Kaikeyi as heroic.",
     "prompt": "The student wants to emphasize whose point of view the novel is told from. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "choices": [
       {
@@ -23036,7 +23036,7 @@
     "domain": "Expression of Ideas",
     "skill": "Rhetorical Synthesis",
     "difficulty": "Hard",
-    "passage": "While researching a topic, a student has taken the following notes: A sestina is a thirty-nine-line poetic form. Each line of the poem ends with one of six end words, which alternate according to a set pattern. “Forage Sestina” is a sestina by Marilyn Hacker. Its end words are words, structure, wire, beam, wall, and room. “Towards Autumn” is a sestina by Marilyn Hacker. Its end words are daughter, friend, bread, mother, lover, and myself.",
+    "passage": "While researching a topic, a student has taken the following notes:\nA sestina is a thirty-nine-line poetic form.\nEach line of the poem ends with one of six end words, which alternate according to a set pattern.\n“Forage Sestina” is a sestina by Marilyn Hacker.\nIts end words are words, structure, wire, beam, wall, and room.\n“Towards Autumn” is a sestina by Marilyn Hacker.\nIts end words are daughter, friend, bread, mother, lover, and myself.",
     "prompt": "The student wants to use one of the poems to illustrate the sestina form. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "choices": [
       {
@@ -23141,7 +23141,7 @@
     "domain": "Expression of Ideas",
     "skill": "Rhetorical Synthesis",
     "difficulty": "Medium",
-    "passage": "While researching a topic, a student has taken the following notes: The meter of a poem is the rhythmic structure or pattern of accents in its lines. Alliterative meter is structured by a pattern of repeated sounds. Quantitative meter is structured by a pattern of long and short syllables. The Old English poem Widsith uses an alliterative meter. The Sanskrit poem Meghadūta uses a quantitative meter.",
+    "passage": "While researching a topic, a student has taken the following notes:\nThe meter of a poem is the rhythmic structure or pattern of accents in its lines.\nAlliterative meter is structured by a pattern of repeated sounds.\nQuantitative meter is structured by a pattern of long and short syllables.\nThe Old English poem Widsith uses an alliterative meter.\nThe Sanskrit poem Meghadūta uses a quantitative meter.",
     "prompt": "The student wants to emphasize a difference between the meters of the two poems. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
     "choices": [
       {
@@ -26851,7 +26851,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Hard",
-    "passage": "In Asiya Wadud’s 2022 poem “Shorn, Treaded Red,” the poet contemplates a painting that has inspired her: Etel Adnan’s 2020 work Satellites 27. The painting, which features overlapping geometric shapes, fuels the poem’s exploration of temporality and identity. <u>    </u> in responding to Adnan’s artwork, Wadud’s poem reflects on the relationship between poetry and other art forms.",
+    "passage": "In Asiya Wadud’s 2022 poem “Shorn, Treaded Red,” the poet contemplates a painting that has inspired her: Etel Adnan’s 2020 work Satellites 27.\nThe painting, which features overlapping geometric shapes, fuels the poem’s exploration of temporality and identity. <u>    </u> in responding to\nAdnan’s artwork, Wadud’s poem reflects on the relationship between poetry and other art forms.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -27516,7 +27516,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Easy",
-    "passage": "Okot p’Bitek’s poem Song of Lawino (1966) explores postcolonial Ugandan life through the eyes of a woman living in a rural village. With its vibrant imagery, bitingly satiric tone, and dexterous use of traditional Acholi song and phraseology, the poem inspired a generation of East African writers. <u>    </u> those who adopted its style are often referred to as Okot School poets.",
+    "passage": "Okot p’Bitek’s poem Song of Lawino (1966) explores postcolonial Ugandan life through the eyes of a woman living in a rural village. With its\nvibrant imagery, bitingly satiric tone, and dexterous use of traditional Acholi song and phraseology, the poem inspired a generation of East\nAfrican writers. <u>    </u> those who adopted its style are often referred to as Okot School poets.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -28321,7 +28321,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Medium",
-    "passage": "With its clichéd imagery of suburban lawns and power lines, John Ashbery’s 2004 poem “Ignorance of the Law Is No Excuse” may seem barren terrain for critical analysis. <u>    </u> cultural critic Lauren Berlant finds fertile ground in just its first two stanzas, devoting most of a book chapterto deciphering the “weight of the default space” Ashbery creates in this poem.",
+    "passage": "With its clichéd imagery of suburban lawns and power lines, John Ashbery’s 2004 poem “Ignorance of the Law Is No Excuse” may seem barren\nterrain for critical analysis. <u>    </u> cultural critic Lauren Berlant finds fertile ground in just its first two stanzas, devoting most of a book chapterto\ndeciphering the “weight of the default space” Ashbery creates in this poem.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -28496,7 +28496,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Hard",
-    "passage": "In his 2023 collection The Diaspora Sonnets, Filipino American poet Oliver de la Paz leverages the sonnet form’s “diamond-like quality of precision,” as he describes it. The poems often adhere scrupulously to the form’s centuries-old conventions, such as its characteristic fourteen- line length. In the twelve-line poem “Diaspora Sonnet at the Feeders Before the Freeze,” <u>    </u> de la Paz playfully subverts sonnet conventions, the poem’s truncated length conveying a sense of abruptness.",
+    "passage": "In his 2023 collection The Diaspora Sonnets, Filipino American poet Oliver de la Paz leverages the sonnet form’s “diamond-like quality of\nprecision,” as he describes it. The poems often adhere scrupulously to the form’s centuries-old conventions, such as its characteristic fourteen-\nline length. In the twelve-line poem “Diaspora Sonnet at the Feeders Before the Freeze,” <u>    </u> de la Paz playfully subverts sonnet conventions,\nthe poem’s truncated length conveying a sense of abruptness.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -28846,7 +28846,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Hard",
-    "passage": "Iraqi artist Nazik Al-Malaika, celebrated as the first Arabic poet to write in free verse, didn’t reject traditional forms entirely; her poem “Elegy for a Woman of No Importance” consists of two ten-line stanzas and a standard number of syllables. Even in this superficially traditional work, <u>    </u> Al-Malaika was breaking new ground by memorializing an anonymous woman rather than a famous man.",
+    "passage": "Iraqi artist Nazik Al-Malaika, celebrated as the first Arabic poet to write in free verse, didn’t reject traditional forms entirely; her poem “Elegy for a\nWoman of No Importance” consists of two ten-line stanzas and a standard number of syllables. Even in this superficially traditional work, <u>    </u>\nAl-Malaika was breaking new ground by memorializing an anonymous woman rather than a famous man.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -29896,7 +29896,7 @@
     "domain": "Expression of Ideas",
     "skill": "Transitions",
     "difficulty": "Easy",
-    "passage": "Although novels and poems are considered distinct literary forms, many authors have created hybrid works that incorporate elements of both. Bernardine Evaristo’s The Emperor’s Babe, <u>    </u> is a verse novel, a book-length narrative complete with characters and a plot but conveyed in short, crisp lines of poetry rather than prose.",
+    "passage": "Although novels and poems are considered distinct literary forms, many authors have created hybrid works that incorporate elements of both.\nBernardine Evaristo’s The Emperor’s Babe, <u>    </u> is a verse novel, a book-length narrative complete with characters and a plot but conveyed in\nshort, crisp lines of poetry rather than prose.",
     "prompt": "Which choice completes the text with the most logical transition?",
     "choices": [
       {
@@ -30736,7 +30736,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Hard",
-    "passage": "The following text is adapted from William Shakespeare’s 1609 poem “Sonnet 27.”\n\nThe poem is addressed to a close friend as if he were physically present. Weary with toil, I [hurry] to my bed, The dear repose for limbs with travel tired; But then begins a journey in my head To work my mind, when body’s work’s expired: For then my thoughts—from far where I abide— [Begin] a zealous pilgrimage to thee, And keep my drooping eyelids open wide, What is the main idea of the text?",
+    "passage": "The following text is adapted from William Shakespeare’s 1609 poem “Sonnet 27.”\n\nThe poem is addressed to a close friend as if he were\nphysically present.\nWeary with toil, I [hurry] to my bed,\nThe dear repose for limbs with travel tired;\nBut then begins a journey in my head\nTo work my mind, when body’s work’s expired:\nFor then my thoughts—from far where I abide—\n[Begin] a zealous pilgrimage to thee,\nAnd keep my drooping eyelids open wide,\nWhat is the main idea of the text?",
     "prompt": "Which choice is best?",
     "choices": [
       {
@@ -31296,7 +31296,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Medium",
-    "passage": "The following text is adapted from Countee Cullen’s 1926 poem “Thoughts in a Zoo.”\n\nThey in their cruel traps, and we in ours, Survey each other’s rage, and pass the hours Commiserating each the other’s woe, To mitigate his own pain’s fiery glow. Man could but little proffer in exchange Save that his cages have a larger range. That lion with his lordly, untamed heart Has in some man his human counterpart, Some lofty soul in dreams and visions wrapped, But in the stifling flesh securely trapped.",
+    "passage": "The following text is adapted from Countee Cullen’s 1926 poem “Thoughts in a Zoo.”\n\nThey in their cruel traps, and we in ours,\nSurvey each other’s rage, and pass the hours\nCommiserating each the other’s woe,\nTo mitigate his own pain’s fiery glow.\nMan could but little proffer in exchange\nSave that his cages have a larger range.\nThat lion with his lordly, untamed heart\nHas in some man his human counterpart,\nSome lofty soul in dreams and visions wrapped,\nBut in the stifling flesh securely trapped.",
     "prompt": "Based on the text, what challenge do humans sometimes experience?",
     "choices": [
       {
@@ -31996,7 +31996,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Hard",
-    "passage": "The following text is from Maggie Pogue Johnson’s 1910 poem “Poet of Our Race.”\n\nIn this poem, the speaker is addressing Paul Laurence Dunbar, a Black author. Thou, with stroke of mighty pen, Hast told of joy and mirth, And read the hearts and souls of men As cradled from their birth. The language of the flowers, Thou hast read them all, And e’en the little brook Responded to thy call.",
+    "passage": "The following text is from Maggie Pogue Johnson’s 1910 poem “Poet of Our Race.”\n\nIn this poem, the speaker is addressing Paul Laurence\nDunbar, a Black author.\nThou, with stroke of mighty pen,\nHast told of joy and mirth,\nAnd read the hearts and souls of men\nAs cradled from their birth.\nThe language of the flowers,\nThou hast read them all,\nAnd e’en the little brook\nResponded to thy call.",
     "prompt": "Which choice best states the main purpose of the text?",
     "choices": [
       {
@@ -33746,7 +33746,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Medium",
-    "passage": "The following text is adapted from Christina Rossetti’s 1881 poem “Monna Innominata 2.”\n\nI wish I could rememberthat first day, First hour, first moment of your meeting me, If bright or dim the season, it might be Summer or Winter for [all] I can say; So unrecorded did it slip away, So blind was I to see and to foresee, So dull to mark the budding of my tree That would not blossom yet for many a May.",
+    "passage": "The following text is adapted from Christina Rossetti’s 1881 poem “Monna Innominata 2.”\n\nI wish I could rememberthat first day,\nFirst hour, first moment of your meeting me,\nIf bright or dim the season, it might be\nSummer or Winter for [all] I can say;\nSo unrecorded did it slip away,\nSo blind was I to see and to foresee,\nSo dull to mark the budding of my tree\nThat would not blossom yet for many a May.",
     "prompt": "Which choice best states the main idea of the text?",
     "choices": [
       {
@@ -33921,7 +33921,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Hard",
-    "passage": "The following text is Vita Sackville-West’s circa 1920 poem “Evening.” Spars are ships’ masts, moorings are ropes that hold docked ships in place, and a riding-light is a light that a ship shines when it is anchored.\n\nWhen little lights in little ports come out, Quivering down through water with the stars, And all the fishing fleet of slender spars Range at their moorings, veer with tide about; When race of wind is stilled and sails are furled, And underneath our single riding-light The curve of black-ribbed deck gleams palely white, And slumbrous waters pool a slumbrous world; —Then, and then only, have I thought how sweet Old age might sink upon a windy youth, Quiet beneath the riding-light of truth, Weathered through storms, and gracious in retreat.",
+    "passage": "The following text is Vita Sackville-West’s circa 1920 poem “Evening.” Spars are ships’ masts, moorings are ropes that hold docked ships in\nplace, and a riding-light is a light that a ship shines when it is anchored.\n\nWhen little lights in little ports come out,\nQuivering down through water with the stars,\nAnd all the fishing fleet of slender spars\nRange at their moorings, veer with tide about;\nWhen race of wind is stilled and sails are furled,\nAnd underneath our single riding-light\nThe curve of black-ribbed deck gleams palely white,\nAnd slumbrous waters pool a slumbrous world;\n—Then, and then only, have I thought how sweet\nOld age might sink upon a windy youth,\nQuiet beneath the riding-light of truth,\nWeathered through storms, and gracious in retreat.",
     "prompt": "Which choice best states the main idea of the text?",
     "choices": [
       {
@@ -33991,7 +33991,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Medium",
-    "passage": "The following text is from Ezra Pound’s 1909 poem “Hymn III,”\n\nbased on the work of Marcantonio Flaminio. As a fragile and lovely flower unfolds its gleaming foliage on the breast of the fostering earth, if the dew and the rain draw it for th; So doth my tender mind flourish, if it be fed with the sweet dew of the fostering spirit, Lacking this, it beginneth straightway to languish, even as a floweret born upon dry earth, if the dew and the rain tend it not.",
+    "passage": "The following text is from Ezra Pound’s 1909 poem “Hymn III,”\n\nbased on the work of Marcantonio Flaminio.\nAs a fragile and lovely flower unfolds its gleaming\nfoliage on the breast of the fostering earth, if\nthe dew and the rain draw it for th;\nSo doth my tender mind flourish, if it be fed with the\nsweet dew of the fostering spirit,\nLacking this, it beginneth straightway to languish,\neven as a floweret born upon dry earth, if the\ndew and the rain tend it not.",
     "prompt": "Based on the text, in what way is the human mind like a flower?",
     "choices": [
       {
@@ -35111,7 +35111,7 @@
     "domain": "Information and Ideas",
     "skill": "Central Ideas and Details",
     "difficulty": "Hard",
-    "passage": "Several scholars have argued that conditions in England in the late ninth through early eleventh centuries—namely, burgeoning literacy amid running conflicts between England’s Anglo-Saxon kingdoms and Danish invaders—were especially conducive to the production of the Old English epic poem Beowulf, and they have dated the poem’s composition accordingly. It is not inconceivable that Beowulf emerged from such a context, but privileging contextual fit over the linguistic evidence of an eighth- or even seventh-century composition requires a level of justification that thus far has not been presented.",
+    "passage": "Several scholars have argued that conditions in England in the late ninth through early eleventh centuries—namely, burgeoning literacy amid\nrunning conflicts between England’s Anglo-Saxon kingdoms and Danish invaders—were especially conducive to the production of the Old English\nepic poem Beowulf, and they have dated the poem’s composition accordingly. It is not inconceivable that Beowulf emerged from such a context,\nbut privileging contextual fit over the linguistic evidence of an eighth- or even seventh-century composition requires a level of justification that\nthus far has not been presented.",
     "prompt": "Which choice best states the main idea of the text?",
     "choices": [
       {
@@ -35951,7 +35951,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "“Aunt Sue’s Stories” is a 1926 poem by Langston Hughes. In the poem, the speaker indicates that the stories Aunt Sue tells are based on Aunt Sue’s personal experiences, saying that <u>    </u>",
+    "passage": "“Aunt Sue’s Stories” is a 1926 poem by Langston Hughes. In the poem, the speaker indicates that the stories Aunt Sue tells are based on Aunt\nSue’s personal experiences, saying that <u>    </u>",
     "prompt": "Which choice most effectively uses a quotation from “Aunt Sue’s Stories” to illustrate the claim?",
     "choices": [
       {
@@ -36651,7 +36651,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“Loon Point” is a 1912 poem by Amy Lowell. In the poem, which presents a nighttime scene on a body of water, Lowell describes an element of nature as an active participant in the experience, writing, <u>    </u>",
+    "passage": "“Loon Point” is a 1912 poem by Amy Lowell. In the poem, which presents a nighttime scene on a body of water, Lowell describes an element of\nnature as an active participant in the experience, writing, <u>    </u>",
     "prompt": "Which quotation from “Loon Point” most effectively illustrates the claim?",
     "choices": [
       {
@@ -37001,7 +37001,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“On Virtue” is a 1766 poem by Phillis Wheatley. Wheatley addresses the poem directly to the quality of virtue, imploring it to assist her in reaching a future goal: <u>    </u>",
+    "passage": "“On Virtue” is a 1766 poem by Phillis Wheatley. Wheatley addresses the poem directly to the quality of virtue, imploring it to assist her in reaching\na future goal: <u>    </u>",
     "prompt": "Which quotation from “On Virtue” most effectively illustrates the claim?",
     "choices": [
       {
@@ -37351,7 +37351,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“To You” is an 1856 poem by Walt Whitman. In the poem, Whitman suggests that he deeply understands the reader, whom he addresses directly, writing, <u>    </u>",
+    "passage": "“To You” is an 1856 poem by Walt Whitman. In the poem, Whitman suggests that he deeply understands the reader, whom he addresses directly,\nwriting, <u>    </u>",
     "prompt": "Which quotation from “To You” most effectively illustrates the claim?",
     "choices": [
       {
@@ -38471,7 +38471,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "“The Rock and the Sea” is an 1893 poem by Charlotte Perkins Gilman. In the poem, a rock is portrayed as intending to confront and restrain the sea: <u>    </u>",
+    "passage": "“The Rock and the Sea” is an 1893 poem by Charlotte Perkins Gilman. In the poem, a rock is portrayed as intending to confront and restrain the\nsea: <u>    </u>",
     "prompt": "Which quotation from “The Rock and the Sea” most effectively illustrates the claim?",
     "choices": [
       {
@@ -39521,7 +39521,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "“Poetry” is a 1919 poem by Marianne Moore. The poem highlights an ambivalence toward poetry as the speaker acknowledges its merits while also expressing a sense of displeasure, writing <u>    </u>",
+    "passage": "“Poetry” is a 1919 poem by Marianne Moore. The poem highlights an ambivalence toward poetry as the speaker acknowledges its merits while\nalso expressing a sense of displeasure, writing <u>    </u>",
     "prompt": "Which quotation from “Poetry” most effectively illustrates the claim?",
     "choices": [
       {
@@ -39801,7 +39801,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "“To You” is an 1856 poem by Walt Whitman. In the poem, Whitman suggests that readers, whom he addresses directly, have not fully understood themselves, writing, <u>    </u>",
+    "passage": "“To You” is an 1856 poem by Walt Whitman. In the poem, Whitman suggests that readers, whom he addresses directly, have not fully understood\nthemselves, writing, <u>    </u>",
     "prompt": "Which quotation from “To You” most effectively illustrates the claim?",
     "choices": [
       {
@@ -40606,7 +40606,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“Often Rebuked, Yet Always Back Returning” is an 1846 poem by Emily Brontë. The poem conveys the speaker’s determination to experience the countryside around her: <u>    </u>",
+    "passage": "“Often Rebuked, Yet Always Back Returning” is an 1846 poem by Emily Brontë. The poem conveys the speaker’s determination to experience the\ncountryside around her: <u>    </u>",
     "prompt": "Which quotation from the poem most effectively illustrates the claim?",
     "choices": [
       {
@@ -40921,7 +40921,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“Ghosts of the Old Year” is an early 1900s poem by James Weldon Johnson. In the poem, the speaker describes experiencing an ongoing cycle of anticipation followed by regretful reflection: <u>    </u>",
+    "passage": "“Ghosts of the Old Year” is an early 1900s poem by James Weldon Johnson. In the poem, the speaker describes experiencing an ongoing cycle\nof anticipation followed by regretful reflection: <u>    </u>",
     "prompt": "Which quotation from “Ghosts of the Old Year” most effectively illustrates the claim?",
     "choices": [
       {
@@ -41306,7 +41306,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "A student is examining a long, challenging poem that was initially published in a quarterly journal without explanatory notes, then later republished in a stand-alone volume containing only that poem and accompanying explanatory notes written by the poet. The student asserts that the explanatory notes were included in the republication primarily as a marketing device to help sell the stand-alone volume.",
+    "passage": "A student is examining a long, challenging poem that was initially published in a quarterly journal without explanatory notes, then later\nrepublished in a stand-alone volume containing only that poem and accompanying explanatory notes written by the poet. The student asserts\nthat the explanatory notes were included in the republication primarily as a marketing device to help sell the stand-alone volume.",
     "prompt": "Which statement, if true, would most directly support the student’s claim?",
     "choices": [
       {
@@ -41446,7 +41446,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“When Dawn Comes to the City” is a 1922 poem by Claude McKay, who immigrated to the United States from the island nation of Jamaica as an adult. The poem conveys McKay’s contrasting feelings about New York City—his adopted home in the US—and his home country: <u>    </u>",
+    "passage": "“When Dawn Comes to the City” is a 1922 poem by Claude McKay, who immigrated to the United States from the island nation of Jamaica as an\nadult. The poem conveys McKay’s contrasting feelings about New York City—his adopted home in the US—and his home country: <u>    </u>",
     "prompt": "Which quotation from “When Dawn Comes to the City” most effectively illustrates the claim?",
     "choices": [
       {
@@ -41621,7 +41621,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "“Lines Written in Early Spring” is a 1798 poem by William Wordsworth. In the poem, the speaker describes having contradictory feelings while experiencing the sights and sounds of a spring day: <u>    </u>",
+    "passage": "“Lines Written in Early Spring” is a 1798 poem by William Wordsworth. In the poem, the speaker describes having contradictory feelings while\nexperiencing the sights and sounds of a spring day: <u>    </u>",
     "prompt": "Which quotation from “Lines Written in Early Spring” most effectively illustrates the claim?",
     "choices": [
       {
@@ -42111,7 +42111,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "“The Mountain” is a 1914 poem by Robert Frost. In the poem, the speaker visits a town next to a mountain. The speaker claims to feel protected by the mountain, saying <u>    </u>",
+    "passage": "“The Mountain” is a 1914 poem by Robert Frost. In the poem, the speaker visits a town next to a mountain. The speaker claims to feel protected\nby the mountain, saying <u>    </u>",
     "prompt": "Which quotation from “The Mountain” most effectively illustrates the claim?",
     "choices": [
       {
@@ -42321,7 +42321,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "“Banking Coal” is a 1922 poem by Jean Toomer. The poem describes a fire being lit and maintained. In the poem, the speaker praises the person who built the fire: <u>    </u>",
+    "passage": "“Banking Coal” is a 1922 poem by Jean Toomer. The poem describes a fire being lit and maintained. In the poem, the speaker praises the person\nwho built the fire: <u>    </u>",
     "prompt": "Which quotation from “Banking Coal” most effectively illustrates the claim?",
     "choices": [
       {
@@ -45261,7 +45261,7 @@
     "domain": "Information and Ideas",
     "skill": "Inferences",
     "difficulty": "Easy",
-    "passage": "To create the poems in her 2017 collection One Last Word, poet Nikki Grimes used a writing method called the golden shovel. This method often involves choosing a line from an existing poem and then using each word from that line as the last word of each line in a new poem. Grimes wanted the poems in One Last Word to honor important Black poets of the past, so she chose lines by poets such as Langston Hughes and Georgia Douglas Johnson. Writing in this way can be challenging and might seem as though it would produce awkward poems. However, reviewers praised One Last Word as a beautiful and powerful tribute to the poets who inspired it. This reaction suggests that <u>    </u>",
+    "passage": "To create the poems in her 2017 collection One Last Word, poet Nikki Grimes used a writing method called the golden shovel. This method often\ninvolves choosing a line from an existing poem and then using each word from that line as the last word of each line in a new poem. Grimes\nwanted the poems in One Last Word to honor important Black poets of the past, so she chose lines by poets such as Langston Hughes and\nGeorgia Douglas Johnson. Writing in this way can be challenging and might seem as though it would produce awkward poems. However,\nreviewers praised One Last Word as a beautiful and powerful tribute to the poets who inspired it. This reaction suggests that <u>    </u>",
     "prompt": "Which choice most logically completes the text?",
     "choices": [
       {
@@ -46801,7 +46801,7 @@
     "domain": "Information and Ideas",
     "skill": "Inferences",
     "difficulty": "Medium",
-    "passage": "Pablo Picasso famously subverted the norms of traditional painting: in his cubist paintings he refused to let his expression be constrained, fragmenting objects and figures to present multiple perspectives simultaneously. Though less widely known, Picasso—who once lamented that writers of his time had “limited themselves to moving around words somewhat while respecting the syntax”—also wrote poetry that defied conventional grammar, semantic relationships, and text structure. Thus, the paintings and poems are linked in that <u>    </u>",
+    "passage": "Pablo Picasso famously subverted the norms of traditional painting: in his cubist paintings he refused to let his expression be constrained,\nfragmenting objects and figures to present multiple perspectives simultaneously. Though less widely known, Picasso—who once lamented that\nwriters of his time had “limited themselves to moving around words somewhat while respecting the syntax”—also wrote poetry that defied\nconventional grammar, semantic relationships, and text structure. Thus, the paintings and poems are linked in that <u>    </u>",
     "prompt": "Which choice most logically completes the text?",
     "choices": [
       {
@@ -47186,7 +47186,7 @@
     "domain": "Information and Ideas",
     "skill": "Inferences",
     "difficulty": "Medium",
-    "passage": "Many linguists have claimed that the lyricism of Alexander Pushkin’s Russian novel in verse Eugene Onegin makes the work incapable of being faithfully translated, especially into English. The original work is written much like a long poem, featuring linguistic patterns and flourishes specific to the Russian language. Rather than striving to portray each scene of the novel literally, John Cranko, in his ballet adaptation of Eugene Onegin, opted to let the essence of the work’s emotions inspire the passion of the dancers. Critic Emma Golden writes that Cranko’s “choreography uses the poetry of the human body to summon the parts of Pushkin’s novel that were deemed untranslatable—its commitments to rhythm, cadence, symmetry.” It seems, then, that <u>    </u>",
+    "passage": "Many linguists have claimed that the lyricism of Alexander Pushkin’s Russian novel in verse Eugene Onegin makes the work incapable of being\nfaithfully translated, especially into English. The original work is written much like a long poem, featuring linguistic patterns and flourishes\nspecific to the Russian language. Rather than striving to portray each scene of the novel literally, John Cranko, in his ballet adaptation of Eugene\nOnegin, opted to let the essence of the work’s emotions inspire the passion of the dancers. Critic Emma Golden writes that Cranko’s\n“choreography uses the poetry of the human body to summon the parts of Pushkin’s novel that were deemed untranslatable—its commitments to\nrhythm, cadence, symmetry.” It seems, then, that <u>    </u>",
     "prompt": "Which choice most logically completes the text?",
     "choices": [
       {
@@ -47501,7 +47501,7 @@
     "domain": "Information and Ideas",
     "skill": "Inferences",
     "difficulty": "Hard",
-    "passage": "Sir Gawain and the Green Knight is a circa 1400 poem written in Middle English—an archaic form of the English spoken today. Over the last several centuries, the English language has undergone such transformations in vocabulary, spelling, and grammarthat most readers now rely on translations to read Sir Gawain. In the introduction to his 2007 translation, Simon Armitage remarks that the sonic patterns of the poem, which was written in alliterative verse (a verse form featuring extensive repetition of initial consonant sounds), are essential to its structure. Because many Modern English words begin with different sounds than their Middle English equivalents do, a strictly literal translation of Sir Gawain would therefore likely <u>    </u>",
+    "passage": "Sir Gawain and the Green Knight is a circa 1400 poem written in Middle English—an archaic form of the English spoken today. Over the last\nseveral centuries, the English language has undergone such transformations in vocabulary, spelling, and grammarthat most readers now rely on\ntranslations to read Sir Gawain. In the introduction to his 2007 translation, Simon Armitage remarks that the sonic patterns of the poem, which\nwas written in alliterative verse (a verse form featuring extensive repetition of initial consonant sounds), are essential to its structure. Because\nmany Modern English words begin with different sounds than their Middle English equivalents do, a strictly literal translation of Sir Gawain would\ntherefore likely <u>    </u>",
     "prompt": "Which choice most logically completes the text?",
     "choices": [
       {
@@ -48726,7 +48726,7 @@
     "domain": "Information and Ideas",
     "skill": "Inferences",
     "difficulty": "Hard",
-    "passage": "Compiled in the late 1500s largely through the efforts of Indigenous scribes, Cantares Mexicanos is the most important collection of poetry in Classical Nahuatl, the principal language of the Aztec Empire. The poems portray Aztec society before the occupation of the empire by the army of Spain, and marginal notes in Cantares Mexicanos indicate that much of the collection’s content predates the initial invasion. Nonetheless, some of the poems contain inarguable references to beliefs and customs common in Spain during this era. Thus, some scholars have concluded that <u>    </u>",
+    "passage": "Compiled in the late 1500s largely through the efforts of Indigenous scribes, Cantares Mexicanos is the most important collection of poetry in\nClassical Nahuatl, the principal language of the Aztec Empire. The poems portray Aztec society before the occupation of the empire by the army\nof Spain, and marginal notes in Cantares Mexicanos indicate that much of the collection’s content predates the initial invasion. Nonetheless,\nsome of the poems contain inarguable references to beliefs and customs common in Spain during this era. Thus, some scholars have concluded\nthat <u>    </u>",
     "prompt": "Which choice most logically completes the text?",
     "choices": [
       {
@@ -53206,7 +53206,7 @@
     "domain": "Standard English Conventions",
     "skill": "Boundaries",
     "difficulty": "Easy",
-    "passage": "Louise Bennett (1919–2006), also known as “Miss Lou,” was an influential Jamaican poet and folklorist. Her innovative poems <u>    </u> the use of Jamaican Creole (a spoken language) in literature.",
+    "passage": "Louise Bennett (1919–2006), also known as “Miss Lou,” was an influential Jamaican poet and folklorist. Her innovative poems <u>    </u> the use of\nJamaican Creole (a spoken language) in literature.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -55061,7 +55061,7 @@
     "domain": "Standard English Conventions",
     "skill": "Boundaries",
     "difficulty": "Hard",
-    "passage": "The haiku-like poems of Tomas Tranströmer, which present nature- and dream-influenced images in crisp, spare language, have earned the Swedish poet praise from leading contemporary <u>    </u> them Nigerian American essayist and novelist Teju Cole, who has written that Tranströmer’s works “contain a luminous simplicity.”",
+    "passage": "The haiku-like poems of Tomas Tranströmer, which present nature- and dream-influenced images in crisp, spare language, have earned the\nSwedish poet praise from leading contemporary <u>    </u> them Nigerian American essayist and novelist Teju Cole, who has written that\nTranströmer’s works “contain a luminous simplicity.”",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -55446,7 +55446,7 @@
     "domain": "Standard English Conventions",
     "skill": "Boundaries",
     "difficulty": "Hard",
-    "passage": "The poem Beowulf begins with the word “hwæt,” which is an Old English <u>    </u> as “hark!” or “listen!” in some versions, the word was playfully rendered as “bro!” by Maria Dahvana Headley in her 2020 translation of the poem.",
+    "passage": "The poem Beowulf begins with the word “hwæt,” which is an Old English <u>    </u> as “hark!” or “listen!” in some versions, the word was playfully\nrendered as “bro!” by Maria Dahvana Headley in her 2020 translation of the poem.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -57441,7 +57441,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Hard",
-    "passage": "Oglala Lakota poet Layli Long Soldier’s star quilt poems offer an unusually open-ended reading experience. With <u>    </u> eight panels of text stitched together in the shape of a traditional eight-pointed Lakota star quilt, the poems present viewers with a seemingly infinite number of ways to read them.",
+    "passage": "Oglala Lakota poet Layli Long Soldier’s star quilt poems offer an unusually open-ended reading experience. With <u>    </u> eight panels of text\nstitched together in the shape of a traditional eight-pointed Lakota star quilt, the poems present viewers with a seemingly infinite number of\nways to read them.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -58596,7 +58596,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Hard",
-    "passage": "Bengali author Toru Dutt’s A Sheaf Gleaned in French Fields (1876), a volume of English translations of French poems, <u>    </u> scholars’ understanding of the transnational and multilingual contexts in which Dutt lived and worked.",
+    "passage": "Bengali author Toru Dutt’s A Sheaf Gleaned in French Fields (1876), a volume of English translations of French poems, <u>    </u> scholars’\nunderstanding of the transnational and multilingual contexts in which Dutt lived and worked.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -59926,7 +59926,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Hard",
-    "passage": "The ghazal, a poetic form originating in seventh-century Arabic poetry, has an intricate structure. The twentieth-century Kashmiri American poet Agha Shahid Ali explains that each one of a ghazal’s couplets, while adhering to the patterns of rhyme (qafia) and refrain (radif) established in the poem’s opening lines (matla), <u>    </u> thematically and logically autonomous, resulting in a poem with “a stringently formal disunity.”",
+    "passage": "The ghazal, a poetic form originating in seventh-century Arabic poetry, has an intricate structure. The twentieth-century Kashmiri American poet\nAgha Shahid Ali explains that each one of a ghazal’s couplets, while adhering to the patterns of rhyme (qafia) and refrain (radif) established in the\npoem’s opening lines (matla), <u>    </u> thematically and logically autonomous, resulting in a poem with “a stringently formal disunity.”",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -62726,7 +62726,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Medium",
-    "passage": "“Praise Song for the Day,” Elizabeth Alexander’s 2009 inaugural poem, asserts that “We cross dirt roads and highways…to see what’s on the other side.” Alexander’s use of “we” <u>    </u> Americans’ collective efforts and shared desire to seek new opportunity.",
+    "passage": "“Praise Song for the Day,” Elizabeth Alexander’s 2009 inaugural poem, asserts that “We cross dirt roads and highways…to see what’s on the other\nside.” Alexander’s use of “we” <u>    </u> Americans’ collective efforts and shared desire to seek new opportunity.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -64406,7 +64406,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Hard",
-    "passage": "Walt Whitman’s Leaves of Grass first appeared in 1855 as a slim collection of twelve poems, but Whitman would revise and expand it substantially over the next four decades. These extensive <u>    </u> the addition of hundreds of new poems, the removal of some existing ones, and the insertion of prefatory material, reflected the poet’s evolving literary perspective and experience of the US Civil War.",
+    "passage": "Walt Whitman’s Leaves of Grass first appeared in 1855 as a slim collection of twelve poems, but Whitman would revise and expand it\nsubstantially over the next four decades. These extensive <u>    </u> the addition of hundreds of new poems, the removal of some existing ones, and\nthe insertion of prefatory material, reflected the poet’s evolving literary perspective and experience of the US Civil War.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {
@@ -64476,7 +64476,7 @@
     "domain": "Standard English Conventions",
     "skill": "Form, Structure, and Sense",
     "difficulty": "Easy",
-    "passage": "American poet Emily Dickinson wrote many of her poems on scraps of paper, but she also took steps to collect these works. From 1858 to around 1864, for example, she copied more than 800 of <u>    </u> into for ty homemade booklets (known as fascicles).",
+    "passage": "American poet Emily Dickinson wrote many of her poems on scraps of paper, but she also took steps to collect these works. From 1858 to\naround 1864, for example, she copied more than 800 of <u>    </u> into for ty homemade booklets (known as fascicles).",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       {

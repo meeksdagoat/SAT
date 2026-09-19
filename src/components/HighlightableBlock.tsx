@@ -61,22 +61,25 @@ function decorate(text: string, span: RichSpan | undefined, color?: HighlightCol
   return node;
 }
 
-function renderSpans(spans: RichSpan[], highlights: TextHighlight[]) {
+function renderSpans(spans: RichSpan[], highlights: TextHighlight[], from = 0, to?: number) {
   const plain = spans.map((span) => span.text).join("");
-  const points = new Set<number>([0, plain.length]);
+  const endBound = to ?? plain.length;
+  const points = new Set<number>([from, endBound]);
   const ranges: { start: number; end: number; span: RichSpan }[] = [];
   let offset = 0;
   for (const span of spans) {
     const start = offset;
     const end = offset + span.text.length;
     ranges.push({ start, end, span });
-    points.add(start);
-    points.add(end);
+    if (end > from && start < endBound) {
+      points.add(Math.max(from, start));
+      points.add(Math.min(endBound, end));
+    }
     offset = end;
   }
   for (const item of highlights) {
-    points.add(Math.max(0, Math.min(plain.length, item.start)));
-    points.add(Math.max(0, Math.min(plain.length, item.end)));
+    points.add(Math.max(from, Math.min(endBound, item.start)));
+    points.add(Math.max(from, Math.min(endBound, item.end)));
   }
   const sorted = Array.from(points).sort((a, b) => a - b);
   const parts: ReactNode[] = [];
@@ -161,9 +164,21 @@ export function HighlightableBlock({
         ref={rootRef}
         onMouseUp={showToolbar}
         onTouchEnd={() => setTimeout(showToolbar, 50)}
-        className={`sat-rich select-text ${className ?? ""}`}
+        className={`sat-rich select-text whitespace-pre-wrap ${className ?? ""}`}
       >
-        {renderSpans(spans, highlights)}
+        {(() => {
+          const verseAt = /\bpoems?\b/i.test(text) ? text.indexOf("\n\n") : -1;
+          if (verseAt < 0) return renderSpans(spans, highlights);
+          return (
+            <>
+              {renderSpans(spans, highlights, 0, verseAt)}
+              {"\n\n"}
+              <div className="sat-verse mt-1 whitespace-pre-line leading-7 pl-4 sm:pl-6 border-l-2 border-slate-700">
+                {renderSpans(spans, highlights, verseAt + 2)}
+              </div>
+            </>
+          );
+        })()}
       </div>
       {toolbar ? (
         <div
