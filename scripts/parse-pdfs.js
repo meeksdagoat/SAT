@@ -78,8 +78,356 @@ function wrapOnce(haystack, needle) {
   return `${haystack.slice(0, index)}<u>${needle}</u>${haystack.slice(index + needle.length)}`;
 }
 
+const RATIONALE_STOPWORDS = new Set(
+  `choice incorrect answer best because underlined portion sentence phrase statement question claim claims text whole function functions describes describe accurately thus while which that this with from have been were their there about would could should most more than also into only such when then than after before being itself themselves itself the and for are was not but they them his her its our you your can may might does did done over under upon like just even very into onto across through during without within after before other another these those some any all each both few many much using used use into onto across`.split(
+    /\s+/,
+  ),
+);
+
+function normalizeMatch(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/[^a-z0-9' ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function stemToken(word) {
+  return word.replace(/(?:ingly|edly|tion|ness|ment|ally|ing|edly|ed|ly|es|s)$/g, "");
+}
+
+function contentTokens(value) {
+  return [
+    ...new Set(
+      normalizeMatch(value)
+        .split(" ")
+        .map(stemToken)
+        .filter((word) => word.length >= 4 && !RATIONALE_STOPWORDS.has(word)),
+    ),
+  ];
+}
+
+function buildNormalizedIndex(text) {
+  let out = "";
+  const map = [];
+  for (let i = 0; i < text.length; i += 1) {
+    let ch = text[i];
+    if (ch === "\u2018" || ch === "\u2019") ch = "'";
+    const lower = ch.toLowerCase();
+    if (/[a-z0-9']/.test(lower)) {
+      map.push(i);
+      out += lower;
+    } else if (out.length && out[out.length - 1] !== " ") {
+      map.push(i);
+      out += " ";
+    }
+  }
+  if (out.endsWith(" ")) {
+    out = out.slice(0, -1);
+    map.pop();
+  }
+  return { out, map };
+}
+
+function findNormalizedSpan(haystack, needle) {
+  const target = normalizeMatch(needle);
+  if (!target || target.length < 8) return null;
+  const hay = buildNormalizedIndex(haystack);
+  const index = hay.out.indexOf(target);
+  if (index < 0 || !hay.map.length) return null;
+  const start = hay.map[index];
+  const end = hay.map[index + target.length - 1] + 1;
+  const span = haystack.slice(start, end);
+  return span.length >= 8 ? span : null;
+}
+
+function collectQuotedPhrases(text) {
+  return [...String(text).matchAll(/[\u201c"]([^"\u201d]{4,280})["\u201d]/g)].map((match) => match[1].trim());
+}
+
+function clausesOf(passage) {
+  const clauses = [];
+  for (const sentence of sentencesOf(passage)) {
+    const pieces = String(sentence)
+      .split(/(?<=[;:!?]|—|–)\s+/)
+      .map((piece) => piece.trim())
+      .filter((piece) => piece.length >= 8);
+    if (pieces.length) clauses.push(...pieces);
+    else if (sentence.trim()) clauses.push(sentence.trim());
+  }
+  return clauses;
+}
+
+function wantsSentenceTarget(prompt) {
+  return /underlined (sentence|question|statement|claim|explanation|conclusion|observation)/i.test(prompt);
+}
+
+function wantsPortionTarget(prompt) {
+  return /underlined (portion|phrase|part|lines)/i.test(prompt);
+}
+
+function coverQuotes(passage, spans) {
+  const located = spans
+    .map((span) => ({ span, index: passage.indexOf(span) }))
+    .filter((item) => item.index >= 0)
+    .sort((a, b) => a.index - b.index);
+  if (located.length === 0) return null;
+  if (located.length === 1) return located[0].span;
+  const start = located[0].index;
+  const end = located[located.length - 1].index + located[located.length - 1].span.length;
+  if (end - start <= 140) return passage.slice(start, end);
+  return located.reduce((longest, item) => (item.span.length > longest.length ? item.span : longest), located[0].span);
+}
+
+function tokenizeWithSpans(text) {
+  const tokens = [];
+  const pattern = /[A-Za-z0-9']+/g;
+  let match;
+  while ((match = pattern.exec(String(text)))) {
+    tokens.push({
+      word: stemToken(match[0].toLowerCase()),
+      start: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+  return tokens;
+}
+
+function wordsAlign(left, right) {
+  if (!left || !right) return false;
+  if (left === right) return true;
+  if (left.length >= 4 && right.length >= 4 && (left.startsWith(right) || right.startsWith(left))) return true;
+  return false;
+}
+
+function findFuzzyPhrase(haystack, needle) {
+  const hay = tokenizeWithSpans(haystack);
+  const ned = tokenizeWithSpans(needle)
+    .map((token) => token.word)
+    .filter((word) => word.length >= 3 && !RATIONALE_STOPWORDS.has(word));
+  if (ned.length < 3) return null;
+  for (let i = 0; i < hay.length; i += 1) {
+    let needleIndex = 0;
+    let cursor = i;
+    while (needleIndex < ned.length && cursor < hay.length && cursor - i <= ned.length + 4) {
+      if (wordsAlign(hay[cursor].word, ned[needleIndex])) {
+        needleIndex += 1;
+        cursor += 1;
+      } else if (RATIONALE_STOPWORDS.has(hay[cursor].word) || hay[cursor].word.length < 3) {
+        cursor += 1;
+      } else if (needleIndex > 0 && wordsAlign(hay[cursor].word, ned[0])) {
+        break;
+      } else {
+        cursor += 1;
+      }
+    }
+    if (needleIndex >= ned.length) {
+      return haystack.slice(hay[i].start, hay[cursor - 1].end);
+    }
+  }
+  return null;
+}
+
+function citedWindows(rationale) {
+  const cleaned = String(rationale)
+    .replace(/opening line[^.!?]{0,180}/gi, " ")
+    .replace(/sentence that follows[^.!?]{0,200}/gi, " ");
+  const windows = [...cleaned.matchAll(/underlined(?: sentence| portion| phrase| part| lines| claim| question| statement)?[^.!?]{0,400}/gi)].map(
+    (match) => match[0],
+  );
+  return windows.length ? windows : [cleaned];
+}
+
+function wrapFromQuotedRationale(passage, prompt, rationale) {
+  const hits = [];
+  const sources = [rationale, ...citedWindows(rationale)];
+  for (const window of sources) {
+    for (const quote of collectQuotedPhrases(window)) {
+      if (normalizeMatch(quote).length < 6) continue;
+      const span = findNormalizedSpan(passage, quote) || findFuzzyPhrase(passage, quote);
+      if (span && span.length >= 10) hits.push(span);
+    }
+  }
+  if (hits.length === 0) return null;
+  hits.sort((a, b) => b.length - a.length);
+  let target = coverQuotes(passage, hits.slice(0, 3)) || hits[0];
+  if (wantsSentenceTarget(prompt) || /underlined question/i.test(prompt)) {
+    target = expandToSentence(passage, target);
+  } else if (/underlined lines/i.test(prompt) && target.length < 48) {
+    target = expandPoeticLines(passage, target);
+  } else if (wantsPortionTarget(prompt) && target.length < 48) {
+    target = expandToClause(passage, target);
+  }
+  return wrapOnce(passage, target);
+}
+
+function wrapUnderlinedQuestion(passage, prompt) {
+  if (!/underlined question/i.test(prompt)) return null;
+  const questions = sentencesOf(stripAttributionAndSetup(passage))
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.endsWith("?") && sentence.length >= 12);
+  const target = questions.at(-1);
+  return target ? wrapOnce(passage, target) : null;
+}
+
+function wrapTwoExampleQuestions(passage, rationale) {
+  if (!/two such questions|poses two/i.test(rationale)) return null;
+  const questions = passage.match(/What if[^?]{8,160}\?/g);
+  if (!questions || questions.length < 2) return null;
+  const start = passage.indexOf(questions[0]);
+  const end = passage.indexOf(questions[1], start) + questions[1].length;
+  return start >= 0 ? wrapOnce(passage, passage.slice(start, end)) : null;
+}
+
+function wrapStatesThatClause(passage, prompt, rationale) {
+  const match = String(rationale).match(
+    /underlined[^.!?]{0,120}(?:states? that|stating that|stating explicitly that|mentions? that|mentions)\s+(.{16,220}?)(?:\.|Thus,|The text|However|$)/i,
+  );
+  if (!match?.[1]) return null;
+  const span = findNormalizedSpan(passage, match[1]) || findFuzzyPhrase(passage, match[1]);
+  if (!span) return null;
+  const target = wantsSentenceTarget(prompt) ? expandToSentence(passage, span) : span;
+  return wrapOnce(passage, target);
+}
+
+function wrapUniqueCitedNgrams(passage, prompt, rationale) {
+  for (const window of citedWindows(rationale)) {
+    const tokens = tokenizeWithSpans(window);
+    for (let size = 8; size >= 5; size -= 1) {
+      for (let i = 0; i <= tokens.length - size; i += 1) {
+        const phrase = window.slice(tokens[i].start, tokens[i + size - 1].end);
+        if (/underlined|best answer|choice [a-d]|text as a whole/i.test(phrase)) continue;
+        if (contentTokens(phrase).length < 4) continue;
+        if ((phrase.match(/\d/g) || []).length >= 4) continue;
+        const span = findNormalizedSpan(passage, phrase);
+        if (!span || span.length < 24) continue;
+        if (passage.split(span).length !== 2) continue;
+        if (/the following text|in the text,|recalls how/i.test(span)) continue;
+        let target = wantsSentenceTarget(prompt) ? expandToSentence(passage, span) : expandToClause(passage, span);
+        if (target.length < 40) target = span;
+        const wrapped = wrapOnce(passage, target);
+        if (wrapped) return wrapped;
+      }
+    }
+  }
+  return null;
+}
+
+function expandToClause(passage, snippet) {
+  const index = passage.indexOf(snippet);
+  if (index >= 0) {
+    const soAt = passage.lastIndexOf(" so ", index);
+    if (soAt >= 0 && index - soAt < 100) {
+      const stop = passage.indexOf(".", index);
+      const clause = passage.slice(soAt + 1, stop >= 0 ? stop + 1 : index + snippet.length).trim();
+      if (clause.length >= snippet.length) return clause;
+    }
+  }
+  const clause = clausesOf(passage).find((item) => item.includes(snippet));
+  return clause && clause.length <= Math.max(snippet.length * 3, 180) ? clause.trim() : snippet;
+}
+
+function expandPoeticLines(passage, snippet) {
+  const index = passage.indexOf(snippet);
+  if (index < 0) return snippet;
+  const before = passage.slice(0, index);
+  const start = Math.max(before.lastIndexOf("But "), before.lastIndexOf(". "));
+  if (start < 0) return snippet;
+  const from = before.lastIndexOf("But ") === start ? start : start + 2;
+  return passage.slice(from).trim();
+}
+
+function wrapMechanismClause(passage, rationale) {
+  if (!/how that mechanism could work|describes how that mechanism/i.test(rationale)) return null;
+  const match = stripAttributionAndSetup(passage).match(/:\s*([^:]{24,280})\s*$/);
+  return match ? wrapOnce(passage, match[1].trim()) : null;
+}
+
+function wrapLikelyClaim(passage, prompt) {
+  if (
+    !/underlined (claim|conclusion|explanation|observation)|observation presented in the underlined/i.test(
+      prompt,
+    )
+  ) {
+    return null;
+  }
+  const sentences = sentencesOf(stripAttributionAndSetup(passage))
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.length >= 24 && !/^\d+(?:\s+\d+){3,}/.test(sentence));
+  const last = sentences.at(-1);
+  if (last && /however|thus|therefore|overall|although|according to|claim|argue|fallen|durable|increased/i.test(last)) {
+    return wrapOnce(passage, last);
+  }
+  return last ? wrapOnce(passage, last) : null;
+}
+
+function wrapParentheticalDefinition(passage, rationale) {
+  if (!/set off with parentheses|provides a definition|parenthetical/i.test(rationale)) return null;
+  const paren = stripAttributionAndSetup(passage).match(/\([^)]{8,120}\)/);
+  return paren ? wrapOnce(passage, paren[0]) : null;
+}
+
+function focusRationale(rationale) {
+  const windows = [...String(rationale).matchAll(/[^.!?]*underlined[^.!?]{0,420}/gi)].map((match) => match[0]);
+  return [rationale, ...windows].join(" ");
+}
+
+function wrapByRationaleOverlap(passage, prompt, rationale) {
+  const excerpt = stripAttributionAndSetup(passage);
+  const units = wantsPortionTarget(prompt) ? clausesOf(excerpt) : sentencesOf(excerpt).map((item) => item.trim());
+  const usable = units.filter((unit) => unit.length >= 12 && !/^\d+(?:\s+\d+){4,}/.test(unit));
+  if (usable.length === 0) return null;
+
+  const focusTokens = contentTokens(focusRationale(rationale));
+  if (focusTokens.length < 3) return null;
+
+  const scored = usable.map((unit, index) => {
+    const tokens = contentTokens(unit);
+    const overlap = tokens.filter((token) => focusTokens.includes(token));
+    return {
+      unit,
+      index,
+      score: overlap.length,
+      ratio: overlap.length / Math.max(tokens.length, 1),
+    };
+  });
+  scored.sort((a, b) => b.score - a.score || b.ratio - a.ratio);
+  const best = scored[0];
+  const second = scored[1];
+  if (!best || best.score < 2) return null;
+
+  if (wantsPortionTarget(prompt)) {
+    const strong = scored.filter((item) => item.score >= Math.max(2, best.score - 1)).sort((a, b) => a.index - b.index);
+    if (strong.length >= 2 && strong[strong.length - 1].index - strong[0].index <= 2) {
+      const start = passage.indexOf(strong[0].unit);
+      const last = strong[strong.length - 1].unit;
+      const end = passage.indexOf(last, start) + last.length;
+      if (start >= 0 && end > start && end - start <= 320) {
+        return wrapOnce(passage, passage.slice(start, end));
+      }
+    }
+  }
+
+  if (second && best.score === second.score && Math.abs(best.ratio - second.ratio) < 0.04) return null;
+  return wrapOnce(passage, best.unit);
+}
+
+function wrapFromRestDescribes(passage, rationale) {
+  if (!/then the rest of the text describes/i.test(rationale)) return null;
+  const sentences = sentencesOf(stripAttributionAndSetup(passage))
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  if (sentences.length < 2) return null;
+  return wrapOnce(passage, sentences[1]);
+}
+
 function sentencesOf(passage) {
-  return String(passage).match(/[^.!?]+(?:[.!?]+|$)/g) || [passage];
+  const marked = String(passage)
+    .replace(/(\d)\.(\d)/g, "$1\u0000$2")
+    .replace(/\b([A-Z])\.(?=\s*[a-z])/g, "$1\u0000");
+  return (marked.match(/[^.!?]+(?:[.!?]+|$)/g) || [marked]).map((sentence) => sentence.replace(/\u0000/g, "."));
 }
 
 function expandToSentence(passage, snippet) {
@@ -199,12 +547,39 @@ function wrapUnderlinedPassage(question) {
     /most logical and precise word/i.test(prompt);
   if (!wantsUnderline) return question;
 
-  const rationale = Object.values(question.explanations || {}).join("\n");
+  const allRationale = Object.values(question.explanations || {}).join("\n");
+  const rationale = question.explanations?.[question.correctAnswer] || allRationale;
   const fromClues = wrapFromStructureClues(passage, rationale);
   if (fromClues) return { ...question, passage: fromClues };
 
   const literary = wrapLiteraryOpening(passage);
   if (literary) return { ...question, passage: literary };
+
+  const questionMark = wrapUnderlinedQuestion(passage, prompt);
+  if (questionMark) return { ...question, passage: questionMark };
+
+  const twoQuestions = wrapTwoExampleQuestions(passage, rationale);
+  if (twoQuestions) return { ...question, passage: twoQuestions };
+
+  const parenthetical = wrapParentheticalDefinition(passage, rationale);
+  if (parenthetical) return { ...question, passage: parenthetical };
+
+  if (/underlined (observation|claim|conclusion)|observation presented in the underlined/i.test(prompt)) {
+    const observation = wrapLikelyClaim(passage, prompt);
+    if (observation) return { ...question, passage: observation };
+  }
+
+  const statesThat = wrapStatesThatClause(passage, prompt, rationale);
+  if (statesThat) return { ...question, passage: statesThat };
+
+  const mechanism = wrapMechanismClause(passage, rationale);
+  if (mechanism) return { ...question, passage: mechanism };
+
+  const fromQuotes = wrapFromQuotedRationale(passage, prompt, rationale);
+  if (fromQuotes) return { ...question, passage: fromQuotes };
+
+  const uniqueNgrams = wrapUniqueCitedNgrams(passage, prompt, rationale);
+  if (uniqueNgrams) return { ...question, passage: uniqueNgrams };
 
   const quote = quoteNearUnderlined(rationale);
   if (quote && passage.includes(quote)) {
@@ -212,6 +587,9 @@ function wrapUnderlinedPassage(question) {
     const wrapped = wrapOnce(passage, target);
     if (wrapped) return { ...question, passage: wrapped };
   }
+
+  const restDescribes = wrapFromRestDescribes(passage, rationale);
+  if (restDescribes) return { ...question, passage: restDescribes };
 
   const word = prompt.match(/(?:word|phrase)\s+[“"]([^"”]+)[”"]/i)?.[1];
   if (word && passage.includes(word)) {
@@ -231,6 +609,12 @@ function wrapUnderlinedPassage(question) {
 
   const byKeywords = wrapByKeywordOverlap(passage, rationale);
   if (byKeywords) return { ...question, passage: byKeywords };
+
+  const likelyClaim = wrapLikelyClaim(passage, prompt);
+  if (likelyClaim) return { ...question, passage: likelyClaim };
+
+  const byOverlap = wrapByRationaleOverlap(passage, prompt, rationale);
+  if (byOverlap) return { ...question, passage: byOverlap };
 
   if (
     /completes the text so that it conforms/i.test(prompt) ||
@@ -264,6 +648,116 @@ function collectUnderlineBands(annotations) {
   return bands;
 }
 
+function multiplyCtm(left, right) {
+  return [
+    left[0] * right[0] + left[2] * right[1],
+    left[1] * right[0] + left[3] * right[1],
+    left[0] * right[2] + left[2] * right[3],
+    left[1] * right[2] + left[3] * right[3],
+    left[0] * right[4] + left[2] * right[5] + left[4],
+    left[1] * right[4] + left[3] * right[5] + left[5],
+  ];
+}
+
+function applyCtm(ctm, x, y) {
+  return {
+    x: ctm[0] * x + ctm[2] * y + ctm[4],
+    y: ctm[1] * x + ctm[3] * y + ctm[5],
+  };
+}
+
+function bandFromHorizontal(x0, y0, x1, y1, pad) {
+  const minX = Math.min(x0, x1);
+  const maxX = Math.max(x0, x1);
+  const midY = (y0 + y1) / 2;
+  if (Math.abs(y1 - y0) > 3.2 || maxX - minX < 8) return null;
+  return { x0: minX, x1: maxX, y0: midY - pad, y1: midY + pad };
+}
+
+async function collectDrawnUnderlineBands(pdfjs, page) {
+  const bands = [];
+  let opList;
+  try {
+    opList = await page.getOperatorList();
+  } catch {
+    return bands;
+  }
+  const OPS = pdfjs.OPS || {};
+  let ctm = [1, 0, 0, 1, 0, 0];
+  const stack = [];
+  let lineWidth = 1;
+  let pathPts = [];
+
+  const flushPath = () => {
+    for (let i = 1; i < pathPts.length; i += 1) {
+      const previous = pathPts[i - 1];
+      const current = pathPts[i];
+      const band = bandFromHorizontal(
+        previous.x,
+        previous.y,
+        current.x,
+        current.y,
+        Math.max(2.2, lineWidth + 2),
+      );
+      if (band) bands.push(band);
+    }
+    pathPts = [];
+  };
+
+  for (let i = 0; i < opList.fnArray.length; i += 1) {
+    const fn = opList.fnArray[i];
+    const args = opList.argsArray[i] || [];
+    if (fn === OPS.save) stack.push(ctm.slice());
+    else if (fn === OPS.restore) ctm = stack.pop() || ctm;
+    else if (fn === OPS.transform && args.length >= 6) ctm = multiplyCtm(ctm, args);
+    else if (fn === OPS.setLineWidth) lineWidth = Number(args[0]) || lineWidth;
+    else if (fn === OPS.moveTo && args.length >= 2) pathPts.push(applyCtm(ctm, args[0], args[1]));
+    else if (fn === OPS.lineTo && args.length >= 2) pathPts.push(applyCtm(ctm, args[0], args[1]));
+    else if (fn === OPS.rectangle && args.length >= 4) {
+      const [x, y, width, height] = args;
+      if (Math.abs(height) <= 3.2 && Math.abs(width) >= 8) {
+        const start = applyCtm(ctm, x, y);
+        const end = applyCtm(ctm, x + width, y);
+        const band = bandFromHorizontal(start.x, start.y, end.x, end.y, Math.max(2.2, Math.abs(height) + 2));
+        if (band) bands.push(band);
+      }
+    } else if (fn === OPS.constructPath) {
+      const ops = args[0];
+      const coords = args[1] || [];
+      if (Array.isArray(ops) && Array.isArray(coords)) {
+        let cursor = 0;
+        for (const op of ops) {
+          if (op === OPS.moveTo || op === OPS.lineTo) {
+            const x = coords[cursor];
+            const y = coords[cursor + 1];
+            cursor += 2;
+            if (typeof x === "number" && typeof y === "number") pathPts.push(applyCtm(ctm, x, y));
+          } else if (op === OPS.rectangle) {
+            const x = coords[cursor];
+            const y = coords[cursor + 1];
+            const width = coords[cursor + 2];
+            const height = coords[cursor + 3];
+            cursor += 4;
+            if (Math.abs(height) <= 3.2 && Math.abs(width) >= 8) {
+              const start = applyCtm(ctm, x, y);
+              const end = applyCtm(ctm, x + width, y);
+              const band = bandFromHorizontal(start.x, start.y, end.x, end.y, 3);
+              if (band) bands.push(band);
+            }
+          } else {
+            cursor += 6;
+          }
+        }
+      }
+    } else if (fn === OPS.stroke || fn === OPS.closeStroke || fn === OPS.fill || fn === OPS.eoFill || fn === OPS.fillStroke) {
+      flushPath();
+    } else if (fn === OPS.endPath) {
+      pathPts = [];
+    }
+  }
+  return bands;
+}
+
 function itemIsUnderlined(item, bands) {
   if (!item?.str || !item.transform || !bands.length) return false;
   const x0 = item.transform[4];
@@ -285,7 +779,8 @@ async function pageTextWithUnderlines(pdfjs, page, pageNumber, totalPages) {
   } catch {
     annotations = [];
   }
-  const bands = collectUnderlineBands(annotations);
+  const drawn = await collectDrawnUnderlineBands(pdfjs, page);
+  const bands = [...collectUnderlineBands(annotations), ...drawn];
   const lineThreshold = 4.6;
   const cellThreshold = 7;
   const strBuf = [];
@@ -493,27 +988,39 @@ function findPdfs() {
     .sort();
 }
 
+function recoverExistingQuestions() {
+  if (!fs.existsSync(OUTPUT)) {
+    throw new Error(
+      "No PDFs found and src/data/questions.json is missing. Place College Board question-bank exports next to package.json.",
+    );
+  }
+  console.warn("No PDFs found in the project root. Recovering <u> tags on existing questions.json.");
+  return JSON.parse(fs.readFileSync(OUTPUT, "utf8"));
+}
+
 async function main() {
   const pdfs = findPdfs();
-  if (pdfs.length === 0) {
-    throw new Error("No PDFs found in the project root. Place College Board question-bank exports next to package.json.");
-  }
-
   const byId = new Map();
   let skipped = 0;
 
-  for (const filePath of pdfs) {
-    console.log(`Extracting ${path.basename(filePath)}...`);
-    const text = await extractPdfText(filePath);
-    const parsed = parseQuestionBankText(text);
-    skipped += parsed.skipped;
-    for (const question of parsed.questions) {
+  if (pdfs.length === 0) {
+    for (const question of recoverExistingQuestions()) {
       byId.set(question.id, question);
     }
-    console.log(`  parsed ${parsed.questions.length} questions (${parsed.skipped} skipped)`);
+  } else {
+    for (const filePath of pdfs) {
+      console.log(`Extracting ${path.basename(filePath)}...`);
+      const text = await extractPdfText(filePath);
+      const parsed = parseQuestionBankText(text);
+      skipped += parsed.skipped;
+      for (const question of parsed.questions) {
+        byId.set(question.id, question);
+      }
+      console.log(`  parsed ${parsed.questions.length} questions (${parsed.skipped} skipped)`);
+    }
   }
 
-  const questions = Array.from(byId.values()).sort((a, b) => {
+  const questions = Array.from(byId.values()).map(wrapUnderlinedPassage).sort((a, b) => {
     const domain = a.domain.localeCompare(b.domain);
     if (domain !== 0) return domain;
     const skill = a.skill.localeCompare(b.skill);

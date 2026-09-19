@@ -18,7 +18,7 @@ import {
   saveIncludeSkipped,
 } from "@/lib/storage";
 import type { Attempt, ChoiceId, Difficulty, ExcludeMode, Question } from "@/lib/types";
-import { parseRichText, UNDERLINE_CLASS } from "@/lib/rich-text";
+import { Passage } from "@/components/Passage";
 import { ensurePassageUnderlines } from "@/lib/underline";
 
 const typedSeed = seedQuestions as Question[];
@@ -446,17 +446,10 @@ export default function SatPracticeApp() {
                           {item.difficulty}
                         </span>
                       </div>
-                      <p className="sat-rich whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8">
-                        {parseRichText(item.passage).map((span, spanIndex) => {
-                          const body = span.italic ? <i>{span.text}</i> : span.text;
-                          const marked = span.underline ? (
-                            <u className={UNDERLINE_CLASS}>{body}</u>
-                          ) : (
-                            body
-                          );
-                          return <span key={spanIndex}>{marked}</span>;
-                        })}
-                      </p>
+                      <Passage
+                        html={item.passage}
+                        className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8"
+                      />
                       <p className="font-medium leading-7">{item.prompt}</p>
                       <div className="space-y-3">
                         {item.choices.map((choice) => (

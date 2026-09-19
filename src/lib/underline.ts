@@ -16,7 +16,10 @@ function wrapOnce(haystack: string, needle: string) {
 }
 
 function sentencesOf(passage: string) {
-  return String(passage).match(/[^.!?]+(?:[.!?]+|$)/g) || [passage];
+  const marked = String(passage)
+    .replace(/(\d)\.(\d)/g, "$1\u0000$2")
+    .replace(/\b([A-Z])\.(?=\s*[a-z])/g, "$1\u0000");
+  return (marked.match(/[^.!?]+(?:[.!?]+|$)/g) || [marked]).map((sentence) => sentence.replace(/\u0000/g, "."));
 }
 
 function stripAttributionAndSetup(passage: string) {
@@ -111,6 +114,56 @@ function wrapByKeywordOverlap(passage: string, rationale: string) {
   return wrapOnce(passage, best.sentence);
 }
 
+function wrapUnderlinedQuestion(passage: string, prompt: string) {
+  if (!/underlined question/i.test(prompt)) return null;
+  const questions = sentencesOf(stripAttributionAndSetup(passage))
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.endsWith("?") && sentence.length >= 12);
+  const target = questions.at(-1);
+  return target ? wrapOnce(passage, target) : null;
+}
+
+function wrapTwoExampleQuestions(passage: string, rationale: string) {
+  if (!/two such questions|poses two/i.test(rationale)) return null;
+  const questions = passage.match(/What if[^?]{8,160}\?/g);
+  if (!questions || questions.length < 2) return null;
+  const start = passage.indexOf(questions[0]);
+  const end = passage.indexOf(questions[1], start) + questions[1].length;
+  return start >= 0 ? wrapOnce(passage, passage.slice(start, end)) : null;
+}
+
+function wrapParentheticalDefinition(passage: string, rationale: string) {
+  if (!/set off with parentheses|provides a definition|parenthetical/i.test(rationale)) return null;
+  const paren = stripAttributionAndSetup(passage).match(/\([^)]{8,120}\)/);
+  return paren ? wrapOnce(passage, paren[0]) : null;
+}
+
+function wrapLikelyClaim(passage: string, prompt: string) {
+  if (
+    !/underlined (claim|conclusion|explanation|observation)|observation presented in the underlined/i.test(prompt)
+  ) {
+    return null;
+  }
+  const sentences = sentencesOf(stripAttributionAndSetup(passage))
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.length >= 24 && !/^\d+(?:\s+\d+){3,}/.test(sentence));
+  const last = sentences.at(-1);
+  return last ? wrapOnce(passage, last) : null;
+}
+
+function wrapFromQuotedRationale(passage: string, prompt: string, rationale: string) {
+  const quotes = [...rationale.matchAll(/[\u201c"]([^"\u201d]{6,240})["\u201d]/g)].map((match) => match[1].trim());
+  for (const quote of quotes.sort((a, b) => b.length - a.length)) {
+    if (!passage.includes(quote)) continue;
+    const target = /underlined (sentence|question|statement)/i.test(prompt)
+      ? sentencesOf(passage).find((sentence) => sentence.includes(quote))?.trim() || quote
+      : quote;
+    const wrapped = wrapOnce(passage, target);
+    if (wrapped) return wrapped;
+  }
+  return null;
+}
+
 export function ensurePassageUnderlines(question: Question): Question {
   let passage = question.passage || "";
   if (hasUnderlineMarkup(passage)) {
@@ -128,12 +181,30 @@ export function ensurePassageUnderlines(question: Question): Question {
     /most logical and precise word/i.test(prompt);
   if (!wantsUnderline) return question;
 
-  const rationale = Object.values(question.explanations || {}).join("\n");
+  const allRationale = Object.values(question.explanations || {}).join("\n");
+  const rationale = question.explanations?.[question.correctAnswer] || allRationale;
   const fromClues = wrapFromStructureClues(passage, rationale);
   if (fromClues) return { ...question, passage: fromClues };
 
   const literary = wrapLiteraryOpening(passage);
   if (literary) return { ...question, passage: literary };
+
+  const questionMark = wrapUnderlinedQuestion(passage, prompt);
+  if (questionMark) return { ...question, passage: questionMark };
+
+  const twoQuestions = wrapTwoExampleQuestions(passage, rationale);
+  if (twoQuestions) return { ...question, passage: twoQuestions };
+
+  const parenthetical = wrapParentheticalDefinition(passage, rationale);
+  if (parenthetical) return { ...question, passage: parenthetical };
+
+  if (/underlined (observation|claim|conclusion)|observation presented in the underlined/i.test(prompt)) {
+    const observation = wrapLikelyClaim(passage, prompt);
+    if (observation) return { ...question, passage: observation };
+  }
+
+  const fromQuotes = wrapFromQuotedRationale(passage, prompt, rationale);
+  if (fromQuotes) return { ...question, passage: fromQuotes };
 
   const quote = quoteNearUnderlined(rationale);
   if (quote && passage.includes(quote)) {
@@ -160,6 +231,9 @@ export function ensurePassageUnderlines(question: Question): Question {
 
   const byKeywords = wrapByKeywordOverlap(passage, rationale);
   if (byKeywords) return { ...question, passage: byKeywords };
+
+  const likelyClaim = wrapLikelyClaim(passage, prompt);
+  if (likelyClaim) return { ...question, passage: likelyClaim };
 
   if (
     /completes the text so that it conforms/i.test(prompt) ||

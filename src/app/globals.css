@@ -63,9 +63,10 @@ label {
   min-width: 44px;
 }
 
+u,
 .sat-rich u,
 .sat-rich ins {
-  text-decoration-line: underline;
+  text-decoration: underline;
   text-decoration-color: #38bdf8;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;

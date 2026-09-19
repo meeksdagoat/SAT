@@ -20,6 +20,15 @@ function decodeEntities(value: string) {
     .replace(/&#39;/g, "'");
 }
 
+export function sanitizePassageHtml(input: string) {
+  const html = markupToHtml(input);
+  return html
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/&lt;(\/?(?:u|ins|b|strong|i|em))&gt;/gi, "<$1>");
+}
+
 export function markupToHtml(input: string) {
   let text = String(input ?? "");
   text = text.replace(/&lt;(\/?u|\/?ins|\/?b|\/?strong|\/?i|\/?em)\b[^&]*&gt;/gi, (_, tag: string) => {

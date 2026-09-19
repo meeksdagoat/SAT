@@ -111,7 +111,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
-    "passage": "Text 1 Growth in the use of novel nanohybrids—materials created from the conjugation of multiple distinct nanomaterials, such as iron oxide and gold nanomaterials conjugated for use in magnetic imaging—has outpaced studies of nanohybrids’ environmental risks. <u>Unfortunately, risk evaluations based on nanohybrids’ constituents are not reliable: conjugation may alter constituents’ physiochemical properties such that innocuous nanomaterials form a nanohybrid that is anything but.</u> Text 2 The potential for enhanced toxicity of nanohybrids relative to the toxicity of constituent nanomaterials has drawn deserved attention, but the effects of nanomaterial conjugation vary by case. For instance, it was recently shown that a nanohybrid of silicon dioxide and zinc oxide preserved the desired optical transparency of zinc oxide nanoparticles while mitigating the nanoparticles’ potential to damage DNA.",
+    "passage": "Text 1 Growth in the use of novel nanohybrids—materials created from the conjugation of multiple distinct nanomaterials, such as iron oxide and gold nanomaterials conjugated for use in magnetic imaging—has outpaced studies of nanohybrids’ environmental risks. Unfortunately, risk evaluations based on nanohybrids’ constituents are not reliable: conjugation may alter constituents’ physiochemical properties such that innocuous nanomaterials form a nanohybrid that is anything but. Text 2 The potential for enhanced toxicity of nanohybrids relative to the toxicity of constituent nanomaterials has drawn deserved attention, but the effects of nanomaterial conjugation vary by case. For instance, it was recently shown that a nanohybrid of <u>silicon dioxide and zinc oxide</u> preserved the desired optical transparency of zinc oxide nanoparticles while mitigating the nanoparticles’ potential to damage DNA.",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the assertion in the underlined portion of Text 1?",
     "choices": [
       {
@@ -286,7 +286,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 In a study of insect behavior, Samadi Galpayage and colleagues presented bumblebees with small wooden balls and observed many of the bees clinging to, rolling, and dragging the objects. The researchers provided no external rewards (such as food) to encourage these interactions. <u>The bees simply appeared to be playing—and for no other reason than because they were having fun.</u> Text 2 Insects do not have cortexes or other brain areas associated with emotions in humans. Still, Galpayage and her team have shown that bumblebees may engage in play, possibly experiencing some kind of positive emotional state. Other studies have suggested that bees experience negative emotional states (for example, stress), but as Galpayage and her team have acknowledged, emotions in insects, if they do indeed exist, are likely very rudimentary.",
+    "passage": "Text 1 In a study of insect behavior, Samadi Galpayage and colleagues presented bumblebees with small wooden balls and observed many of the bees clinging to, rolling, and dragging the objects. The researchers provided no external rewards (such as food) to encourage these interactions. The bees simply appeared to be playing—and for no other reason than because they were having fun. Text 2 Insects do not have cortexes or other brain areas associated with emotions in humans. Still, Galpayage and her team have shown that bumblebees may engage in play, possibly experiencing some kind of positive emotional state. Other studies have suggested that bees experience negative emotional states (for example, stress), but as Galpayage and her team have acknowledged, emotions in insects, if they do indeed exist, are <u>likely very rudimentary</u>.",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the underlined portion of Text 1?",
     "choices": [
       {
@@ -496,7 +496,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
-    "passage": "Text 1 Good art often challenges and disrupts social and aesthetic norms, but the creation of public art—paintings, sculptures, and performance pieces displayed in nonmuseum or nontheatrical public settings—typically requires broad agreement among artists, civic officials, and community members about the works’ message and artistic goals. <u>Public art that fails to appease everyone by being sufficiently aesthetically and conceptually bland almost inevitably provokes backlash.</u> Text 2 Public art is commonly displayed in spaces intended for purposes other than meaningful aesthetic engagement. Some critics of public art therefore note that norm-defying pieces that aren’t effectively integrated within their surroundings in a mannerthat primes passersby to appreciate the pieces’ merits (as is often the case) tend to be regarded more unfavorably than similarly provocative art encountered in museums is.",
+    "passage": "Text 1 Good art often challenges and disrupts social and aesthetic norms, but the creation of public art—paintings, sculptures, and performance pieces displayed in nonmuseum or nontheatrical public settings—typically requires broad agreement among artists, civic officials, and community members about the works’ message and artistic goals. Public art that fails to appease everyone by being sufficiently aesthetically and conceptually bland almost inevitably provokes backlash. Text 2 Public art is commonly displayed in spaces intended for purposes other than meaningful aesthetic engagement. <u>Some critics of public art therefore note that norm-defying pieces that aren’t effectively integrated within their surroundings in a mannerthat primes passersby to appreciate the pieces’ merits (as is often the case) tend to be regarded more unfavorably than similarly provocative art encountered in museums is.</u>",
     "prompt": "Based on the texts, how would the critics mentioned in Text 2 most likely respond to the underlined claim in Text 1?",
     "choices": [
       {
@@ -776,7 +776,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 Italian painters in the 1500s rarely depicted themselves in their work. Even more rare were self-portrait paintings that portrayed the artist as a painter. At the time, painting was not yet respected as a profession, so painters mostly chose to emphasize other qualities in their self-portraits, like their intellect or social status. In the city of Bologna, the first artist to depict themself painting was a man named Annibale Carracci. <u>A painting of his from around 1585 shows Carracci in front of an easel holding a palette.</u> Text 2 In their self-portraits, Bolognese artists typically avoided referring to the act of painting until the mid-1600s. However, Lavinia Fontana’s 1577 painting, Self-Portrait at the Keyboard, stands out as the earliest example of such a work by an artist from Bologna. Although the artist is depicted playing music, in the background, one can spot a painting easel by a window.",
+    "passage": "Text 1 Italian painters in the 1500s rarely depicted themselves in their work. Even more rare were self-portrait paintings that portrayed the artist as a painter. At the time, painting was not yet respected as a profession, so painters mostly chose to emphasize other qualities in their self-portraits, like their intellect or social status. In the city of Bologna, the first artist to depict themself painting was a man named Annibale Carracci. A painting of his from around 1585 shows Carracci in front of an easel holding a palette. Text 2 In their self-portraits, Bolognese artists typically avoided referring to the act of painting until the mid-1600s. However, Lavinia Fontana’s 1577 painting, Self-Portrait at the Keyboard, stands out as the earliest example of such a work by an artist from Bologna. <u>Although the artist is depicted playing music, in the background, one can spot a painting easel by a window.</u>",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "choices": [
       {
@@ -846,7 +846,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 Historians studying pre-Inca Peru have looked to ceramic vessels to understand daily life among the Moche people. These mold-made sculptures present plants, animals, and human faces in precise ways—vessels representing human faces are so detailed that scholars have interpreted facial markings to represent scars and other skin irregularities. <u>Some historians have even used these objects to identify potential skin diseases that may have afflicted people at the time.</u> Text 2 Art historian and archaeologist Lisa Trever has argued that the interpretation of Moche “portrait” vessels as hyper-realistic portrayals of identifiable people may inadvertently disregard the creativity of the objects’ creators. Moche ceramic vessels, Trever argues, are artworks in which sculptors could free their imagination, using realistic objects and people around them as inspiration to explore more abstract concepts.",
+    "passage": "Text 1 Historians studying pre-Inca Peru have looked to ceramic vessels to understand daily life among the Moche people. These mold-made sculptures present plants, animals, and human faces in precise ways—vessels representing human faces are so detailed that scholars have interpreted facial markings to represent scars and other skin irregularities. Some historians have even used these objects to identify potential skin diseases that may have afflicted people at the time. Text 2 Art historian and archaeologist Lisa Trever has argued that the interpretation of <u>Moche “portrait” vessels as hyper-realistic portrayals of identifiable people</u> may inadvertently disregard the creativity of the objects’ creators. Moche ceramic vessels, Trever argues, are artworks in which sculptors could free their imagination, using realistic objects and people around them as inspiration to explore more abstract concepts.",
     "prompt": "Based on the texts, what would Lisa Trever (Text 2) most likely say about the interpretation presented in the underlined portion of Text 1?",
     "choices": [
       {
@@ -916,7 +916,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 An excavation in Chiquihuite Cave in central Mexico has upended the belief that approximately 13,000 years ago, a group known as the Clovis people were the first human inhabitants of Nor th America. <u>More than 200 crude stone tools were found embedded in a layer of earth that is up to 33,150 years old, revealing that humans occupied the cave thousands of years before the Clovis people reached the continent.</u> Text 2 The objects uncovered in Chiquihuite Cave are intriguing, but it is premature to characterize them as tools. The stone pieces are so roughly shaped that they may have simply fractured from rocks during natural geological activity in the cave. Moreover, their unearthing has thus far not been accompanied by discoveries of other signs of human activity or even traces of human DNA from surfaces.",
+    "passage": "Text 1 An excavation in Chiquihuite Cave in central Mexico has upended the belief that approximately 13,000 years ago, a group known as the Clovis people were the first human inhabitants of Nor th America. More than 200 crude stone tools were found embedded in a layer of earth that is up to 33,150 years old, revealing that humans occupied the cave thousands of years before the Clovis people reached the continent. Text 2 The objects uncovered in Chiquihuite Cave are intriguing, but it is premature to characterize them as tools. The stone pieces are so roughly shaped that they may have simply fractured from rocks during natural geological activity in the cave. <u>Moreover, their unearthing has thus far not been accompanied by discoveries of other signs of human activity or even traces of human DNA from surfaces.</u>",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "choices": [
       {
@@ -1511,7 +1511,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
-    "passage": "Text 1 In 2007, a team led by Alice Storey analyzed a chicken bone found in El Arenal, Chile, dating it to 1321–1407 CE—over a century before Europeans invaded the region, bringing their own chickens. Storey also found that the El Arenal chicken shared a unique genetic mutation with the ancient chicken breeds of the Polynesian Islands in the Pacific. <u>Thus, Polynesian peoples, not later Europeans, probably first introduced chickens to South America.</u> Text 2 An Australian research team weakened the case for a Polynesian origin for the El Arenal chicken by confirming that the mutation identified by Storey has occurred in breeds from around the world. More recently, though, a team led by Agusto Luzuriaga-Neira found that South American chicken breeds and Polynesian breeds share other genetic markers that European breeds lack. Thus, the preponderance of evidence now favors a Polynesian origin.",
+    "passage": "Text 1 In 2007, a team led by Alice Storey analyzed a chicken bone found in El Arenal, Chile, dating it to 1321–1407 CE—over a century before Europeans invaded the region, bringing their own chickens. Storey also found that the El Arenal chicken shared a unique genetic mutation with the ancient chicken breeds of the Polynesian Islands in the Pacific. Thus, Polynesian peoples, not later Europeans, probably first introduced chickens to South America. Text 2 An Australian research team weakened the case for a Polynesian origin for the El Arenal chicken by confirming that the mutation identified by Storey has occurred in breeds from around the world. More recently, though, a team led by Agusto Luzuriaga-Neira found that South American chicken breeds and Polynesian breeds share other genetic markers that European breeds lack. <u>Thus, the preponderance of evidence now favors a Polynesian origin.</u>",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "choices": [
       {
@@ -1721,7 +1721,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
-    "passage": "Text 1 Like the work of Ralph Ellison before her, Toni Morrison’s novels feature scenes in which characters deliver sermons of such length and verbal dexterity that for a time, the text exchanges the formal parameters of fiction for those of oral literature. <u>Given the many other echoes of Ellison in Morrison’s novels, both in structure and prose style, these scenes suggest Ellison’s direct influence on Morrison.</u> Text 2 In their destabilizing effect on literary form, the sermons in Morrison’s works recall those in Ellison’s. Yet literature by Black Americans abounds in moments where interpolated speech erodes the division between oral and written forms that literature in English has traditionally observed. Morrison’s use of the sermon is attributable not only to the influence of Ellison but also to a community-wide strategy of resistance to externally imposed literary conventions.",
+    "passage": "Text 1 Like the work of Ralph Ellison before her, Toni Morrison’s novels feature scenes in which characters deliver sermons of such length and verbal dexterity that for a time, the text exchanges the formal parameters of fiction for those of oral literature. Given the many other echoes of Ellison in Morrison’s novels, both in structure and prose style, these scenes suggest Ellison’s direct influence on Morrison. Text 2 In their destabilizing effect on literary form, the sermons in Morrison’s works recall those in Ellison’s. Yet literature by Black Americans abounds in moments where interpolated speech erodes the division between oral and written forms that literature in English has traditionally observed. <u>Morrison’s use of the sermon is attributable not only to the influence of Ellison but also to a community-wide strategy of resistance to externally imposed literary conventions.</u>",
     "prompt": "Based on the texts, how would the author of Text 2 most likely characterize the underlined claim in Text 1?",
     "choices": [
       {
@@ -1931,7 +1931,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Hard",
-    "passage": "Text 1 Fossils of the hominin Australopithecus africanus have been found in the Sterkfontein Caves of South Africa, but assigning an age to the fossils is challenging because of the unreliability of dating methods in this context. <u>The geology of Sterkfontein has caused soil layers from different periods to mix, impeding stratigraphic dating, and dates cannot be reliably imputed from those of nearby animal bones since the bones may have been relocated by flooding.</u> Text 2 Archaeologists used new cosmogenic nuclide dating techniques to reevaluate the ages of A. africanus fossils found in the Sterkfontein Caves. This technique involves analyzing the cosmogenic nucleotides in the breccia—the matrix of rock fragments immediately surrounding the fossils. The researchers assert that this approach avoids the potential for misdating associated with assigning ages based on Sterkfontein’s soil layers or animal bones.",
+    "passage": "Text 1 Fossils of the hominin Australopithecus africanus have been found in the Sterkfontein Caves of South Africa, but assigning an age to the fossils is challenging because of the unreliability of dating methods in this context. The geology of Sterkfontein has caused soil layers from different periods to mix, impeding stratigraphic dating, and dates cannot be reliably imputed from those of nearby animal bones since the bones may have been relocated by flooding. Text 2 Archaeologists used new cosmogenic nuclide dating techniques to reevaluate the ages of A. africanus fossils found in the Sterkfontein Caves. This technique involves analyzing the cosmogenic nucleotides in the breccia—the matrix of rock fragments immediately surrounding the fossils. The researchers assert <u>that this approach avoids the potential for misdating</u> associated with assigning ages based on Sterkfontein’s soil layers or animal bones.",
     "prompt": "Based on the texts, how would the researchers in Text 2 most likely respond to the underlined portion in Text 1?",
     "choices": [
       {
@@ -1966,7 +1966,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 Polar bears sustain themselves primarily by hunting seals on the Arctic sea ice, but rising ocean temperatures are causing the ice to diminish, raising concerns about polar bear population declines as these large predators’ seal-hunting habitats continue to shrink. <u>A 2020 study examining polar bear populations across the Arctic concluded that populations affected by sea-ice loss are at great risk of extinction by the end of the twenty-first century.</u> Text 2 Monitoring carried out by researchers from the Norwegian Polar Institute shows that the polar bear population on the Arctic archipelago of Svalbard remains stable and well nourished despite rapidly declining sea ice in recent years. The researchers attribute this population’s resilience in part to a shift in feeding strategies: in addition to hunting seals, the Svalbard polar bears have begun relying on a diet of reindeer meat and birds’ eggs.",
+    "passage": "Text 1 Polar bears sustain themselves primarily by hunting seals on the Arctic sea ice, but rising ocean temperatures are causing the ice to diminish, raising concerns about polar bear population declines as these large predators’ seal-hunting habitats continue to shrink. A 2020 study examining polar bear populations across the Arctic concluded that populations affected by sea-ice loss are at great risk of extinction by the end of the twenty-first century. Text 2 Monitoring carried out by researchers from the Norwegian Polar Institute shows that the polar bear population on the Arctic archipelago of Svalbard remains <u>stable and well nourished</u> despite rapidly declining sea ice in recent years. The researchers attribute this population’s resilience in part to a shift in feeding strategies: in addition to hunting seals, the Svalbard polar bears have begun relying on a diet of reindeer meat and birds’ eggs.",
     "prompt": "Based on the texts, how would the researchers in Text 2 most likely respond to the conclusion presented in the underlined portion of Text 1?",
     "choices": [
       {
@@ -2071,7 +2071,7 @@
     "domain": "Craft and Structure",
     "skill": "Cross-Text Connections",
     "difficulty": "Medium",
-    "passage": "Text 1 In 1954 George Balanchine choreographed a production of The Nutcracker, a ballet by Pyotr Ilyich Tchaikovsky. It has since become a tradition for hundreds of dance companies in Nor th America to stage The Nutcracker each year. But the show is stuck in the past, with an old-fashioned story and references, so it should no longer be produced. <u>Ballet needs to create new traditions if it wants to stay relevant to contemporary audiences.</u> Text 2 The Nutcracker is outdated, but it should be kept because it’s a holiday favorite and provides substantial income for some dance companies. Although it can be behind the times, there are creative ways to update the show. For example, Debbie Allen successfully modernized the story. Her show Hot Chocolate Nutcracker combines ballet, tap, hip-hop, and other styles, and it has been gaining in popularity since it opened in 2009.",
+    "passage": "Text 1 In 1954 George Balanchine choreographed a production of The Nutcracker, a ballet by Pyotr Ilyich Tchaikovsky. It has since become a tradition for hundreds of dance companies in Nor th America to stage The Nutcracker each year. But the show is stuck in the past, with an old-fashioned story and references, so it should no longer be produced. Ballet needs to create new traditions if it wants to stay relevant to contemporary audiences. Text 2 The Nutcracker is outdated, but it should be kept because it’s a holiday favorite and provides substantial income for some dance companies. Although it can be behind the times, there are creative ways to update the show. For example, Debbie Allen successfully modernized the story. <u>Her show Hot Chocolate Nutcracker combines ballet, tap, hip-hop, and other styles, and it has been gaining in popularity since it opened in 2009.</u>",
     "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the underlined claim in Text 1?",
     "choices": [
       {
@@ -2736,7 +2736,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "Scholarly accounts of the Chicano movement—a movement that advocated for the social, political, and cultural empowerment of Mexican Americans and reached its zenith in the 1960s and 1970s—tend to focus on the most militant, outspoken figures in the movement, making it seem uniformly radical. <u>Geographer Juan Herrera has shown, however, that if we shift our focus toward the way the movement manifested in comparatively low-profile neighborhood institutions and projects, we see participants espousing an array of political orientations and approaches to community activism.</u>",
+    "passage": "Scholarly accounts of the Chicano movement—a movement that advocated for the social, political, and cultural empowerment of Mexican Americans and reached its zenith in the 1960s and 1970s—tend <u>to focus on the most militant, outspoken figures in the movement</u>, making it seem uniformly radical. Geographer Juan Herrera has shown, however, that if we shift our focus toward the way the movement manifested in comparatively low-profile neighborhood institutions and projects, we see participants espousing an array of political orientations and approaches to community activism.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -2806,7 +2806,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "Archeological excavation of Market Street Chinatown, a nineteenth-century Chinese American community in San Jose, California, provided the first evidence that Asian food products were imported to the United States in the 1800s: bones from a freshwater fish species native to Southeast Asia. Jinshanzhuang—Hong Kong–based import/export firms—likely coordinated the fish’s transport from Chinese-operated fisheries in Vietnam and Malaysia to Nor th American markets. This route reveals the (often overlooked) multinational dimensions of the trade networks linking Chinese diaspora communities.",
+    "passage": "Archeological excavation of Market Street Chinatown, a nineteenth-century Chinese American community in San Jose, California, provided the first evidence that Asian food products were imported to the United States in the 1800s: bones from a freshwater fish species native to Southeast Asia. <u>Jinshanzhuang—Hong Kong–based import/export firms—likely coordinated the fish’s transport from Chinese-operated fisheries in Vietnam and Malaysia to Nor th American markets.</u> This route reveals the (often overlooked) multinational dimensions of the trade networks linking Chinese diaspora communities.",
     "prompt": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "choices": [
       {
@@ -2841,7 +2841,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is adapted from Akwaeke Emezi’s 2019 novel Pet. Jam is a teenager who lives with her father, Aloe, and her mother, Bitter, who is a painter. Bitter finished the painting in the dark morning of a day—it was well past midnight when Jam heard the studio door creak open. She stared into the velvet black of her room and listened to her mother’s footsteps walking in her [mother] and Aloe’s bedroom. There was a weight thrumming through the floorboards in a low song, and that was how Jam knew the painting was done. Bitter’s feet were singing the news. ©2019 by Akwaeke Emezi",
+    "passage": "The following text is adapted from Akwaeke Emezi’s 2019 novel Pet. Jam is a teenager who lives with her father, Aloe, and her mother, Bitter, who is a painter. Bitter finished the painting in the dark morning of a day—it was well past midnight when Jam heard the studio door creak open. She stared into the velvet black of her room and listened to her mother’s footsteps walking in her [mother] and Aloe’s bedroom. There was a weight thrumming through the floorboards in a low song, and that was how Jam knew the painting was done. <u>Bitter’s feet were singing the news.</u> ©2019 by Akwaeke Emezi",
     "prompt": "Which choice best states the function of the underlined sentence in the text as a whole?",
     "choices": [
       {
@@ -2911,7 +2911,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "<u>In the past, historians who wanted to examine Frederick Douglass’s diary and other personal papers had to visit the Library of Congress in Washington, DC, to view them on microfilm (film containing scaled-down reproductions of documents).</u> But traveling to the library often added time and costs to research projects. Now, by going to the library’s website, researchers can access digitized versions of Douglass’s papers without physically going anywhere.",
+    "passage": "In the past, historians who wanted to examine Frederick Douglass’s diary and other personal papers had to visit the Library of Congress in Washington, DC, to view them on microfilm <u>(film containing scaled-down reproductions of documents)</u>. But traveling to the library often added time and costs to research projects. Now, by going to the library’s website, researchers can access digitized versions of Douglass’s papers without physically going anywhere.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -3086,7 +3086,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "<u>Historians have argued that a crucial component of the Civil Rights Movement’s success in the 1960s was the Southern Christian Leadership Conference’s Citizen Education Program (CEP), which invited promising activists from across the South to its one-week training sessions in Dorchester, Georgia.</u> Led by experienced organizers such as Dorothy Cotton and Septima Clark, CEP attendees—more than 7,000 in all— participated in workshops on topics ranging from public speaking to legal doctrine before returning home and using their newly acquired knowledge to spearhead local civil rights initiatives.",
+    "passage": "Historians have argued that a crucial component of the Civil Rights Movement’s success in the 1960s was the Southern Christian Leadership Conference’s Citizen Education Program (CEP), which invited promising activists from across the South to its one-week training sessions in Dorchester, Georgia. Led by experienced organizers such as Dorothy Cotton and Septima Clark, CEP attendees—more than 7,000 in all— <u>participated in workshops on topics ranging from public speaking to legal doctrine before returning home and using their newly acquired knowledge to spearhead local civil rights initiatives.</u>",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -3121,7 +3121,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "Alternative-history fiction is a subgenre of science fiction in which plots center on “what if?” questions. What if India had started the Industrial Revolution? What if Soviet cosmonauts had been first to land on the moon? Speculative counterfactuals like these can be great fodder for stories, but they’re also commonly deployed by academic historians to better understand factors influencing historical events. Well-realized and coherent alternative-history stories can thus complement historians’ speculations about the past.",
+    "passage": "Alternative-history fiction is a subgenre of science fiction in which plots center on “what if?” questions. <u>What if India had started the Industrial Revolution? What if Soviet cosmonauts had been first to land on the moon?</u> Speculative counterfactuals like these can be great fodder for stories, but they’re also commonly deployed by academic historians to better understand factors influencing historical events. Well-realized and coherent alternative-history stories can thus complement historians’ speculations about the past.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -3471,7 +3471,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Herman Melville’s 1854 novel The Lightning-rod Man. The stranger still stood in the exact middle of the cottage, where he had first planted himself. His singularity impelled a closer scrutiny. A lean, gloomy figure. Hair dark and lank, mattedly streaked over his brow. His sunken pitfalls of eyes were ringed by indigo halos, and played with an innocuous sort of lightning: the gleam without the bolt. The whole man was dripping. He stood in a puddle on the bare oak floor: his strange walking-stick vertically resting at his side.",
+    "passage": "The following text is from Herman Melville’s 1854 novel The Lightning-rod Man. The stranger still stood in the exact middle of the cottage, where he had first planted himself. <u>His singularity impelled a closer scrutiny.</u> A lean, gloomy figure. Hair dark and lank, mattedly streaked over his brow. His sunken pitfalls of eyes were ringed by indigo halos, and played with an innocuous sort of lightning: the gleam without the bolt. The whole man was dripping. He stood in a puddle on the bare oak floor: his strange walking-stick vertically resting at his side.",
     "prompt": "Which choice best states the function of the underlined sentence in the overall structure of the text?",
     "choices": [
       {
@@ -3786,7 +3786,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "The following text is adapted from Indian Boyhood, a 1902 memoir by Ohiyesa (Charles A. Eastman), a Santee Dakota writer. In the text, Ohiyesa recalls how the women in his tribe harvested maple syrup during his childhood. Now the women began to test the trees—moving leisurely among them, axe in hand, and striking a single quick blow, to see if the sap would appear. The trees, like people, have their individual characters; some were ready to yield up their life-blood, while others were more reluctant. Now one of the birchen basins was set under each tree, and a hardwood chip driven deep into the cut which the axe had made. From the corners of this chip—at first drop by drop, then more freely—the sap trickled into the little dishes.",
+    "passage": "The following text is adapted from Indian Boyhood, a 1902 memoir by Ohiyesa (Charles A. Eastman), a Santee Dakota writer. In the text, Ohiyesa recalls how the women in his tribe harvested maple syrup during his childhood. Now the women began to test the trees—moving leisurely among them, axe in hand, and striking a single quick blow, to see if the sap would appear. <u>The trees, like people, have their individual characters; some were ready to yield up their life-blood, while others were more reluctant.</u> Now one of the birchen basins was set under each tree, and a hardwood chip driven deep into the cut which the axe had made. From the corners of this chip—at first drop by drop, then more freely—the sap trickled into the little dishes.",
     "prompt": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "choices": [
       {
@@ -4031,7 +4031,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "In response to concerns that some recent financial crises were exacerbated by consumers misunderstanding risks associated with credit cards, loans, and other financial products, policymakers in many countries have instituted risk-disclosure requirements on sellers of those products. Enrique Seira et al. investigated a variety of risk-disclosure messages sent to thousands of credit card customers and found that the messages had only small and short-lived effects on behavior. Seira et al. <u>asserted that such effects may nevertheless be worth pursuing, given the negligible cost of messaging.</u>",
+    "passage": "<u>In response to concerns that some recent financial crises were exacerbated by consumers misunderstanding risks associated with credit cards, loans, and other financial products, policymakers in many countries have instituted risk-disclosure requirements on sellers of those products.</u> Enrique Seira et al. investigated a variety of risk-disclosure messages sent to thousands of credit card customers and found that the messages had only small and short-lived effects on behavior. Seira et al. asserted that such effects may nevertheless be worth pursuing, given the negligible cost of messaging.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -4381,7 +4381,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Charlotte For ten Grimké’s 1888 poem “At Newport.” Oh, deep delight to watch the gladsome waves Exultant leap upon the rugged rocks; Ever repulsed, yet ever rushing on— Filled with a life that will not know defeat; To see the glorious hues of sky and sea. The distant snowy sails, glide spirit like, Into an unknown world, to feel the sweet Enchantment of the sea thrill all the soul, Clearing the clouded brain, making the heart Leap joyous as it own bright, singing waves!",
+    "passage": "The following text is from Charlotte For ten Grimké’s 1888 poem “At Newport.” Oh, deep delight to watch the gladsome waves Exultant leap upon the rugged rocks; Ever repulsed, yet <u>ever rushing on— Filled with a life that will not know defeat</u>; To see the glorious hues of sky and sea. The distant snowy sails, glide spirit like, Into an unknown world, to feel the sweet Enchantment of the sea thrill all the soul, Clearing the clouded brain, making the heart Leap joyous as it own bright, singing waves!",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -4416,7 +4416,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is from Louise Erdrich’s 1986 novel The Beet Queen. The narrator discusses her relationship with her young niece, Dot. <u>Celestine, the narrator’s sister-in-law, is Dot’s mother.</u> Dot was as impatient with babyhood as I. She tried at once to grow out of it. Celestine never saw that, because she, and only she, took pleasure in Dot’s helpless softness. Only Celestine was saddened by her daughter’s fierce progress. Day by day, Dot grew stronger. In her shopping-cart stroller she exercised to exhaustion, bouncing for hours to develop her leg muscles. ©1986 by Louise Erdrich",
+    "passage": "The following text is from Louise Erdrich’s 1986 novel The Beet Queen. The narrator discusses her relationship with her young niece, Dot. Celestine, the narrator’s sister-in-law, is Dot’s mother. Dot was as impatient with babyhood as I. She tried at once to grow out of it. Celestine never saw that, because she, and only she, took pleasure in Dot’s helpless softness. Only Celestine was saddened by her daughter’s fierce progress. <u>Day by day, Dot grew stronger. In her shopping-cart stroller she exercised to exhaustion, bouncing for hours</u> to develop her leg muscles. ©1986 by Louise Erdrich",
     "prompt": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "choices": [
       {
@@ -4591,7 +4591,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is from Ameen Rihani’s 1921 poem “The Wanderer.” I wander among the hills of alien lands Where Nature her prerogative resigns To Man; where Comfort in her shack reclines And all the arts and sciences commands. But in my soul The eastern billows roll— I hearthe voices of my native strands.",
+    "passage": "The following text is from Ameen Rihani’s 1921 poem “The Wanderer.” I wander among the hills of alien lands Where Nature her prerogative resigns To Man; where Comfort in her shack reclines And all the arts and sciences commands. <u>But in my soul The eastern billows roll— I hearthe voices of my native strands.</u>",
     "prompt": "Which choice best describes the function of the underlined lines in the text as a whole?",
     "choices": [
       {
@@ -4766,7 +4766,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "Curious about how people visually perceive objects in their dreams, Stephen LaBerge and team recruited lucid dreamers—people aware that they’re dreaming as it’s happening—for a research study. These participants were reliably able to signal when they had entered a dream state; the team then observed participants’ eye movements as they slept. <u>The smoothness with which participants’ eyes tracked objects in their dreams closely matched how sighted people who are awake visually track objects around them, suggesting to the team that the brain perceives dream objects as the product of something other than pure imagination.</u>",
+    "passage": "Curious about how people visually perceive objects in their dreams, Stephen LaBerge and team recruited lucid dreamers—people aware that they’re dreaming as it’s happening—for a research study. These participants were reliably able to signal when they had entered a dream state; the team then observed participants’ eye movements as they slept. The smoothness with which participants’ eyes tracked objects in their dreams closely matched how sighted people who are awake visually track objects around them, suggesting to the team <u>that the brain perceives dream objects</u> as the product of something other than pure imagination.",
     "prompt": "Which choice best states the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -4906,7 +4906,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "In the early days of television in the 1940s, many people thought that US television programs would rely on the financial support of ad agencies and commercial sponsors, much like radio did. But advertisers hesitated to jump into a new space, particularly at a time when the manufacturing of new television sets was stalled due to the US’s involvement in World War II. Broadcasters, like the National Broadcasting Company (NBC), needed to persuade advertisers to support their programming despite not knowing whether there would be a robust television audience to begin with.",
+    "passage": "In the early days of television in the 1940s, many people thought that US television programs would rely on the financial support of ad agencies and commercial sponsors, much like radio did. <u>But advertisers hesitated to jump into a new space, particularly at a time when the manufacturing of new television sets was stalled due to the US’s involvement in World War II.</u> Broadcasters, like the National Broadcasting Company (NBC), needed to persuade advertisers to support their programming despite not knowing whether there would be a robust television audience to begin with.",
     "prompt": "Which choice best describes the function of the underlined phrase in the text as a whole?",
     "choices": [
       {
@@ -5151,7 +5151,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "Individual elephants and Arctic herbivores such as caribou tend to have fixed geographic ranges throughout their lifetimes, which had prompted some researchers to speculate that the Arctic woolly mammoth, an extinct elephantid, might have exhibited similar behavior. Mammoth tusks grew in sequential layers, incorporating ingested minerals and organics, and so each ivory stratum reflects the ratio of strontium isotopes (87Sr/86Sr) in the local environment; thus, the sequence of strata shows where the animal roamed during life. Recent analysis of the strontium ratios in the strata of one Arctic woolly mammoth tusk in relation to the geographic distribution of strontium ratios in the environment shows the animal’s range begin to expand as it reached sexual maturity, only to contract again in its final 1.5 years.",
+    "passage": "<u>Individual elephants and Arctic herbivores such as caribou tend to have fixed geographic ranges throughout their lifetimes, which had prompted some researchers to speculate that the Arctic woolly mammoth, an extinct elephantid, might have exhibited similar behavior.</u> Mammoth tusks grew in sequential layers, incorporating ingested minerals and organics, and so each ivory stratum reflects the ratio of strontium isotopes (87Sr/86Sr) in the local environment; thus, the sequence of strata shows where the animal roamed during life. Recent analysis of the strontium ratios in the strata of one Arctic woolly mammoth tusk in relation to the geographic distribution of strontium ratios in the environment shows the animal’s range begin to expand as it reached sexual maturity, only to contract again in its final 1.5 years.",
     "prompt": "Which choice best describes the function of the underlined statement in the text as a whole?",
     "choices": [
       {
@@ -5186,7 +5186,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The following text is adapted from Oscar Wilde’s 1897 nonfiction work De Profundis. People whose desire is solely for self-realisation never know where they are going. They can’t know. In one sense of the word it is of course necessary to know oneself: that is the first achievement of knowledge. But to recognise that the soul of a man is unknowable, is the ultimate achievement of wisdom. The final mystery is oneself. When one has weighed the sun in the balance, and measured the steps of the moon, and mapped out the seven heavens star by star, there still remains oneself. Who can calculate the orbit of his own soul?",
+    "passage": "The following text is adapted from Oscar Wilde’s 1897 nonfiction work De Profundis. People whose desire is solely for self-realisation never know where they are going. They can’t know. In one sense of the word it is of course necessary to know oneself: that is the first achievement of knowledge. But to recognise that the soul of a man is unknowable, is the ultimate achievement of wisdom. The final mystery is oneself. When one has weighed the sun in the balance, and measured the steps of the moon, and mapped out the seven heavens star by star, there still remains oneself. <u>Who can calculate the orbit of his own soul?</u>",
     "prompt": "Which choice best describes the function of the underlined question in the text as a whole?",
     "choices": [
       {
@@ -5886,7 +5886,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Virginia Woolf’s 1919 novel Night and Day. The text describes a gathering of young artists and intellectuals. <u>One person after another rose, and, as with an ill-balanced axe, attempted to hew out his conception of art a little more clearly, and sat down with the feeling that, for some reason which he could not grasp, his strokes had gone awry.</u> As they sat down they turned almost invariably to the person sitting next them, and rectified and continued what they had just said in public.",
+    "passage": "The following text is from Virginia Woolf’s 1919 novel Night and Day. The text describes a gathering of young artists and intellectuals. One person after another rose, and, as with an ill-balanced axe, attempted to hew out his conception of art a little more clearly, and sat down with the feeling that, for some reason which he could not grasp, his <u>strokes had gone awry</u>. As they sat down they turned almost invariably to the person sitting next them, and rectified and continued what they had just said in public.",
     "prompt": "Which choice best describes the function of the underlined portions in the text as a whole?",
     "choices": [
       {
@@ -5956,7 +5956,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "Technological advances have prompted companies to increasingly rely on automation to streamline production. Armin Granulo and colleagues, however, found that for products with higher symbolic value (those viewed as contributing to individual self-expression), consumers prefer products made by humans rather than by robots, likely because human-made products are more strongly associated with uniqueness. <u>When considering automation, therefore, companies—especially those specializing in products of symbolic value—should weigh trade-offs between efficiency gains and consumer preferences.</u>",
+    "passage": "Technological advances have prompted companies to increasingly rely on automation to streamline production. <u>Armin Granulo and colleagues, however, found that for products with higher symbolic value (those viewed as contributing to individual self-expression), consumers prefer products made by humans rather than by robots, likely because human-made products are more strongly associated with uniqueness.</u> When considering automation, therefore, companies—especially those specializing in products of symbolic value—should weigh trade-offs between efficiency gains and consumer preferences.",
     "prompt": "Which choice best describes the function of the underlined sentence in the text as a whole?",
     "choices": [
       {
@@ -6061,7 +6061,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "“How lifelike are they?” Many computer animators prioritize this question as they strive to create ever more realistic environments and lighting. Generally, while characters in computer-animated films appear highly exaggerated, environments and lighting are carefully engineered to mimic reality. But some animators, such as Pixar’s Sanjay Patel, are focused on a different question. Rather than asking first whether the environments and lighting they’re creating are convincingly lifelike, Patel and others are asking whether these elements reflect their films’ unique stories.",
+    "passage": "<u>“How lifelike are they?</u>” Many computer animators prioritize this question as they strive to create ever more realistic environments and lighting. Generally, while characters in computer-animated films appear highly exaggerated, environments and lighting are carefully engineered to mimic reality. But some animators, such as Pixar’s Sanjay Patel, are focused on a different question. Rather than asking first whether the environments and lighting they’re creating are convincingly lifelike, Patel and others are asking whether these elements reflect their films’ unique stories.",
     "prompt": "Which choice best describes the function of the underlined question in the text as a whole?",
     "choices": [
       {
@@ -6166,7 +6166,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "The following text is adapted from Herman Melville’s 1855 novel Israel Potter. Israel is a young man wandering through New England during the late eighteenth century. He hired himself out for three months; at the end of that time to receive for his wages two hundred acres of land lying in New Hampshire. [...<u>] His employer proving false to the contract in the matter of the land, and there being no law in the country to force him to fulfil it, Israel—who, however brave-hearted, and even much of a dare-devil upon a pinch, seems nevertheless to have evinced, throughout many parts of his career, a singular patience and mildness—was obliged to look round for other means of livelihood than clearing out a farm for himself in the wilderness.</u>",
+    "passage": "The following text is adapted from Herman Melville’s 1855 novel Israel Potter. Israel is a young man wandering through New England during the late eighteenth century. He hired himself out for three months; at the end of that time to receive for his wages two hundred acres of land lying in New Hampshire. [...] His employer proving false to the contract in the matter of the land, and there being no law in the country to force him to fulfil it, Israel—who, however <u>brave-hearted, and even much of a dare-devil upon a pinch</u>, seems nevertheless to have evinced, throughout many parts of his career, a singular patience and mildness—was obliged to look round for other means of livelihood than clearing out a farm for himself in the wilderness.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -6236,7 +6236,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Medium",
-    "passage": "The following text is from Annie Dillard’s 1987 autobiographical novel An American Childhood. The narrator is a young girl living in Pittsburgh. I walked. My mother had given me the freedom of the streets as soon as I could say our telephone number. I walked and memorized the neighborhood. I made a mental map and located myself upon it. At night in bed I rehearsed the small world’s scheme and set challenges: Find the store using backyards only. Imagine a route from the school to my friend’s house. ©1987 by Annie Dillard",
+    "passage": "The following text is from Annie Dillard’s 1987 autobiographical novel An American Childhood. The narrator is a young girl living in Pittsburgh. I walked. My mother had given me the freedom of the streets as soon as I could say our telephone number. I walked and memorized the neighborhood. I made a <u>mental map and located myself upon it. At night in bed I rehearsed the small world’s scheme</u> and set challenges: Find the store using backyards only. Imagine a route from the school to my friend’s house. ©1987 by Annie Dillard",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -6271,7 +6271,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "The majority of plastics today wind up in landfills or are, at best, recycled into materials that have a very limited range of applications. To address this problem, chemist Guoliang Liu and colleagues designed a reactorthat melts polyethylene and polypropylene—two widely used plastics—into a wax. The wax can then be transformed into a surfactant (a chemical compound usable as a detergent). With this promising new method, plastic waste could be turned into a range of useful cleaning products.",
+    "passage": "The majority of plastics today wind up in landfills or are, at best, recycled into materials that have a very limited range of applications. To address this problem, chemist Guoliang Liu and colleagues designed a reactorthat melts polyethylene and polypropylene—two widely used plastics—into a wax. The wax can then be transformed into a surfactant <u>(a chemical compound usable as a detergent)</u>. With this promising new method, plastic waste could be turned into a range of useful cleaning products.",
     "prompt": "Which choice best states the function of the underlined portion of the text?",
     "choices": [
       {
@@ -6586,7 +6586,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "Typically, synthetic leather is petroleum based, but materials scientists searching for an ecologically sustainable alternative have used various bacteria that secrete linear chains of glucose, forming a dense mesh of cellulose called a pellicle, which is leatherlike except in color. The standard process for dyeing leather generates substantial wastewater and other undesirable byproducts, so adopting such a regimen would run counterto the ecological promise of the pellicle approach. To address this, Kenneth T. Walker and colleagues worked to modify Komagataeibacter rhaeticus bacteria to produce a pellicle with embedded pigmentation cells, thereby allowing the pellicle to “dye” itself from the inside.",
+    "passage": "Typically, synthetic leather is petroleum based, but materials scientists searching for an ecologically sustainable alternative have used various bacteria that secrete linear chains of glucose, forming a dense mesh of cellulose called a pellicle, which is leatherlike except in color. The standard process for dyeing leather generates substantial wastewater and other undesirable byproducts, <u>so adopting such a regimen would run counterto the ecological promise of the pellicle approach.</u> To address this, Kenneth T. Walker and colleagues worked to modify Komagataeibacter rhaeticus bacteria to produce a pellicle with embedded pigmentation cells, thereby allowing the pellicle to “dye” itself from the inside.",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -6656,7 +6656,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Hard",
-    "passage": "The following text is from Joseph Conrad’s 1907 novel The Secret Agent: A Simple Tale. Mr. Verloc is navigating the London streets on his way to a meeting. Before reaching Knightsbridge, Mr. Verloc took a turn to the left out of the busy main thoroughfare, uproarious with the traffic of swaying omnibuses and trotting vans, in the almost silent, swift flow of hansoms [horse-drawn carriages]. Under his hat, worn with a slight backward tilt, his hair had been carefully brushed into respectful sleekness; for his business was with an Embassy. And Mr. Verloc, steady like a rock—a soft kind of rock—marched now along a street which could with every propriety be described as private.",
+    "passage": "The following text is from Joseph Conrad’s 1907 novel The Secret Agent: A Simple Tale. Mr. Verloc is navigating the London streets on his way to a meeting. Before reaching Knightsbridge, Mr. Verloc took a turn to the left out of the busy main thoroughfare, uproarious with the traffic of swaying omnibuses and trotting vans, in the almost silent, swift flow of hansoms [horse-drawn carriages]. Under his hat, worn with a slight backward tilt, his hair had been carefully brushed into respectful sleekness; for his business was with an Embassy. And Mr. <u>Verloc, steady like a rock—a soft kind of rock—marched now along a street which could with every propriety be described as private.</u>",
     "prompt": "Which choice best describes the function of the underlined phrase in the text as a whole?",
     "choices": [
       {
@@ -6691,7 +6691,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "Historians Tiya Miles and Roy E. <u>Finkenbine have both documented the assistance Indigenous peoples gave to Black freedom seekers leaving the South before the US Civil War.</u> Much of the historical evidence of this help comes from Indigenous oral traditions and from autobiographies written by the freedom seekers. One such narrative is Jermain Loguen’s autobiography, which tells about how Neshnabé (Potawatomi) villagers offered him food, lodging, and directions during his 1835 journey from Tennessee to Canada.",
+    "passage": "Historians Tiya Miles and Roy E. Finkenbine have both documented the assistance Indigenous peoples gave to Black freedom seekers leaving the South before the US Civil War. <u>Much of the historical evidence of this help comes from Indigenous oral traditions and from autobiographies written by the freedom seekers.</u> One such narrative is Jermain Loguen’s autobiography, which tells about how Neshnabé (Potawatomi) villagers offered him food, lodging, and directions during his 1835 journey from Tennessee to Canada.",
     "prompt": "Which choice best describes the function of the underlined sentence?",
     "choices": [
       {
@@ -6866,7 +6866,7 @@
     "domain": "Craft and Structure",
     "skill": "Text Structure and Purpose",
     "difficulty": "Easy",
-    "passage": "Horizontal gene transfer occurs when an organism of one species acquires genetic material from an organism of another species through nonreproductive means. The genetic material can then be transferred “vertically” in the second species—that is, through reproductive inheritance. Scientist Atma Ivancevic and her team have hypothesized infection by invertebrate parasites as a mechanism of horizontal gene transfer between vertebrate species: while feeding, a parasite could acquire a gene from one host, then relocate to a host from a different vertebrate species and transferthe gene to it in turn.",
+    "passage": "Horizontal gene transfer occurs when an organism of one species acquires genetic material from an organism of another species through nonreproductive means. The genetic material can then be transferred “vertically” in the second species—that is, through reproductive inheritance. Scientist Atma Ivancevic and her team have hypothesized infection by invertebrate parasites as a mechanism of horizontal gene transfer between vertebrate species: <u>while feeding, a parasite could acquire a gene from one host, then relocate to a host from a different vertebrate species and transferthe gene to it in turn.</u>",
     "prompt": "Which choice best describes the function of the underlined portion in the text as a whole?",
     "choices": [
       {
@@ -35216,7 +35216,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "Olms are salamanders that live in underwater caves. Scientists once thought that olms stay in their caves all their lives. However, Raoul Manenti and team claim that olms regularly come to the surface to perform important activities such as finding food.",
+    "passage": "Olms are salamanders that live in underwater caves. Scientists once thought that olms stay in their caves all their lives. <u>However, Raoul Manenti and team claim that olms regularly come to the surface to perform important activities such as finding food.</u>",
     "prompt": "Which finding, if true, would most strongly support the underlined claim?",
     "choices": [
       {
@@ -36196,7 +36196,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "The Minneapolis Institute of Art in Minneapolis, Minnesota, has over 90,000 works of art. Digital images of thousands of those works have been put online through the museum’s website and the Google Arts & Culture project. One of the images is of Mississippi Delta, a drawing by Siah Armajani. In a paper, a student claims that putting a work from the museum online increases the number of people who experience that work.",
+    "passage": "The Minneapolis Institute of Art in Minneapolis, Minnesota, has over 90,000 works of art. Digital images of thousands of those works have been put online through the museum’s website and the Google Arts & Culture project. One of the images is of Mississippi Delta, a drawing by Siah Armajani. <u>In a paper, a student claims that putting a work from the museum online increases the number of people who experience that work.</u>",
     "prompt": "Which finding, if true, would most directly support the underlined claim?",
     "choices": [
       {
@@ -36931,7 +36931,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "Percentage Point Changes in US Federal Outlays Relative to GDP by Congressional Status Period Congressional status Change in total outlays Change in nondefense outlays Change in defense outlays 1981–1988 divided −0.4 −1.3 0.9 1975–1976 divided 2.7 3.0 −0.3 1977–1980 undivided 0.3 0.6 −0.3 1964–1968 undivided 1.9 1.4 0.5 1969–1974 divided −1.8 2.1 −3.9 Economist Steve H. Hanke has shown that divided US Congresses—which occur when one party holds the majority in the House of Representatives and another holds the majority in the Senate—tend to accompany reductions in total federal outlays (spending) relative to gross domestic product (GDP), which Hanke interprets to reflect decreases in government size. Hanke calculated the percentage point change in total outlays (encompassing nondefense and defense outlays) for consecutive US Congresses. Hanke has pointed to his calculations as evidence that a divided Congress may be a “necessary but not sufficient condition” for a decrease in government size to occur.",
+    "passage": "Percentage Point Changes in US Federal Outlays Relative to GDP by Congressional Status Period Congressional status Change in total outlays Change in nondefense outlays Change in defense outlays 1981–1988 divided −0.4 −1.3 0.9 1975–1976 divided 2.7 3.0 −0.3 1977–1980 undivided 0.3 0.6 −0.3 1964–1968 undivided 1.9 1.4 0.5 1969–1974 divided −1.8 2.1 −3.9 Economist Steve H. Hanke has shown that divided US Congresses—which occur when one party holds the majority in the House of Representatives and another holds the majority in the Senate—tend to accompany reductions in total federal outlays (spending) relative to gross domestic product (GDP), which Hanke interprets to reflect decreases in government size. Hanke calculated the percentage point change in total outlays (encompassing nondefense and defense outlays) for consecutive US Congresses. <u>Hanke has pointed to his calculations as evidence that a divided Congress may be a “necessary but not sufficient condition” for a decrease in government size to occur.</u>",
     "prompt": "Which choice best describes data from the table that support the underlined claim?",
     "choices": [
       {
@@ -37701,7 +37701,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "A member of the Otomi, an Indigenous people in Central Mexico, Octavio Medellín immigrated to the United States as a child, and his sculpture bears the impress of traditions on both sides of the border: US-based modernist sculpture, Mexican modernist painting, Otomi art, and the ancient sculpture of other Mexican Indigenous peoples, including the Maya. In his 1950 masterpiece History of Mexico, Medellín fuses these influences into a style so idiosyncratic that it resists efforts to view his work through the lens of nationality or cultural identity. Artists, he insisted, should strive for individual expression, even as they draw inspiration from their heritage and the communities where they live and work.",
+    "passage": "A member of the Otomi, an Indigenous people in Central Mexico, Octavio Medellín immigrated to the United States as a child, and his sculpture bears the impress of traditions on both sides of the border: US-based modernist sculpture, Mexican modernist painting, Otomi art, and the ancient sculpture of other Mexican Indigenous peoples, including the Maya. In his 1950 masterpiece History of Mexico, Medellín fuses these influences into a style so idiosyncratic that it resists efforts to view his work through the lens of nationality or cultural identity. <u>Artists, he insisted, should strive for individual expression, even as they draw inspiration from their heritage and the communities where they live and work.</u>",
     "prompt": "Which quotation from an art critic most directly challenges the underlined claim in the text?",
     "choices": [
       {
@@ -37806,7 +37806,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "Janet Echelman is a sculptor and fiber artist. She has installed giant sculptures all over the world. Echelman uses bright and flowing materials, which mimic the wind. However, while her sculptures appear as delicate as a breeze, they are actually very durable.",
+    "passage": "Janet Echelman is a sculptor and fiber artist. She has installed giant sculptures all over the world. Echelman uses bright and flowing materials, which mimic the wind. <u>However, while her sculptures appear as delicate as a breeze, they are actually very durable.</u>",
     "prompt": "Which quotation from an article about Echelman’s sculptures, if true, would most effectively illustrate the underlined claim?",
     "choices": [
       {
@@ -38576,7 +38576,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "Gorgets, or necklaces with large pendants, have been part of the ceremonial attire of tribes from the US Southeast for centuries. One of the oldest examples, the Fairfield Gorget, was found in Fairfield, Missouri, in 1958. Its overall design resembles that of other art from the region during the Mississippian period (900–1600 CE). Yet the image on the gorget is of a jaguar—a species whose range doesn’t extend to Missouri. Jaguar images are common in ancient Mexican art, and Mexico lies squarely in the species’ range. Therefore, some scholars argue that long- distance trade in Mexican art objects brought the imagery to Missouri, where a local artist could have adopted it and incorporated it into the Fairfield Gorget.",
+    "passage": "Gorgets, or necklaces with large pendants, have been part of the ceremonial attire of tribes from the US Southeast for centuries. One of the oldest examples, the Fairfield Gorget, was found in Fairfield, Missouri, in 1958. Its overall design resembles that of other art from the region during the Mississippian period (900–1600 CE). Yet the image on the gorget is of a jaguar—a species whose range doesn’t extend to Missouri. Jaguar images are common in ancient Mexican art, and Mexico lies squarely in the species’ range. <u>Therefore, some scholars argue that long- distance trade in Mexican art objects brought the imagery to Missouri, where a local artist could have adopted it and incorporated it into the Fairfield Gorget.</u>",
     "prompt": "Which finding, if true, would most strongly support the underlined explanation?",
     "choices": [
       {
@@ -39661,7 +39661,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "18 16 14 12 10 8 6 4 2 0 Number of sharks male female undetermined Banded Sand Catsharks Found in Three Sponges sponge 1 sponge 2 sponge 3 Researcher Helen O’Neill and her team were studying sponges in the family Irciniidae when they discovered that three of the sponges were functioning as microhabitats for banded sand catsharks (Atelomycterus fasciatus). Additionally, the team found that male and female A. fasciatus share the same sponge (the same microhabitat), a behavior not found among Port Jackson sharks (Heterodontus portusjacksoni), another seabed-dwelling species.",
+    "passage": "18 16 14 12 10 8 6 4 2 0 Number of sharks male female undetermined Banded Sand Catsharks Found in Three Sponges sponge 1 sponge 2 sponge 3 Researcher Helen O’Neill and her team were studying sponges in the family Irciniidae when they discovered that three of the sponges were functioning as microhabitats for banded sand catsharks (Atelomycterus fasciatus). <u>Additionally, the team found that male and female A. fasciatus share the same sponge (the same microhabitat), a behavior not found among Port Jackson sharks (Heterodontus portusjacksoni), another seabed-dwelling species.</u>",
     "prompt": "Which choice best describes data from the graph that support the underlined claim?",
     "choices": [
       {
@@ -40011,7 +40011,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "In the 1970s, a roughly 60,000-year-old piece of hyena bone marked with nine notches was discovered at a site in western France once inhabited by Neanderthals. Although many believe that only modern humans developed systems for notating numbers, one archaeologist asserts that this artifact may be a sign that Neanderthals also recorded numerical information. The notches on the bone are unevenly spaced but approximately parallel, and microscopic analysis reveals that they were made with a single stone tool; according to the archaeologist, this suggests that the notches were all made at one time by one individual as a means of counting something.",
+    "passage": "In the 1970s, a roughly 60,000-year-old piece of hyena bone marked with nine notches was discovered at a site in western France once inhabited by Neanderthals. Although many believe that only modern humans developed systems for notating numbers, one archaeologist asserts that this artifact may be a sign that Neanderthals also recorded numerical information. <u>The notches on the bone are unevenly spaced but approximately parallel, and microscopic analysis reveals that they were made with a single stone tool; according to the archaeologist, this suggests that the notches were all made at one time by one individual as a means of counting something.</u>",
     "prompt": "Which finding, if true, would most directly weaken the underlined claim?",
     "choices": [
       {
@@ -40431,7 +40431,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "<u>350 300 250 200 150 100 50 0 Number of submissions 2016 2017 2018 2019 Total Science Research Submissions by Topic, 2016–2019 Year cellular and molecular biology physics and space science medicine and health animal science A student is researching the trends in the topics submitted to a national science fair for high school students.</u> The graph shows the number of submissions by topic that were made each year. Based on the data in the graph, the student claims that there were more medicine and health research topics submitted in 2019 than in any other year.",
+    "passage": "350 300 250 200 150 100 50 0 Number of submissions 2016 2017 2018 2019 Total Science Research Submissions by Topic, 2016–2019 Year cellular and molecular biology physics and space science medicine and health animal science A student is researching the trends in the topics submitted to a national science fair for high school students. The graph shows the number of submissions by topic that were made each year. <u>Based on the data in the graph, the student claims that there were more medicine and health research topics submitted in 2019 than in any other year.</u>",
     "prompt": "Which choice most effectively uses data from the graph to support the underlined claim?",
     "choices": [
       {
@@ -41131,7 +41131,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "Having demonstrated that the power conversion efficiency of new perovskite photovoltaic cells is nearly indistinguishable from that of cells recycled multiple times, Xun Xiao and colleagues evaluated the levelized cost of electricity (LCOE)—a measure of cost per produced electricity unit that incorporates materials acquisition costs as well as operating costs—for power plants utilizing each type of cell. With a modeled 15-year cell lifetime, the LCOE of plants using new cells was 4.99 cents per kilowatt-hour, whereas that of plants using cells recycled three times was 4.05 cents per kilowatt-hour. Moreover, the LCOE differential grew from 18.8% to 31.3% when the modeled cell lifetime was reduced by two- thirds.",
+    "passage": "Having demonstrated that the power conversion efficiency of new perovskite photovoltaic cells is nearly indistinguishable from that of cells recycled multiple times, Xun Xiao and colleagues evaluated the levelized cost of electricity (LCOE)—a measure of cost per produced electricity unit that incorporates materials acquisition costs as well as operating costs—for power plants utilizing each type of cell. With a modeled 15-year cell lifetime, the LCOE of plants using new cells was 4.99 cents per kilowatt-hour, whereas that of plants using cells recycled three times was 4.05 cents per kilowatt-hour. <u>Moreover, the LCOE differential grew from 18.8% to 31.3% when the modeled cell lifetime was reduced by two- thirds.</u>",
     "prompt": "Based on the text, which choice, if true, most coherently and directly accounts for the observation presented in the underlined sentence?",
     "choices": [
       {
@@ -41726,7 +41726,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "Sandra Cisneros’s 1984 novella The House on Mango Street made a lasting impact on US literature. Its depiction of Mexican American culture inspired later authors to examine their own heritage within their fictional works. Also influential was the book’s portrayal of the main character, Esperanza, during a pivotal year of her youth. <u>This insightful depiction of a preteen girl encouraged authors who, like Cisneros herself, are Latina to use fictional works to examine experiences from their own youth.</u>",
+    "passage": "Sandra Cisneros’s 1984 novella The House on Mango Street made a lasting impact on US literature. <u>Its depiction of Mexican American culture inspired later authors to examine their own heritage within their fictional works.</u> Also influential was the book’s portrayal of the main character, Esperanza, during a pivotal year of her youth. This insightful depiction of a preteen girl encouraged authors who, like Cisneros herself, are Latina to use fictional works to examine experiences from their own youth.",
     "prompt": "Which statement, if true, would most strongly support the claim in the underlined sentence?",
     "choices": [
       {
@@ -42776,7 +42776,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "Over the course of the 1900s, more and more Native Hawaiians spoke English instead of the Hawaiian language. To preserve their language, Native Hawaiian teachers founded the ‘Aha Pūnana Leo preschool in 1984. They spoke Hawaiian while teaching, and their Native Hawaiian students were soon able to understand and speak it themselves. The school was a huge success. Eventually it opened locations around Hawai‘i and started teaching Hawaiian to elementary and high school students too. Thanks to ‘Aha Pūnana Leo, the number of young people who speak the language has increased.",
+    "passage": "Over the course of the 1900s, more and more Native Hawaiians spoke English instead of the Hawaiian language. To preserve their language, Native Hawaiian teachers founded the ‘Aha Pūnana Leo preschool in 1984. They spoke Hawaiian while teaching, and their Native Hawaiian students were soon able to understand and speak it themselves. The school was a huge success. Eventually it opened locations around Hawai‘i and started teaching Hawaiian to elementary and high school students too. <u>Thanks to ‘Aha Pūnana Leo, the number of young people who speak the language has increased.</u>",
     "prompt": "Which statement, if true, would most directly support the underlined claim?",
     "choices": [
       {
@@ -43126,7 +43126,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "Delta 15-N Values in Seagrass Samples from Four Sites on the Yucatan, 2016– 2017 Site February 2016 October 2016 February 2017 October 2017 Akumal Bay no data available 3.3 2.0 6.3 Mahahual 0.7 no data available 2.5 3.4 Tulum 6.1 5.9 2.3 5.5 Xahuayxol 0.9 0.3 −0.9 1.4 Because water from natural, uncontaminated sources is less enriched with the stable nitrogen isotope 15N than wastewater from human activities is, the presence of such wastewater in nature can be detected by examining delta 15-N values (a measure of the ratio of 15N to 14N) in plants. Karla A. Camacho-Cruz and colleagues assessed delta 15-N values in the seagrass Thalassia testudinum from sites on Mexico’s Yucatan peninsula with intermediate tourism development, including Akumal Bay and Tulum, and low tourism development, including Mahahual and Xahuayxol, throughout 2016 and 2017. The data suggest that the intermediate-tourism sites experienced influxes of human wastewater. However, the researchers concluded that this happened intermittently.",
+    "passage": "Delta 15-N Values in Seagrass Samples from Four Sites on the Yucatan, 2016– 2017 Site February 2016 October 2016 February 2017 October 2017 Akumal Bay no data available 3.3 2.0 6.3 Mahahual 0.7 no data available 2.5 3.4 Tulum 6.1 5.9 2.3 5.5 Xahuayxol 0.9 0.3 −0.9 1.4 Because water from natural, uncontaminated sources is less enriched with the stable nitrogen isotope 15N than wastewater from human activities is, the presence of such wastewater in nature can be detected by examining delta 15-N values (a measure of the ratio of 15N to 14N) in plants. Karla A. Camacho-Cruz and colleagues assessed delta 15-N values in the seagrass Thalassia testudinum from sites on Mexico’s Yucatan peninsula with intermediate tourism development, including Akumal Bay and Tulum, and low tourism development, including Mahahual and Xahuayxol, throughout 2016 and 2017. The data suggest that the intermediate-tourism sites experienced influxes of human wastewater. <u>However, the researchers concluded that this happened intermittently.</u>",
     "prompt": "Which choice best describes data from the table that support the underlined conclusion?",
     "choices": [
       {
@@ -43651,7 +43651,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Medium",
-    "passage": "Although most songbirds build open, cupped nests, some species build domed nests with roofs that provide much more protection. Many ecologists have assumed that domed nests would provide protection from weather conditions and thus would allow species that build them to have larger geographic ranges than species that build open nests do. To evaluate this assumption, a research team led by evolutionary biologist Iliana Medina analyzed data for over 3,000 species of songbirds.",
+    "passage": "Although most songbirds build open, cupped nests, some species build domed nests with roofs that provide much more protection. <u>Many ecologists have assumed that domed nests would provide protection from weather conditions and thus would allow species that build them to have larger geographic ranges than species that build open nests do.</u> To evaluate this assumption, a research team led by evolutionary biologist Iliana Medina analyzed data for over 3,000 species of songbirds.",
     "prompt": "Which finding from Medina and her colleagues’ study, if true, would most directly challenge the assumption in the underlined sentence?",
     "choices": [
       {
@@ -43721,7 +43721,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Hard",
-    "passage": "Neural networks are computer models intended to reflect the organization of human brains and are often used in studies of brain function. According to an analysis of 11,000 such networks, Rylan Schaeffer and colleagues advise caution when drawing conclusions about brains from observations of neural networks. They found that when attempting to mimic grid cells (brain cells used in navigation), while 90% of the networks could accomplish navigation-related tasks, only about 10% of those exhibited any behaviors similarto those of grid cells. But even this approximation of grid-cell activity has less to do with similarity between the neural networks and biological brains than it does with the rules programmed into the networks.",
+    "passage": "Neural networks are computer models intended to reflect the organization of human brains and are often used in studies of brain function. According to an analysis of 11,000 such networks, Rylan Schaeffer and colleagues advise caution when drawing conclusions about brains from observations of neural networks. <u>They found that when attempting to mimic grid cells (brain cells used in navigation), while 90% of the networks could accomplish navigation-related tasks, only about 10% of those exhibited any behaviors similarto those of grid cells.</u> But even this approximation of grid-cell activity has less to do with similarity between the neural networks and biological brains than it does with the rules programmed into the networks.",
     "prompt": "Which finding, if true, would most directly support the claim in the underlined sentence?",
     "choices": [
       {
@@ -44211,7 +44211,7 @@
     "domain": "Information and Ideas",
     "skill": "Command of Evidence",
     "difficulty": "Easy",
-    "passage": "1,750 1,500 1,250 1,000 750 500 250 0 Number of articles 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 Investigative Articles Published in the Albuquerque Journal from 2010 to 2019 Total Investigative journalists research and report about fraud, corruption, public hazards, and more. The graph shows the number of investigative articles published in the Albuquerque Journal newspaper from 2010 to 2019. According to an analyst, although the number of investigative articles published in this newspaper has varied significantly over the period shown, the number overall has fallen since 2010.",
+    "passage": "1,750 1,500 1,250 1,000 750 500 250 0 Number of articles 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 Investigative Articles Published in the Albuquerque Journal from 2010 to 2019 Total Investigative journalists research and report about fraud, corruption, public hazards, and more. The graph shows the number of investigative articles published in the Albuquerque Journal newspaper from 2010 to 2019. <u>According to an analyst, although the number of investigative articles published in this newspaper has varied significantly over the period shown, the number overall has fallen since 2010.</u>",
     "prompt": "Which choice most effectively uses data from the graph to justify the underlined claim?",
     "choices": [
       {
