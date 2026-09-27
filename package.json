@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "extract-questions": "node --max-old-space-size=8192 scripts/parse-pdfs.js"
+    "extract-questions": "node --max-old-space-size=8192 scripts/parse-pdfs.js",
+    "enrich-figures": "node scripts/enrich-figures.js",
+    "verify-figures": "node scripts/verify-figure-matches.js"
   },
   "dependencies": {
     "next": "^16.3.5",
