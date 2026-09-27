@@ -19,6 +19,7 @@ import {
 } from "@/lib/storage";
 import type { Attempt, ChoiceId, Difficulty, ExcludeMode, Question } from "@/lib/types";
 import { Passage } from "@/components/Passage";
+import { QuestionFigure } from "@/components/QuestionFigure";
 import { ensurePassageUnderlines } from "@/lib/underline";
 
 const typedSeed = seedQuestions as Question[];
@@ -441,7 +442,8 @@ export default function SatPracticeApp() {
                 </div>
               ) : (
                 filteredMistakes.map((attempt) => {
-                  const item = ensurePassageUnderlines(attempt.question);
+                  const fromBank = bank.find((question) => question.id === attempt.questionId);
+                  const item = ensurePassageUnderlines(fromBank ?? attempt.question);
                   return (
                     <article key={`${attempt.questionId}-${attempt.timestamp}`} className="rounded-2xl border border-slate-700 bg-slate-800 p-4 space-y-4 sm:p-6">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -455,6 +457,7 @@ export default function SatPracticeApp() {
                           {item.difficulty}
                         </span>
                       </div>
+                      {item.figureHtml ? <QuestionFigure html={item.figureHtml} /> : null}
                       <Passage
                         html={item.passage}
                         className="whitespace-pre-wrap break-words leading-7 text-slate-100 sm:leading-8"
@@ -753,6 +756,7 @@ export default function SatPracticeApp() {
             </div>
 
             <article className="touch-scroll rounded-2xl border border-slate-700 bg-slate-800 p-4 shadow-lg shadow-black/20 sm:p-6">
+              {question.figureHtml ? <QuestionFigure html={question.figureHtml} /> : null}
               <p className="mb-3 text-xs text-slate-500">Select passage text to highlight</p>
               <HighlightableBlock
                 text={question.passage}

@@ -15,6 +15,8 @@ export interface Question {
   difficulty: Difficulty;
   passage: string;
   prompt: string;
+  /** Official table/graph HTML (from College Board) shown above the passage. */
+  figureHtml?: string;
   choices: Choice[];
   correctAnswer: ChoiceId;
   explanations: Record<ChoiceId, string>;

@@ -46,6 +46,7 @@ export function normalizeQuestion(raw: unknown, index: number): Question | null 
     ]),
   ) as Question["explanations"];
 
+  const figureHtml = asString(q.figureHtml);
   return {
     id,
     assessment: asString(q.assessment) || "SAT",
@@ -55,6 +56,7 @@ export function normalizeQuestion(raw: unknown, index: number): Question | null 
     difficulty: difficulty as Difficulty,
     passage: asString(q.passage),
     prompt: asString(q.prompt) || "Which choice is best?",
+    ...(figureHtml ? { figureHtml } : {}),
     choices,
     correctAnswer,
     explanations,

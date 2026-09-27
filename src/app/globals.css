@@ -122,3 +122,60 @@ u,
   font-weight: 600;
   color: #bae6fd;
 }
+
+.question-figure {
+  color: #0f172a;
+}
+
+.question-figure table {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.question-figure caption {
+  caption-side: top;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.question-figure th,
+.question-figure td {
+  border: 1px solid #334155;
+  padding: 0.45rem 0.7rem;
+  vertical-align: middle;
+}
+
+.question-figure thead th {
+  background: #e2e8f0;
+  font-weight: 700;
+}
+
+.question-figure tbody th {
+  text-align: left;
+  font-weight: 600;
+  background: #f8fafc;
+}
+
+.question-figure svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.question-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.question-figure p {
+  margin: 0;
+}
